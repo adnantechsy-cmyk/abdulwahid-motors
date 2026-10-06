@@ -758,7 +758,13 @@
     "whatsapp": "WhatsApp",
     "whatsappAction": "Message us on WhatsApp",
     "social": "Social media",
-    "opensNewTab": "opens in a new tab"
+    "opensNewTab": "opens in a new tab",
+    "emailLabels": {
+      "info": "General enquiries",
+      "sales": "Car sales",
+      "parts": "Spare parts",
+      "management": "Management and investment"
+    }
   },
   "about": {
     "hero": {

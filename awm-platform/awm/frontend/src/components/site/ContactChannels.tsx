@@ -12,12 +12,12 @@ const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
 export async function ContactChannels({ variant = 'cards' }: { variant?: 'cards' | 'inline' }) {
   const t = await getTranslations('site');
   const c = contactChannels();
-  if (!c.email && !c.phone && !c.whatsapp && c.social.length === 0) return null;
+  if (c.emails.length === 0 && !c.phone && !c.whatsapp && c.social.length === 0) return null;
 
   if (variant === 'inline') {
     return (
       <div className="flex flex-col gap-3 text-sm">
-        {c.email && <a href={`mailto:${c.email}`} className="font-bold text-awm-black hover:text-awm-red" dir="ltr">{c.email}</a>}
+        {c.emails[0] && <a href={`mailto:${c.emails[0].address}`} className="font-bold text-awm-black hover:text-awm-red" dir="ltr">{c.emails[0].address}</a>}
         {c.phone && c.phoneHref && <a href={c.phoneHref} className="text-awm-muted hover:text-awm-red" dir="ltr">{c.phone}</a>}
         {c.social.length > 0 && (
           <ul aria-label={t('social')} className="flex flex-wrap gap-2">
@@ -37,15 +37,15 @@ export async function ContactChannels({ variant = 'cards' }: { variant?: 'cards'
   const tile = 'flex flex-col gap-1 border border-awm-line bg-white p-5 hover:border-awm-black';
   return (
     <div className="flex flex-col gap-6">
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {c.email && (
-          <li>
-            <a href={`mailto:${c.email}`} className={`${tile} h-full border-s-4 border-s-awm-red`}>
-              <span className="text-xs font-bold text-awm-muted">{t('email')}</span>
-              <span className="break-all text-lg font-extrabold" dir="ltr">{c.email}</span>
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {c.emails.map((e) => (
+          <li key={e.key}>
+            <a href={`mailto:${e.address}`} className={`${tile} h-full border-s-4 border-s-awm-red`}>
+              <span className="text-xs font-bold text-awm-muted">{t(`emailLabels.${e.key}`)}</span>
+              <span className="break-all text-base font-extrabold sm:text-lg" dir="ltr">{e.address}</span>
             </a>
           </li>
-        )}
+        ))}
         {c.phone && c.phoneHref && (
           <li>
             <a href={c.phoneHref} className={`${tile} h-full`}>

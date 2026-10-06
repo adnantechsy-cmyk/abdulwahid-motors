@@ -23,7 +23,7 @@ export default async function ContactPage({ params }: Props) {
   const [t, seo] = await Promise.all([getTranslations('contact'), getRouteSeo(locale, 'contact')]);
 
   const c = contactChannels();
-  const hasChannels = Boolean(c.email || c.phone || c.whatsapp || c.social.length);
+  const hasChannels = Boolean(c.emails.length || c.phone || c.whatsapp || c.social.length);
 
   return (
     <main>

@@ -5,11 +5,18 @@
  * These are public marketing details, not secrets, so they live in code and go through review.
  */
 
+export type EmailKey = 'info' | 'sales' | 'parts' | 'management';
+
 export type SocialKey = 'facebook' | 'instagram' | 'x' | 'youtube' | 'tiktok' | 'linkedin' | 'telegram';
 
 export const siteConfig = {
-  /** Shown as a mailto: link. Example: 'info@example.com' */
-  email: '',
+  /** One address per department, shown as mailto: links. The first is the general address used in the footer. */
+  emails: [
+    { key: 'info', address: 'info@abdulwahidmotors.com' },
+    { key: 'sales', address: 'sales@abdulwahidmotors.com' },
+    { key: 'parts', address: 'parts@abdulwahidmotors.com' },
+    { key: 'management', address: 'management@abdulwahidmotors.com' },
+  ] as { key: EmailKey; address: string }[],
   /** Shown as a tel: link. International format, e.g. '+963 11 000 0000' */
   phone: '',
   /** Digits only with country code, e.g. '963944000000'. Opens a WhatsApp chat. */
@@ -48,7 +55,7 @@ const httpsUrl = (value: string) => /^https:\/\/[^\s]+$/i.test(value.trim());
 
 /** Only well-formed values come out, so a typo in the config can never produce a broken or unsafe link. */
 export function contactChannels() {
-  const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(siteConfig.email.trim()) ? siteConfig.email.trim() : null;
+  const emails = siteConfig.emails.filter((e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.address.trim())).map((e) => ({ key: e.key, address: e.address.trim() }));
   const phone = /^\+?[0-9 ()-]{6,24}$/.test(siteConfig.phone.trim()) ? siteConfig.phone.trim() : null;
   const whatsapp = /^[0-9]{8,15}$/.test(siteConfig.whatsapp.trim()) ? siteConfig.whatsapp.trim() : null;
   const social = (Object.keys(siteConfig.social) as SocialKey[])
@@ -56,7 +63,7 @@ export function contactChannels() {
     .map((key) => ({ key, label: SOCIAL_LABELS[key], href: siteConfig.social[key].trim() }));
 
   return {
-    email,
+    emails,
     phone,
     phoneHref: phone ? `tel:${phone.replace(/[^\d+]/g, '')}` : null,
     whatsapp,

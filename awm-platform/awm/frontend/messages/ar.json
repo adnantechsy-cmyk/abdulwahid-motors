@@ -758,7 +758,13 @@
     "whatsapp": "واتساب",
     "whatsappAction": "راسلنا عبر واتساب",
     "social": "تواصل اجتماعي",
-    "opensNewTab": "يفتح في نافذة جديدة"
+    "opensNewTab": "يفتح في نافذة جديدة",
+    "emailLabels": {
+      "info": "استفسارات عامة",
+      "sales": "مبيعات السيارات",
+      "parts": "قطع الغيار",
+      "management": "الإدارة والاستثمار"
+    }
   },
   "about": {
     "hero": {
