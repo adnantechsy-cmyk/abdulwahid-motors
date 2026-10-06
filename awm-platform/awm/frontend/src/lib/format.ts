@@ -18,6 +18,11 @@ export function formatNumber(n: number, locale: string): string {
   return new Intl.NumberFormat(locale === 'ar' ? 'ar-SY' : 'en-US').format(n);
 }
 
+/** A year without thousands separators (2025, not 2,025), in the locale's digits. */
+export function formatYear(year: number, locale: string): string {
+  return new Intl.NumberFormat(locale === 'ar' ? 'ar-SY' : 'en-US', { useGrouping: false }).format(year);
+}
+
 const TZ = 'Asia/Damascus';
 const dateLocale = (locale: string) => (locale === 'ar' ? 'ar-SY' : 'en-GB');
 

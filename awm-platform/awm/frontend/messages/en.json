@@ -499,5 +499,63 @@
         "fail": "Service required"
       }
     }
+  },
+  "detail": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "backToCars": "Cars",
+    "backToParts": "Spare parts",
+    "specs": "Specifications",
+    "description": "Description",
+    "gallery": "Photo gallery",
+    "viewImage": "Show image {n} of {total}",
+    "noImage": "No image",
+    "bookTestDrive": "Book a test drive",
+    "similarCars": "More cars",
+    "similarParts": "Related parts",
+    "available": "In stock: {count}",
+    "unavailable": "Currently unavailable",
+    "category": "Category",
+    "modelYear": "Model year",
+    "bodyType": "Body type",
+    "powertrain": "Powertrain",
+    "branch": "Branch",
+    "status": "Status",
+    "sku": "Part no.",
+    "compatible": "Fits models",
+    "oem": "Genuine OEM part",
+    "units": {
+      "km": "km",
+      "kwh": "kWh",
+      "kw": "kW",
+      "hp": "hp",
+      "nm": "Nm",
+      "kmh": "km/h",
+      "s": "s",
+      "l": "L"
+    },
+    "bodyTypes": {
+      "sedan": "Sedan",
+      "suv": "SUV",
+      "hatchback": "Hatchback",
+      "mpv": "MPV",
+      "coupe": "Coupe",
+      "pickup": "Pickup"
+    },
+    "specNames": {
+      "range_km": "Range",
+      "battery_kwh": "Battery capacity",
+      "seats": "Seats",
+      "power_hp": "Power",
+      "torque_nm": "Torque",
+      "acceleration_0_100_s": "0-100 km/h",
+      "top_speed_kmh": "Top speed",
+      "charging_dc_kw": "DC fast charging",
+      "cargo_l": "Boot space"
+    }
+  },
+  "certificate": {
+    "title": "Blade battery certificate verification",
+    "intro": "This is the public verification page for a certificate issued by Abdul Wahid Motors. Only the certificate details and a partly hidden VIN are shown."
   }
 }
