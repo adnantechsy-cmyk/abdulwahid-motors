@@ -10,6 +10,8 @@ use App\Http\Controllers\Api\V1\Admin\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Admin\AppointmentAdminController;
 use App\Http\Controllers\Api\V1\Admin\BatteryInspectionAdminController;
 use App\Http\Controllers\Api\V1\Admin\CategoryAdminController;
+use App\Http\Controllers\Api\V1\Admin\ContactMessageAdminController;
+use App\Http\Controllers\Api\V1\Admin\CustomerAdminController;
 use App\Http\Controllers\Api\V1\Admin\CustomerVehicleAdminController;
 use App\Http\Controllers\Api\V1\Admin\JobCardAdminController;
 use App\Http\Controllers\Api\V1\Admin\OrderAdminController;
@@ -115,9 +117,18 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
             Route::put('job-cards/{card}/technician', [JobCardAdminController::class, 'assign'])->middleware('permission:job_cards.manage');
         });
 
+        Route::middleware('permission:customers.manage')->group(function () {
+            Route::get('contact-messages', [ContactMessageAdminController::class, 'index']);
+            Route::put('contact-messages/{message}', [ContactMessageAdminController::class, 'update'])->whereNumber('message');
+            Route::get('customers', [CustomerAdminController::class, 'index']);
+            Route::post('customers', [CustomerAdminController::class, 'store'])->middleware('throttle:30,1');
+            Route::get('customers/{user}', [CustomerAdminController::class, 'show'])->whereNumber('user');
+            Route::post('customers/{user}/vehicles', [CustomerAdminController::class, 'addVehicle'])->whereNumber('user');
+        });
         Route::middleware('permission:orders.manage')->group(function () {
             Route::get('orders', [OrderAdminController::class, 'index']);
             Route::get('orders/{number}', [OrderAdminController::class, 'show']);
+            Route::put('orders/{number}/customer', [OrderAdminController::class, 'linkCustomer']);
             Route::post('orders/{number}/payment', [OrderAdminController::class, 'recordPayment']);
             Route::put('orders/{number}/status', [OrderAdminController::class, 'status']);
             Route::post('orders/{number}/cancel', [OrderAdminController::class, 'cancel']);

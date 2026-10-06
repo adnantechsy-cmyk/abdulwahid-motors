@@ -123,6 +123,27 @@ class OrderAdminController extends Controller
         return $this->show($number);
     }
 
+    /**
+     * PUT /admin/orders/{number}/customer  {user_id}
+     * Attach a guest order to a customer's account (only while it has none), so the order, the delivery steps and
+     * the car handed over appear in that customer's account.
+     */
+    public function linkCustomer(Request $request, string $number)
+    {
+        $data = $request->validate(['user_id' => ['required', 'exists:users,id']]);
+        $order = Order::where('number', $number)->firstOrFail();
+        $user = \App\Models\User::findOrFail($data['user_id']);
+
+        if ($order->user_id !== null) {
+            return response()->json(['message' => 'This order already belongs to an account.', 'code' => 'order_has_account'], 422);
+        }
+        abort_if($user->isStaff(), 422, 'Staff accounts cannot own orders.');
+
+        $order->update(['user_id' => $user->id]);
+
+        return $this->show($number);
+    }
+
     /** POST /admin/orders/{number}/cancel: unpaid orders only; releases the held stock or reservation. */
     public function cancel(string $number)
     {
@@ -161,6 +182,7 @@ class OrderAdminController extends Controller
     {
         return [
             'number' => $o->number,
+            'has_account' => $o->user_id !== null,
             'flow' => $o->flow->value,
             'status' => $o->status->value,
             'currency' => $o->currency,

@@ -11,6 +11,7 @@ export interface AdminSummary {
   parts_low_stock?: number;
   pdi_open?: number;
   pdi_handover?: number;
+  contact_open?: number;
 }
 
 export type PaymentTab = 'awaiting_confirmation' | 'captured' | 'failed';
@@ -79,6 +80,7 @@ export type OrderTab = 'unpaid' | 'paid' | 'processing' | 'fulfilled' | 'closed'
 
 export interface AdminOrder {
   number: string;
+  has_account: boolean;
   flow: string;
   status: string;
   currency: Currency;
@@ -259,4 +261,48 @@ export interface AdminCustomerVehicle {
   plate_number: string | null;
   last_mileage_km: number | null;
   owner: { id: number; name: string; phone: string | null } | null;
+}
+export interface AdminContactMessage {
+  id: number;
+  name: string;
+  phone: string | null;
+  email: string | null;
+  topic: 'info' | 'sales' | 'parts' | 'management';
+  message: string;
+  locale: 'ar' | 'en';
+  mailed: boolean;
+  handled: boolean;
+  handled_at: string | null;
+  created_at: string;
+}
+
+export interface AdminCustomer {
+  id: number;
+  name: string;
+  phone: string | null;
+  email: string | null;
+  locale: string;
+  is_active: boolean;
+  cars_count: number;
+  orders_count: number;
+  created_at: string | null;
+}
+
+export interface AdminCustomerCar {
+  id: number;
+  make: string;
+  model: string;
+  model_year: number | null;
+  vin: string | null;
+  plate_number: string | null;
+  color: string | null;
+  last_mileage_km: number | null;
+  purchased_at: string | null;
+  warranty_until: string | null;
+}
+
+export interface AdminCustomerDetail extends AdminCustomer {
+  cars: AdminCustomerCar[];
+  orders: { number: string; flow: string; status: string; grand_total: string; currency: Currency; placed_at: string | null }[];
+  appointments: { number: string; status: string; branch: string; service_type: string; starts_at: string }[];
 }
