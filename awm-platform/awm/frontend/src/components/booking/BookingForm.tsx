@@ -7,9 +7,9 @@ import { buttonClasses } from '@/components/ui/Button';
 import { TextField } from '@/components/ui/Field';
 import { ApiError } from '@/lib/api/client';
 import { shopFetch } from '@/lib/api/shop';
+import { SERVICE_TYPES } from '@/lib/booking-services';
 import { addDays, damascusToday, dayParts, formatLongDate, formatTime } from '@/lib/booking-dates';
 
-export const SERVICE_TYPES = ['maintenance', 'repair', 'diagnostics', 'warranty', 'inspection', 'battery_check'] as const;
 const BRANCHES = ['sahnaya', 'kafr_sousa'] as const;
 const DAYS_SHOWN = 14;
 
