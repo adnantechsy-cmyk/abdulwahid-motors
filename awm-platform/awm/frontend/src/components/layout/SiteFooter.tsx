@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { ContactChannels } from '@/components/site/ContactChannels';
 import { Logo } from './Logo';
 
 export async function SiteFooter() {
@@ -12,6 +13,7 @@ export async function SiteFooter() {
     { href: '/vehicles', label: n('vehicles') },
     { href: '/parts', label: n('parts') },
     { href: '/services', label: n('services') },
+    { href: '/contact', label: n('contact') },
     { href: '/service-booking', label: h('bookTestDrive') },
   ];
   const portal = [
@@ -50,6 +52,7 @@ export async function SiteFooter() {
             <li>{t('sahnaya')}</li>
             <li>{t('kafrSousa')}</li>
           </ul>
+          <div className="mt-6"><ContactChannels variant="inline" /></div>
         </div>
       </div>
 

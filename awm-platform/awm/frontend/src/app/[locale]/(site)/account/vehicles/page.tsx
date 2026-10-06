@@ -17,7 +17,7 @@ export default async function VehiclesPage({ params }: Props) {
       <h1 className="text-3xl font-extrabold">{t('vehicles.title')}</h1>
       {vehicles && vehicles.length > 0 ? (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {vehicles.map((v) => <OwnedVehicleCard key={v.id} vehicle={v} locale={locale} />)}
+          {vehicles.map((v) => <OwnedVehicleCard key={v.id} vehicle={v} locale={locale} as="h2" />)}
         </div>
       ) : (
         <EmptyNote>{t('empty.vehicles')}</EmptyNote>

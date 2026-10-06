@@ -22,6 +22,6 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Everything except API routes, Next internals, sitemap/robots and files with an extension.
-  matcher: ['/((?!api|_next|_vercel|sitemap.xml|robots.txt|.*\\..*).*)'],
+  // Everything except API routes, Next internals, the OG image route, sitemap/robots and files with an extension.
+  matcher: ['/((?!api|_next|_vercel|og$|sitemap.xml|robots.txt|.*\\..*).*)'],
 };

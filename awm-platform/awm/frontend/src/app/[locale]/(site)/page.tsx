@@ -9,39 +9,29 @@ import { QuickActions } from '@/components/home/QuickActions';
 import { ServicePackages } from '@/components/home/ServicePackages';
 import { WhyUs } from '@/components/home/WhyUs';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { apiGet } from '@/lib/api/server';
 import { getFeaturedVehicles, getParts } from '@/lib/api/catalog';
-import { toMetadata } from '@/lib/seo/buildMetadata';
-import type { SeoPayload } from '@/types/seo';
+import { getRouteSeo, routeMetadata } from '@/lib/seo/route';
 
 type Props = { params: Promise<{ locale: string }> };
 
-async function getSeo(locale: string): Promise<SeoPayload | null> {
-  try {
-    return await apiGet<SeoPayload>('/seo/routes/home', { locale, tags: ['seo'] });
-  } catch {
-    return null; // the page renders without admin-edited meta rather than failing
-  }
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const seo = await getSeo(locale);
-  return seo ? toMetadata(seo) : {};
+  return routeMetadata(locale, 'home');
 }
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [seo, vehicles, parts] = await Promise.all([getSeo(locale), getFeaturedVehicles(locale, 5), getParts(locale, 4)]);
+  const [seo, vehicles, parts] = await Promise.all([getRouteSeo(locale, 'home'), getFeaturedVehicles(locale, 5), getParts(locale, 4)]);
 
   // The first car is the hero; the next four fill the grid.
   const [hero, ...rest] = vehicles;
 
   return (
     <main>
-      {seo && <JsonLd data={seo.json_ld} />}
+      {/* The AutoDealer entity is printed site-wide by the layout (same @id), so the copy in Laravel's payload is skipped. */}
+      {seo && <JsonLd data={seo.json_ld.filter((item) => item['@type'] !== 'AutoDealer')} />}
       <Hero vehicle={hero} locale={locale} />
       <QuickActions />
       <WhyUs />

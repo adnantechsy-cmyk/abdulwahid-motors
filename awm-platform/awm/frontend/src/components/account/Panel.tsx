@@ -9,7 +9,8 @@ type Props = {
 /** Titled white card used by every account section. */
 export function Panel({ title, id, action, children, className = '' }: Props) {
   return (
-    <section aria-labelledby={id} className={`border border-awm-line bg-white ${className}`}>
+    // role="group", not a landmark: a table inside is already a labelled region, and two landmarks must not share a name.
+    <div role="group" aria-labelledby={id} className={`border border-awm-line bg-white ${className}`}>
       <header className="flex flex-wrap items-center justify-between gap-3 border-b border-awm-line px-5 py-4">
         <h2 id={id} className="flex items-center gap-3 text-lg font-extrabold">
           <span aria-hidden="true" className="h-5 w-1 bg-awm-red" />
@@ -18,7 +19,7 @@ export function Panel({ title, id, action, children, className = '' }: Props) {
         {action}
       </header>
       <div className="p-5">{children}</div>
-    </section>
+    </div>
   );
 }
 

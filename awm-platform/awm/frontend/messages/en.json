@@ -27,7 +27,8 @@
     "languageLabel": "Switch language to Arabic",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "logout": "Log out"
+    "logout": "Log out",
+    "search": "Search the site"
   },
   "footer": {
     "about": "Authorized dealer for BYD electric and hybrid cars, with after-sales service and maintenance to manufacturer standards.",
@@ -59,7 +60,8 @@
     "separateOrders": "Each group is placed and paid as a separate order.",
     "dueNow": "Due now",
     "checkout": "Continue to payment",
-    "currencyMismatch": "A cart can't mix two currencies. Finish your current order or empty the cart first."
+    "currencyMismatch": "A cart can't mix two currencies. Finish your current order or empty the cart first.",
+    "count": "{count, plural, =0 {empty} one {# item} other {# items}}"
   },
   "vehicle": {
     "status": {
@@ -272,7 +274,9 @@
       "inStock": "In stock only",
       "submit": "Search",
       "empty": "No parts match your search."
-    }
+    },
+    "filtersHeading": "Filters",
+    "resultsHeading": "Results"
   },
   "account": {
     "title": "My account",
@@ -750,5 +754,266 @@
       "myAppointments": "My appointments",
       "another": "Book another appointment"
     }
+  },
+  "site": {
+    "followUs": "Follow us",
+    "email": "Email",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "whatsappAction": "Message us on WhatsApp",
+    "social": "Social media",
+    "opensNewTab": "opens in a new tab",
+    "emailLabels": {
+      "info": "General enquiries",
+      "sales": "Car sales",
+      "parts": "Spare parts",
+      "management": "Management and investment"
+    }
+  },
+  "about": {
+    "hero": {
+      "eyebrow": "About us",
+      "title": "Abdul Wahid Motors: authorized BYD dealer in Damascus",
+      "text": "16 years of trust in Syria. We sell BYD electric and hybrid cars, service them to the manufacturer's standards and supply genuine parts, at our Sahnaya and Kafr Sousa branches.",
+      "cars": "Browse cars",
+      "book": "Book a service"
+    },
+    "vision": {
+      "title": "Our vision",
+      "text": "To be the most reliable BYD network in Syria."
+    },
+    "mission": {
+      "title": "Our mission",
+      "text": "A complete experience from responsible sales to technical service, with clarity at every step."
+    },
+    "offer": {
+      "eyebrow": "What we offer",
+      "title": "Three services under one roof",
+      "cars": {
+        "title": "BYD cars",
+        "text": "Electric and hybrid cars ready to reserve online with a deposit.",
+        "link": "View cars"
+      },
+      "parts": {
+        "title": "Genuine spare parts",
+        "text": "Original parts for BYD cars that you can order and pay for on the website.",
+        "link": "View spare parts"
+      },
+      "service": {
+        "title": "Service and inspection",
+        "text": "Periodic service, electronic diagnostics and Blade battery checks, with a digital history for your car.",
+        "link": "Service details"
+      }
+    },
+    "values": {
+      "eyebrow": "Our values",
+      "title": "How we work",
+      "items": {
+        "trust": {
+          "title": "Trust",
+          "text": "We deliver what we promise: clear prices, documented work and after-sales follow-up."
+        },
+        "transparency": {
+          "title": "Transparency",
+          "text": "Follow your order, your car and your invoices from your account without having to call."
+        },
+        "technical": {
+          "title": "Technical excellence",
+          "text": "Trained technicians, diagnostic equipment and documented inspection procedures."
+        },
+        "support": {
+          "title": "Support",
+          "text": "A team that stays with you after purchase and looks after your car's needs."
+        }
+      }
+    },
+    "faq": {
+      "eyebrow": "FAQ",
+      "title": "Everything you need to know about us",
+      "items": [
+        {
+          "q": "Is Abdul Wahid Motors an authorized BYD dealer?",
+          "a": "Yes. We are the authorized BYD dealer in Damascus, offering sales, service and genuine spare parts."
+        },
+        {
+          "q": "How do I reserve a car?",
+          "a": "Pick a car on the cars page and reserve it with a deposit online, then follow the reservation until handover from your account."
+        },
+        {
+          "q": "Can I book a service appointment on the website?",
+          "a": "Yes. Choose the service, branch, day and time, and our team will contact you to confirm."
+        },
+        {
+          "q": "How do I know the condition of my Blade battery?",
+          "a": "We inspect Blade batteries and issue a digital certificate that anyone can verify through a link or the QR code printed on the report."
+        },
+        {
+          "q": "Which payment methods do you accept?",
+          "a": "Bank transfer and mobile wallet payment, with a receipt upload so our team can confirm the payment."
+        }
+      ]
+    },
+    "branches": {
+      "eyebrow": "Our branches",
+      "title": "Visit us in Damascus"
+    },
+    "contact": {
+      "eyebrow": "Get in touch",
+      "title": "We'd love to hear from you",
+      "text": "Write to us, call us or follow us on our channels."
+    }
+  },
+  "services": {
+    "hero": {
+      "eyebrow": "Service and maintenance",
+      "title": "Service for your car, to the manufacturer's standards",
+      "text": "From periodic service to Blade battery checks, our technicians look after your car at the Sahnaya and Kafr Sousa branches, and you follow the service history and invoices from your account.",
+      "book": "Book an appointment",
+      "parts": "Spare parts"
+    },
+    "list": {
+      "eyebrow": "Our services",
+      "title": "Choose the right service",
+      "book": "Book this service"
+    },
+    "battery": {
+      "eyebrow": "Blade battery",
+      "title": "Digital battery inspection and a verifiable certificate",
+      "text": "We measure the condition of your Blade battery and record the results in a report you can open in your account, with a certificate anyone can verify through a link or QR code.",
+      "readings": "What we measure",
+      "items": [
+        "State of health (SOH) and state of charge (SOC)",
+        "Pack voltage and cell voltage",
+        "Cell temperature",
+        "Insulation resistance",
+        "Charge cycles"
+      ],
+      "book": "Book a battery check"
+    },
+    "how": {
+      "eyebrow": "How service works",
+      "title": "From booking to handover",
+      "steps": [
+        {
+          "title": "Book an appointment",
+          "text": "Choose the service, branch and time on the website."
+        },
+        {
+          "title": "Car check-in",
+          "text": "The team receives your car and opens a job card at the branch."
+        },
+        {
+          "title": "Inspection and work",
+          "text": "The technician carries out the work and records what was done."
+        },
+        {
+          "title": "Follow it in your account",
+          "text": "See your service history, inspection reports and invoices."
+        },
+        {
+          "title": "Pay with ease",
+          "text": "Add the invoice to your cart and pay on the website."
+        }
+      ]
+    },
+    "more": {
+      "cars": {
+        "title": "Looking for a car?",
+        "text": "Browse BYD electric and hybrid cars and reserve yours.",
+        "link": "View cars"
+      },
+      "parts": {
+        "title": "Need a spare part?",
+        "text": "Genuine parts for BYD cars that you can order on the website.",
+        "link": "View spare parts"
+      }
+    }
+  },
+  "contact": {
+    "hero": {
+      "eyebrow": "Contact us",
+      "title": "We're here to help",
+      "text": "For a question about a car, a spare part or a service appointment, pick the channel that suits you or visit one of our two branches."
+    },
+    "channels": {
+      "title": "Get in touch",
+      "none": "We'll add our contact channels soon. In the meantime you can book an appointment or visit a branch."
+    },
+    "branches": {
+      "title": "Our branches",
+      "directions": "Open in Maps",
+      "bookHere": "Book at this branch"
+    },
+    "hours": {
+      "title": "Opening hours",
+      "closed": "Closed",
+      "days": {
+        "sat": "Saturday",
+        "sun": "Sunday",
+        "mon": "Monday",
+        "tue": "Tuesday",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday"
+      },
+      "note": "Online booking hours."
+    }
+  },
+  "seo": {
+    "city": "Damascus",
+    "reserve": "Book an appointment",
+    "about": {
+      "title": "About us: authorized BYD dealer in Damascus",
+      "description": "Meet Abdul Wahid Motors, the authorized BYD dealer in Damascus: electric and hybrid cars, genuine spare parts and service at our Sahnaya and Kafr Sousa branches."
+    },
+    "services": {
+      "title": "BYD service, diagnostics and Blade battery inspection",
+      "description": "Periodic service, repairs, electronic diagnostics and Blade battery checks with a verifiable digital certificate in Damascus. Book your appointment online."
+    },
+    "contact": {
+      "title": "Contact us and our Damascus branches",
+      "description": "Contact details, opening hours and addresses of our Sahnaya and Kafr Sousa branches in Damascus, with map links and appointment booking."
+    },
+    "booking": {
+      "title": "Book a service or a test drive",
+      "description": "Book a service, inspection or test drive for your BYD at our Sahnaya or Kafr Sousa branch. Pick an available day and time."
+    },
+    "search": {
+      "title": "Search results",
+      "description": "Search BYD cars and genuine spare parts at Abdul Wahid Motors."
+    },
+    "home": {
+      "title": "Authorized BYD dealer in Damascus",
+      "description": "BYD electric and hybrid cars, full service, electronic diagnostics and genuine spare parts at our Sahnaya and Kafr Sousa branches. 16 years of trust in Syria."
+    },
+    "vehicles": {
+      "title": "BYD electric and hybrid cars for sale in Damascus",
+      "description": "Browse available BYD cars, compare prices and specifications, and reserve yours online with a deposit."
+    },
+    "parts": {
+      "title": "Genuine BYD spare parts in Damascus",
+      "description": "Original spare parts for BYD cars, in stock in Damascus. Search by name or part number and order online."
+    }
+  },
+  "search": {
+    "title": "Search the site",
+    "label": "Search for a car or a spare part",
+    "placeholder": "e.g. Seal, brake pads, BYD-BRK",
+    "submit": "Search",
+    "tooShort": "Type at least two characters to search.",
+    "summary": "{count, plural, =0 {No results} one {# result} other {# results}} for “{query}”",
+    "cars": "Cars",
+    "parts": "Spare parts",
+    "allParts": "See all part results",
+    "none": "We couldn't find a match. Try simpler words or browse the sections.",
+    "browse": "Browse the sections",
+    "unavailable": "Some results couldn't be loaded right now. Please try again shortly."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The link you followed is wrong or the page is no longer available. You can search, or head to one of the sections.",
+    "code": "Error 404",
+    "home": "Back to the home page",
+    "links": "Sections that may help"
   }
 }

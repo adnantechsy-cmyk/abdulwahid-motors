@@ -7,9 +7,9 @@ import { buttonClasses } from '@/components/ui/Button';
 import { TextField } from '@/components/ui/Field';
 import { ApiError } from '@/lib/api/client';
 import { shopFetch } from '@/lib/api/shop';
+import { SERVICE_TYPES } from '@/lib/booking-services';
 import { addDays, damascusToday, dayParts, formatLongDate, formatTime } from '@/lib/booking-dates';
 
-export const SERVICE_TYPES = ['maintenance', 'repair', 'diagnostics', 'warranty', 'inspection', 'battery_check'] as const;
 const BRANCHES = ['sahnaya', 'kafr_sousa'] as const;
 const DAYS_SHOWN = 14;
 
@@ -187,7 +187,7 @@ export function BookingForm({ cars, signedIn, initialService }: Props) {
                       type="button"
                       onClick={() => setDate(d)}
                       aria-pressed={date === d}
-                      aria-label={formatLongDate(d, locale)}
+                      title={formatLongDate(d, locale)}
                       className={`flex w-20 shrink-0 flex-col items-center border-2 px-2 py-3 ${date === d ? 'border-awm-red bg-awm-red text-white' : 'border-awm-line bg-white hover:border-awm-black'}`}
                     >
                       <span className="text-xs">{p.weekday}</span>

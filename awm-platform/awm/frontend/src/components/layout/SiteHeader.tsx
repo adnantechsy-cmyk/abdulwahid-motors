@@ -1,6 +1,8 @@
 import { getTranslations } from 'next-intl/server';
 import { CartButton } from '@/components/cart/CartButton';
 import { ButtonLink } from '@/components/ui/Button';
+import { Icon } from '@/components/ui/Icon';
+import { Link } from '@/i18n/navigation';
 import { AuthLinks } from './AuthLinks';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { Logo } from './Logo';
@@ -10,6 +12,7 @@ import { NavLinks } from './NavLinks';
 export async function SiteHeader() {
   const t = await getTranslations('nav');
   const h = await getTranslations('header');
+  const s = await getTranslations('search');
 
   const items = [
     { href: '/', label: t('home') },
@@ -33,6 +36,9 @@ export async function SiteHeader() {
         </div>
 
         <div className="flex shrink-0 items-center gap-2">
+          <Link href="/search" aria-label={h('search')} className="flex size-10 items-center justify-center border-2 border-transparent hover:border-awm-black max-sm:hidden">
+            <Icon name="search" size={20} />
+          </Link>
           <CartButton />
           <LocaleSwitcher label={h('languageLabel')} text={h('language')} />
           <AuthLinks labels={auth} />
@@ -44,6 +50,7 @@ export async function SiteHeader() {
             closeLabel={h('closeMenu')}
             auth={auth}
             testDrive={testDrive}
+            search={{ label: s('label'), placeholder: s('placeholder'), submit: s('submit') }}
           />
         </div>
       </div>
