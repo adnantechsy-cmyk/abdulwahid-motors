@@ -46,6 +46,8 @@ export default async function AdminLayout({ children, params }: Props) {
     ...(can(user, 'categories.manage') ? [{ href: '/admin/categories', label: t('nav.categories') }] : []),
     ...(can(user, 'job_cards.work', 'job_cards.manage') ? [{ href: '/admin/job-cards', label: t('nav.jobCards') }] : []),
     ...(can(user, 'appointments.manage') ? [{ href: '/admin/appointments', label: t('nav.appointments') }] : []),
+    ...(can(user, 'pdi.manage') ? [{ href: '/admin/delivery', label: t('nav.delivery') }] : []),
+    ...(can(user, 'battery.inspect') ? [{ href: '/admin/battery', label: t('nav.battery') }] : []),
     { href: '/admin/security', label: t('nav.security') },
   ];
 
