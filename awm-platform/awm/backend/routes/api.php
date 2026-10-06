@@ -120,6 +120,9 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
             Route::put('vehicles/{vehicle}', [VehicleAdminController::class, 'update'])->whereNumber('vehicle');
             Route::post('vehicles/{vehicle}/brochure', [VehicleAdminController::class, 'uploadBrochure'])->whereNumber('vehicle')->middleware('throttle:30,1');
             Route::delete('vehicles/{vehicle}/brochure', [VehicleAdminController::class, 'deleteBrochure'])->whereNumber('vehicle');
+            Route::post('vehicles/{vehicle}/gallery', [VehicleAdminController::class, 'addGalleryImage'])->whereNumber('vehicle')->middleware('throttle:30,1');
+            Route::put('vehicles/{vehicle}/gallery', [VehicleAdminController::class, 'reorderGallery'])->whereNumber('vehicle');
+            Route::delete('vehicles/{vehicle}/gallery/{index}', [VehicleAdminController::class, 'removeGalleryImage'])->whereNumber('vehicle')->whereNumber('index');
             Route::post('vehicles/{vehicle}/cover', [VehicleAdminController::class, 'uploadCover'])->whereNumber('vehicle')->middleware('throttle:30,1');
         });
         Route::middleware('permission:parts.manage|stock.adjust')->group(function () {

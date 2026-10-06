@@ -1634,7 +1634,51 @@
         "orderHint": "Lower numbers show first.",
         "save": "Save changes",
         "create": "Add car",
-        "saved": "Saved."
+        "saved": "Saved.",
+        "specsTitle": "Specifications",
+        "specs": {
+          "errors": {
+            "name": "The spec name \"{name}\" must be lowercase letters, digits and underscores, starting with a letter.",
+            "value": "Give \"{name}\" a value, or remove the row.",
+            "duplicate": "The spec \"{name}\" appears twice."
+          }
+        }
+      },
+      "specs": {
+        "hint": "Each row is one line of the specification table. End the name with its unit so the site can show it: range_km, power_hp, battery_kwh, top_speed_kmh... Pick a suggested name or write your own.",
+        "empty": "No specifications yet.",
+        "name": "Name",
+        "value": "Value",
+        "add": "Add a specification",
+        "remove": "Remove",
+        "row": "row {n}",
+        "names": {
+          "range_km": "Range (km)",
+          "battery_kwh": "Battery capacity (kWh)",
+          "seats": "Seats",
+          "power_hp": "Power (hp)",
+          "torque_nm": "Torque (Nm)",
+          "acceleration_0_100_s": "Acceleration 0-100 km/h (s)",
+          "top_speed_kmh": "Top speed (km/h)",
+          "charging_dc_kw": "DC fast charging (kW)",
+          "cargo_l": "Boot space (litres)"
+        }
+      },
+      "gallery": {
+        "panel": "Photo gallery",
+        "title": "Gallery photos",
+        "hint": "Up to {max} photos, JPG, PNG or WebP, {mb} MB each. The first photo is shown first on the car page.",
+        "empty": "No gallery photos yet.",
+        "choose": "Choose a photo first.",
+        "tooBig": "The photo is larger than {mb} MB.",
+        "position": "Photo {n} of {total}",
+        "earlier": "Earlier",
+        "later": "Later",
+        "remove": "Remove",
+        "add": "Add photo",
+        "uploading": "Uploading…",
+        "done": "Done.",
+        "full": "The gallery is full ({max} photos). Remove one to add another."
       }
     },
     "categories": {

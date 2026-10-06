@@ -182,6 +182,8 @@ export interface AdminVehicleDetail extends AdminVehicleRow {
   sort_order: number;
   cover_url: string | null;
   brochure_url: string | null;
+  specs: Record<string, string | number>;
+  gallery: { path: string; url: string }[];
 }
 
 export interface AdminCategory {

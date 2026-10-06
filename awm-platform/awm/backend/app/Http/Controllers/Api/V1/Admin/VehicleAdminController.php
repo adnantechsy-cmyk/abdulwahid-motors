@@ -54,6 +54,8 @@ class VehicleAdminController extends Controller
             'sort_order' => $vehicle->sort_order,
             'cover_url' => $vehicle->coverUrl(),
             'brochure_url' => $vehicle->brochureUrl(),
+            'specs' => (object) ($vehicle->specs ?? []),
+            'gallery' => collect($vehicle->gallery ?? [])->map(fn ($p) => ['path' => $p, 'url' => Storage::disk('public')->url($p)])->values(),
         ];
     }
 
@@ -124,6 +126,50 @@ class VehicleAdminController extends Controller
         return $this->show($vehicle->fresh());
     }
 
+    /** POST /admin/vehicles/{vehicle}/gallery  (multipart: image, up to 12 photos per car) */
+    public function addGalleryImage(Request $request, Vehicle $vehicle)
+    {
+        $request->validate(['image' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120']]);
+
+        $gallery = $vehicle->gallery ?? [];
+        abort_if(count($gallery) >= 12, 422, 'A car can have at most 12 gallery photos.');
+
+        $file = $request->file('image');
+        $gallery[] = $file->storeAs('vehicles/gallery', Str::uuid() . '.' . $file->guessExtension(), 'public');
+        $vehicle->update(['gallery' => array_values($gallery)]);
+
+        return $this->show($vehicle->fresh());
+    }
+
+    /** DELETE /admin/vehicles/{vehicle}/gallery/{index} */
+    public function removeGalleryImage(Vehicle $vehicle, int $index)
+    {
+        $gallery = array_values($vehicle->gallery ?? []);
+        abort_unless(isset($gallery[$index]), 404);
+
+        $this->forget($gallery[$index]);
+        unset($gallery[$index]);
+        $vehicle->update(['gallery' => array_values($gallery)]);
+
+        return $this->show($vehicle->fresh());
+    }
+
+    /** PUT /admin/vehicles/{vehicle}/gallery  {order: [2,0,1]}: the new order, as positions in the current list. */
+    public function reorderGallery(Request $request, Vehicle $vehicle)
+    {
+        $data = $request->validate(['order' => ['required', 'array'], 'order.*' => ['integer', 'min:0']]);
+        $gallery = array_values($vehicle->gallery ?? []);
+
+        $order = array_values($data['order']);
+        $sorted = $order;
+        sort($sorted);
+        abort_unless($sorted === range(0, count($gallery) - 1) || ($gallery === [] && $order === []), 422, 'The new order must list every photo exactly once.');
+
+        $vehicle->update(['gallery' => array_map(fn ($i) => $gallery[$i], $order)]);
+
+        return $this->show($vehicle->fresh());
+    }
+
     private function forget(?string $path): void
     {
         if ($path) {
@@ -186,6 +232,15 @@ class VehicleAdminController extends Controller
             'is_published' => ['sometimes', 'boolean'],
             'is_featured' => ['sometimes', 'boolean'],
             'sort_order' => ['sometimes', 'integer', 'min:0', 'max:100000'],
+            // Spec keys end in their unit (range_km, battery_kwh, power_hp...): the site shows the unit from the key.
+            'specs' => ['nullable', 'array', 'max:40', function (string $attribute, mixed $value, \Closure $fail) {
+                foreach (array_keys((array) $value) as $key) {
+                    if (! preg_match('/^[a-z][a-z0-9_]{1,39}$/', (string) $key)) {
+                        $fail("Spec name \"{$key}\" must be lowercase letters, digits and underscores.");
+                    }
+                }
+            }],
+            'specs.*' => ['nullable', 'string', 'max:80'],
         ]);
     }
 }
