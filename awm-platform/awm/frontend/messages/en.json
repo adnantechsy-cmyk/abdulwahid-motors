@@ -26,7 +26,8 @@
     "language": "العربية",
     "languageLabel": "Switch language to Arabic",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "logout": "Log out"
   },
   "footer": {
     "about": "Authorized dealer for BYD electric and hybrid cars, with after-sales service and maintenance to manufacturer standards.",
@@ -154,16 +155,28 @@
       "book": "Book an appointment",
       "periodic": {
         "title": "Periodic service",
-        "points": ["Oil and filter change", "Brake and tyre check", "Vehicle condition report"]
+        "points": [
+          "Oil and filter change",
+          "Brake and tyre check",
+          "Vehicle condition report"
+        ]
       },
       "battery": {
         "title": "Blade battery inspection",
         "badge": "Most requested",
-        "points": ["State-of-health (SOH) measurement", "Cell balance check", "Verifiable digital certificate"]
+        "points": [
+          "State-of-health (SOH) measurement",
+          "Cell balance check",
+          "Verifiable digital certificate"
+        ]
       },
       "adas": {
         "title": "ADAS check and calibration",
-        "points": ["Radar and camera calibration", "Safety systems check", "Software updates"]
+        "points": [
+          "Radar and camera calibration",
+          "Safety systems check",
+          "Software updates"
+        ]
       }
     },
     "cta": {
@@ -171,6 +184,94 @@
       "title": "Book a test drive or a service in minutes",
       "description": "Pick the branch and time that suit you and our team will confirm your appointment.",
       "button": "Book now"
+    }
+  },
+  "auth": {
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "errors": {
+      "generic": "We couldn't complete that. Check your details and try again.",
+      "tooMany": "Too many attempts. Wait a minute and try again.",
+      "unavailable": "The service is unavailable right now. Please try again shortly.",
+      "mismatch": "The two passwords don't match."
+    },
+    "login": {
+      "eyebrow": "Customer portal",
+      "title": "Log in to your account",
+      "description": "Enter your details to follow your reservations, orders and your car's service history.",
+      "loginLabel": "Mobile number or email",
+      "loginHint": "e.g. 0944XXXXXX or name@example.com",
+      "password": "Password",
+      "submit": "Log in",
+      "submitting": "Logging in…",
+      "noAccount": "Don't have an account yet?",
+      "createAccount": "Create an account"
+    },
+    "register": {
+      "eyebrow": "Customer portal",
+      "title": "Create an account",
+      "description": "Create your account to reserve a car and follow service and spare-part orders.",
+      "name": "Full name",
+      "namePlaceholder": "e.g. Ahmad Mohammad",
+      "phone": "Mobile number",
+      "phoneHint": "A Syrian number starting with 09 or +963",
+      "email": "Email",
+      "optional": "Optional",
+      "password": "Password",
+      "passwordHint": "At least 8 characters",
+      "confirm": "Confirm password",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "haveAccount": "Already have an account?",
+      "login": "Log in"
+    },
+    "side": {
+      "title": "The Abdul Wahid Motors customer portal",
+      "service": {
+        "title": "Service history and appointments",
+        "text": "Follow your car's service appointments and invoices in one place."
+      },
+      "orders": {
+        "title": "Order tracking",
+        "text": "Follow your car reservation and spare-part orders until handover."
+      },
+      "battery": {
+        "title": "Blade battery certificates",
+        "text": "See the digital battery inspection reports for your car."
+      }
+    }
+  },
+  "catalog": {
+    "results": "{count, plural, =0 {No results} one {# result} other {# results}}",
+    "clear": "Clear filters",
+    "all": "All",
+    "unavailable": "We couldn't load this list right now. Please try again shortly.",
+    "pagination": "Pages",
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page {page}",
+    "vehicles": {
+      "eyebrow": "Showroom",
+      "title": "BYD cars",
+      "description": "Browse electric and hybrid cars and reserve yours with a deposit.",
+      "filtersLabel": "Filter cars",
+      "powertrain": "Powertrain",
+      "status": "Availability",
+      "category": "Category",
+      "empty": "No cars match the selected filters."
+    },
+    "parts": {
+      "eyebrow": "Warehouse",
+      "title": "Genuine spare parts",
+      "description": "Find the right part for your car by name or part number.",
+      "searchLabel": "Name or part number",
+      "searchPlaceholder": "e.g. brake pads",
+      "model": "Model",
+      "modelPlaceholder": "e.g. Seal",
+      "category": "Category",
+      "inStock": "In stock only",
+      "submit": "Search",
+      "empty": "No parts match your search."
     }
   }
 }
