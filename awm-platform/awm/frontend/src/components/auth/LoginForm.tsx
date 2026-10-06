@@ -8,6 +8,7 @@ import { buttonClasses } from '@/components/ui/Button';
 import { postAuth, type SubmitResult } from '@/lib/auth-client';
 import { safeNextPath } from '@/lib/auth';
 import { FormAlert } from './FormAlert';
+import { GoogleButton } from './GoogleButton';
 
 export function LoginForm({ next }: { next?: string }) {
   const t = useTranslations('auth');
@@ -58,9 +59,15 @@ export function LoginForm({ next }: { next?: string }) {
         required
       />
 
+      <p className="-mt-2 text-sm">
+        <Link href="/forgot-password" className="font-bold text-awm-red underline underline-offset-4">{t('login.forgot')}</Link>
+      </p>
+
       <button type="submit" disabled={pending} className={buttonClasses('primary', 'lg', 'w-full')}>
         {pending ? t('login.submitting') : t('login.submit')}
       </button>
+
+      <GoogleButton next={next} />
 
       <p className="border-t border-awm-line pt-5 text-sm text-awm-muted">
         {t('login.noAccount')}{' '}

@@ -8,6 +8,7 @@ import { buttonClasses } from '@/components/ui/Button';
 import { postAuth, type SubmitResult } from '@/lib/auth-client';
 import { safeNextPath } from '@/lib/auth';
 import { FormAlert } from './FormAlert';
+import { GoogleButton } from './GoogleButton';
 
 export function RegisterForm({ next }: { next?: string }) {
   const t = useTranslations('auth');
@@ -111,6 +112,8 @@ export function RegisterForm({ next }: { next?: string }) {
       <button type="submit" disabled={pending} className={buttonClasses('primary', 'lg', 'w-full')}>
         {pending ? t('register.submitting') : t('register.submit')}
       </button>
+
+      <GoogleButton next={next} />
 
       <p className="border-t border-awm-line pt-5 text-sm text-awm-muted">
         {t('register.haveAccount')}{' '}

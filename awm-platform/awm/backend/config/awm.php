@@ -45,6 +45,11 @@ return [
         ],
     ],
 
+    // "Sign in with Google": the OAuth Web client ID from Google Cloud Console (same value as NEXT_PUBLIC_GOOGLE_CLIENT_ID).
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+    ],
+
     // Code-defined public pages. The admin SEO module edits these via seo_metas.route_key.
     'static_routes' => [
         'home' => ['path' => '', 'priority' => 1.0, 'changefreq' => 'weekly'],

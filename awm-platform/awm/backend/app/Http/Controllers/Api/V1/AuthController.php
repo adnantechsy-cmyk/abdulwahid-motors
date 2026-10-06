@@ -78,7 +78,8 @@ class AuthController extends Controller
         return $this->userArray($request->user());
     }
 
-    private function tokenResponse(User $user, Request $request): array
+    /** Also used by the Google sign-in, so every login method returns the same shape. */
+    public function tokenResponse(User $user, Request $request): array
     {
         $device = substr((string) $request->userAgent(), 0, 100) ?: 'web';
 
