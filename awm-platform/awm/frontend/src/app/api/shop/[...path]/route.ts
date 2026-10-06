@@ -3,7 +3,7 @@ import { API_BASE } from '@/lib/api/server';
 import { AUTH_COOKIE } from '@/lib/auth';
 
 /**
- * Same-origin proxy for the guest-or-customer shop calls (cart, checkout, payment).
+ * Same-origin proxy for the guest-or-customer shop calls (cart, checkout, payment, service booking).
  * The browser can't read the httpOnly session cookie, so this adds `Authorization: Bearer` for signed-in
  * customers; guests send their X-Cart-Token / order phone instead. Only the exact calls below are
  * forwarded, so this can't be used to reach any other Laravel route.
@@ -16,6 +16,8 @@ const ROUTES: { method: string; pattern: RegExp }[] = [
   { method: 'GET', pattern: new RegExp(`^orders/${ORDER}/payment-methods$`) },
   { method: 'POST', pattern: new RegExp(`^orders/${ORDER}/pay$`) },
   { method: 'POST', pattern: new RegExp(`^payments/${UUID}/proof$`) },
+  { method: 'GET', pattern: /^appointments\/slots$/ },
+  { method: 'POST', pattern: /^appointments$/ },
 ];
 
 const FORWARD_HEADERS = ['content-type', 'accept', 'x-cart-token', 'x-locale', 'idempotency-key', 'x-customer-phone'];
@@ -40,7 +42,9 @@ async function handle(request: NextRequest, { params }: { params: Promise<{ path
 
   let upstream: Response;
   try {
-    upstream = await fetch(`${API_BASE}/${path}`, {
+    // Only the slots lookup takes a query string (branch, date); Laravel validates it.
+    const query = path === 'appointments/slots' ? request.nextUrl.search : '';
+    upstream = await fetch(`${API_BASE}/${path}${query}`, {
       method: request.method,
       headers,
       body: request.method === 'GET' ? undefined : await request.arrayBuffer(),

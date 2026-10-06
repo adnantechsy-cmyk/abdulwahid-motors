@@ -655,5 +655,100 @@
         "idempotency_conflict": "We couldn't complete that. Reload the page and try again."
       }
     }
+  },
+  "booking": {
+    "title": "Book a service or a test drive",
+    "description": "Choose the service, branch and time that suit you. Our team will contact you to confirm.",
+    "stepService": "1. Choose a service",
+    "stepBranch": "2. Choose a branch",
+    "stepTime": "3. Choose a day and time",
+    "stepVehicle": "4. Your car",
+    "stepContact": "5. Contact details",
+    "services": {
+      "maintenance": {
+        "title": "Periodic service",
+        "text": "Oil and filter change and a general check."
+      },
+      "repair": {
+        "title": "Repair",
+        "text": "Diagnose and fix a fault."
+      },
+      "diagnostics": {
+        "title": "Electronic diagnostics",
+        "text": "Scan the car's computer and systems."
+      },
+      "warranty": {
+        "title": "Warranty service",
+        "text": "Work covered by the dealer warranty."
+      },
+      "inspection": {
+        "title": "Full inspection",
+        "text": "A check before buying or before a trip."
+      },
+      "battery_check": {
+        "title": "Blade battery check",
+        "text": "Measure battery health and get a digital certificate."
+      }
+    },
+    "branches": {
+      "sahnaya": {
+        "title": "Sahnaya branch",
+        "text": "Sahnaya Highway, Damascus"
+      },
+      "kafr_sousa": {
+        "title": "Kafr Sousa branch",
+        "text": "Kafr Sousa, Damascus"
+      }
+    },
+    "pickBranchFirst": "Choose a branch first to see the available times.",
+    "pickDay": "Pick a day",
+    "pickTime": "Available times",
+    "slotsLoading": "Loading times…",
+    "slotsEmpty": "No times are available on this day (it may be a day off). Try another day.",
+    "slotsError": "We couldn't load the times. Please try again.",
+    "slotFull": "Full",
+    "slotsLeft": "{count} left",
+    "vehicleOwned": "Choose from your cars",
+    "vehicleOther": "Another car",
+    "vehicleDescription": "Describe the car",
+    "vehicleDescriptionHint": "e.g. BYD Seal 2025, or the plate number",
+    "name": "Name",
+    "phone": "Mobile number",
+    "phoneHint": "We'll call this number to confirm the appointment.",
+    "notes": "Notes",
+    "notesHint": "Anything the technician should know before the visit.",
+    "optional": "Optional",
+    "summary": "Booking summary",
+    "summaryEmpty": "Not chosen yet",
+    "summaryService": "Service",
+    "summaryBranch": "Branch",
+    "summaryWhen": "When",
+    "summaryVehicle": "Car",
+    "submit": "Confirm booking",
+    "submitting": "Booking…",
+    "loginHint": "Have an account? Log in to pick your car and link the appointment to your account.",
+    "errors": {
+      "service": "Choose a service.",
+      "branch": "Choose a branch.",
+      "slot": "Choose a time.",
+      "name": "Enter your name.",
+      "phone": "Enter a valid mobile number.",
+      "tooMany": "Too many attempts. Wait a minute and try again.",
+      "generic": "We couldn't book the appointment. Please try again shortly.",
+      "codes": {
+        "slot_full": "That time was just taken. Choose another time.",
+        "slot_invalid": "That time isn't available any more. Choose another time.",
+        "vehicle_not_owned": "That car isn't registered to your account."
+      }
+    },
+    "done": {
+      "title": "Booking request received",
+      "text": "Our team will contact you to confirm. Keep your booking number.",
+      "number": "Booking number",
+      "status": "Status",
+      "pending": "Awaiting confirmation",
+      "myAppointments": "My appointments",
+      "another": "Book another appointment"
+    }
   }
 }

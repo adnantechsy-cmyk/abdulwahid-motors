@@ -161,7 +161,7 @@ export function CheckoutForm() {
         )}
 
         {needsReceiving && (
-          <fieldset className="flex flex-col gap-5 border border-awm-line bg-white p-6">
+          <fieldset className="flex min-w-0 flex-col gap-5 border border-awm-line bg-white p-6">
             <legend className="flex items-center gap-3 px-2 text-lg font-extrabold"><span aria-hidden="true" className="h-5 w-1 bg-awm-red" />{t('delivery.title')}</legend>
 
             {hasParts && (
@@ -203,7 +203,7 @@ export function CheckoutForm() {
           </fieldset>
         )}
 
-        <fieldset className="flex flex-col gap-5 border border-awm-line bg-white p-6">
+        <fieldset className="flex min-w-0 flex-col gap-5 border border-awm-line bg-white p-6">
           <legend className="flex items-center gap-3 px-2 text-lg font-extrabold"><span aria-hidden="true" className="h-5 w-1 bg-awm-red" />{t('customer.title')}</legend>
           <TextField key={`n-${profile.name ?? ''}`} name="name" label={t('customer.name')} defaultValue={profile.name} error={errors.name} autoComplete="name" required />
           <div className="grid gap-5 sm:grid-cols-2">
