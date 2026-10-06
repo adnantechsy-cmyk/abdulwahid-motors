@@ -6,7 +6,9 @@ use App\Enums\JobCardStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
 use App\Models\JobCard;
+use App\Models\Order;
 use App\Models\Payment;
+use App\Models\SparePart;
 use Illuminate\Http\Request;
 
 /** Counters for the admin overview. A counter is only included if the staff member can open that section. */
@@ -26,6 +28,15 @@ class AdminSummaryController extends Controller
             $out['job_cards'] = collect(JobCardStatus::cases())
                 ->mapWithKeys(fn (JobCardStatus $s) => [$s->value => JobCard::where('status', $s->value)->count()])
                 ->all();
+        }
+
+        if ($user->can('orders.manage')) {
+            $out['orders_unpaid'] = Order::whereIn('status', ['pending', 'awaiting_payment', 'failed'])->count();
+            $out['orders_to_fulfil'] = Order::whereIn('status', ['paid', 'processing'])->where('flow', '!=', 'vehicle_reservation')->count();
+        }
+
+        if ($user->can('parts.manage') || $user->can('stock.adjust')) {
+            $out['parts_low_stock'] = SparePart::where('is_published', true)->lowStock()->count();
         }
 
         if ($user->can('appointments.manage')) {

@@ -101,6 +101,37 @@ class PaymentService
         return $this->applyStatus($payment, PaymentStatus::Captured);
     }
 
+    /**
+     * Payment taken outside the website (cash at the branch, or arranged by the sales head over the phone).
+     * Staff record it against the order; it goes through the same confirm path as an uploaded receipt, so the
+     * order becomes paid and held stock is released exactly once. The 'in_person' gateway row is never offered
+     * to customers (inactive), so switching checkout to another flow later does not touch this method.
+     */
+    public function recordManual(Order $order, User $staff, string $gatewayCode = 'in_person', ?string $note = null): Payment
+    {
+        if (! $order->status->isPayable()) {
+            throw new CheckoutException('Order is not payable.', 'order_not_payable');
+        }
+
+        $gateway = PaymentGateway::where('code', $gatewayCode)->first();
+        if (! $gateway) {
+            throw new CheckoutException('Payment method not available for this order.', 'gateway_unsupported');
+        }
+
+        $payment = Payment::create([
+            'order_id' => $order->id,
+            'payment_gateway_id' => $gateway->id,
+            'status' => PaymentStatus::AwaitingConfirmation,
+            'amount' => $order->grand_total,
+            'currency' => $order->currency,
+            'idempotency_key' => 'manual-' . (string) \Illuminate\Support\Str::uuid(),
+            'gateway_reference' => 'manual',
+            'payload' => ['manual' => true, 'recorded_by' => $staff->id, 'note' => $note],
+        ]);
+
+        return $this->confirmOffline($payment, $staff);
+    }
+
     public function rejectOffline(Payment $payment, User $staff, string $reason): Payment
     {
         $payment->update(['confirmed_by' => $staff->id, 'confirmed_at' => now()]);

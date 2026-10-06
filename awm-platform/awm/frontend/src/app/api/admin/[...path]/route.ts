@@ -1,4 +1,4 @@
-import { NextResponse, type NextRequest } from 'next/server';
+﻿import { NextResponse, type NextRequest } from 'next/server';
 import { API_BASE } from '@/lib/api/server';
 import { AUTH_COOKIE } from '@/lib/auth';
 
@@ -9,11 +9,17 @@ import { AUTH_COOKIE } from '@/lib/auth';
  */
 const NUM = '[0-9]{1,9}';
 const UUID = '[0-9a-fA-F-]{36}';
+const ORDER = '[A-Za-z0-9-]{3,32}';
 const ROUTES: { method: string; pattern: RegExp }[] = [
   { method: 'GET', pattern: new RegExp(`^admin/payments/${UUID}/proof$`) },
   { method: 'POST', pattern: new RegExp(`^admin/payments/${UUID}/(confirm|reject)$`) },
   { method: 'PUT', pattern: new RegExp(`^admin/job-cards/${NUM}/(status|technician)$`) },
   { method: 'POST', pattern: new RegExp(`^admin/job-cards/${NUM}/complete$`) },
+  { method: 'POST', pattern: new RegExp(`^admin/orders/${ORDER}/(payment|cancel)$`) },
+  { method: 'PUT', pattern: new RegExp(`^admin/orders/${ORDER}/status$`) },
+  { method: 'POST', pattern: /^admin\/parts$/ },
+  { method: 'PUT', pattern: new RegExp(`^admin/parts/${NUM}$`) },
+  { method: 'POST', pattern: new RegExp(`^admin/parts/${NUM}/stock$`) },
   { method: 'POST', pattern: new RegExp(`^admin/appointments/${NUM}/(confirm|cancel|no-show|check-in)$`) },
 ];
 
@@ -57,3 +63,4 @@ async function handle(request: NextRequest, { params }: { params: Promise<{ path
 }
 
 export { handle as GET, handle as POST, handle as PUT };
+

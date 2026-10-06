@@ -1023,7 +1023,9 @@
       "overview": "Overview",
       "payments": "Payment confirmation",
       "jobCards": "Job cards",
-      "appointments": "Appointments"
+      "appointments": "Appointments",
+      "orders": "Orders",
+      "parts": "Spare parts"
     },
     "signedInAs": "Signed in as {name}",
     "viewSite": "View site",
@@ -1064,7 +1066,18 @@
         "requested": "{count} awaiting confirmation",
         "today": "{count} today"
       },
-      "open": "Open"
+      "open": "Open",
+      "orders": {
+        "title": "Orders and reservations",
+        "hint": "Every request captured on the website.",
+        "unpaid": "{count} awaiting payment",
+        "toFulfil": "{count} to hand over"
+      },
+      "parts": {
+        "title": "Spare parts inventory",
+        "hint": "Stock, prices and what shows on the site.",
+        "low": "{count} low or out of stock"
+      }
     },
     "payments": {
       "title": "Payment confirmation",
@@ -1215,6 +1228,222 @@
         "cancelled": "Cancelled",
         "completed": "Completed",
         "no_show": "No show"
+      }
+    },
+    "optional": "Optional",
+    "working": "Working…",
+    "orders": {
+      "title": "Orders and reservations",
+      "intro": "The website only captures the request. Take payment with the customer yourself, then record it here: the order becomes paid and the stock is released from the hold.",
+      "tabsLabel": "Order status",
+      "tabs": {
+        "unpaid": "Awaiting payment",
+        "paid": "Paid",
+        "processing": "In progress",
+        "fulfilled": "Completed",
+        "closed": "Cancelled or refunded"
+      },
+      "search": "Order number, name or phone",
+      "searchLabel": "Search orders",
+      "searchButton": "Search",
+      "flowLabel": "Order type",
+      "allFlows": "All types",
+      "flow": {
+        "vehicle_reservation": "Car reservation",
+        "spare_part": "Spare parts",
+        "maintenance_invoice": "Service invoice"
+      },
+      "statuses": {
+        "pending": "New",
+        "awaiting_payment": "Awaiting payment",
+        "paid": "Paid",
+        "processing": "In progress",
+        "fulfilled": "Completed",
+        "cancelled": "Cancelled",
+        "failed": "Payment failed",
+        "refunded": "Refunded",
+        "partially_refunded": "Partly refunded"
+      },
+      "paymentStatuses": {
+        "pending": "Pending",
+        "requires_action": "Needs action",
+        "awaiting_confirmation": "Awaiting confirmation",
+        "captured": "Received",
+        "failed": "Rejected or failed",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded",
+        "partially_refunded": "Partly refunded"
+      },
+      "cols": {
+        "order": "Order",
+        "customer": "Customer",
+        "type": "Type",
+        "total": "Total",
+        "placed": "Placed",
+        "status": "Status",
+        "item": "Item",
+        "qty": "Qty",
+        "unit": "Unit price",
+        "line": "Line total"
+      },
+      "items": "{count, plural, one {# item} other {# items}}",
+      "empty": "No orders here.",
+      "backToList": "Back to orders",
+      "placedAt": "Placed {when}",
+      "nextStep": "Next step",
+      "customer": "Customer",
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "pickupBranch": "Pickup branch",
+      "address": "Address",
+      "pdiNote": "Car reservations move forward through the pre-delivery inspection, which marks the order in progress and completed.",
+      "payments": "Payments",
+      "noPayments": "No payment recorded yet.",
+      "recordedByStaff": "recorded by staff",
+      "paymentNote": "Note: {note}",
+      "failure": "Reason: {reason}",
+      "viewReceipt": "View receipt",
+      "opensNewTab": "opens in a new tab",
+      "itemsTitle": "Items",
+      "total": "Total",
+      "noActions": "Nothing else to do for this order.",
+      "recordPayment": "Record payment received",
+      "paymentAsk": "Record that {amount} was received for order {order}? This marks the order as paid.",
+      "method": "How was it paid?",
+      "methods": {
+        "in_person": "In person (cash or at the branch)",
+        "bank_transfer": "Bank transfer",
+        "mobile_money": "Mobile wallet"
+      },
+      "note": "Note",
+      "noteHint": "For example the receipt number or who took the payment. Visible to staff only.",
+      "paymentYes": "Yes, record payment",
+      "advance": {
+        "processing": "Start preparing",
+        "fulfilled": "Mark as completed",
+        "handedOver": "Mark as handed over"
+      },
+      "cancelOrder": "Cancel order",
+      "cancelAsk": "Cancel order {order}?",
+      "cancelHint": "Held stock or the car reservation is released. Only unpaid orders can be cancelled.",
+      "cancelYes": "Yes, cancel order",
+      "notPayable": "This order can no longer take a payment. Refresh the page.",
+      "badTransition": "That change isn't allowed for this order. Refresh the page.",
+      "notCancellable": "Only unpaid orders can be cancelled."
+    },
+    "parts": {
+      "title": "Spare parts inventory",
+      "intro": "Prices, visibility and stock for every part. Stock is counted per part for the whole company, and every change is logged.",
+      "add": "Add a part",
+      "filtersLabel": "Filter parts",
+      "search": "Name, SKU or BYD number",
+      "category": "Category",
+      "allCategories": "All categories",
+      "visibility": "On the website",
+      "anyVisibility": "Any",
+      "published": "Shown",
+      "hidden": "Hidden",
+      "apply": "Apply",
+      "stockLabel": "Stock level",
+      "stockAll": "All stock levels",
+      "stockFilter": {
+        "low": "Low stock",
+        "out": "Out of stock",
+        "ok": "In stock"
+      },
+      "listTitle": "Parts",
+      "empty": "No parts match.",
+      "reserved": "{count} held",
+      "outOfStock": "Out of stock",
+      "lowStock": "Low",
+      "cols": {
+        "part": "Part",
+        "category": "Category",
+        "price": "Price",
+        "onHand": "On hand",
+        "available": "Available",
+        "visibility": "Website"
+      },
+      "backToList": "Back to parts",
+      "newTitle": "Add a part",
+      "details": "Part details",
+      "summary": {
+        "onHand": "On hand",
+        "reservedLabel": "Held for open orders",
+        "available": "Available",
+        "threshold": "Low-stock alert at"
+      },
+      "form": {
+        "identity": "Identity",
+        "sku": "SKU",
+        "skuHint": "Letters, numbers and - . _ / only. Can't be changed later.",
+        "skuFixed": "Fixed after the part is created.",
+        "oem": "BYD part number",
+        "nameAr": "Name (Arabic)",
+        "nameEn": "Name (English)",
+        "descAr": "Description (Arabic)",
+        "descEn": "Description (English)",
+        "category": "Category",
+        "noCategory": "No category",
+        "models": "Compatible models",
+        "modelsHint": "One per line, for example Atto 3.",
+        "pricing": "Price",
+        "price": "Selling price",
+        "cost": "Cost price",
+        "costHint": "Staff only. Never shown on the website.",
+        "currency": "Currency",
+        "stockSection": "Stock",
+        "initialStock": "Opening stock",
+        "initialStockHint": "Booked as a purchase in the stock log.",
+        "threshold": "Low-stock alert at",
+        "thresholdHint": "Flagged when available units reach this number.",
+        "bin": "Shelf or bin",
+        "visibility": "Website",
+        "published": "Show on the website",
+        "publishedHint": "Customers can find and order the part.",
+        "hideOut": "Hide when out of stock",
+        "hideOutHint": "Otherwise it stays visible and shows as unavailable.",
+        "isOem": "Genuine BYD part",
+        "save": "Save changes",
+        "create": "Add part",
+        "saved": "Saved."
+      },
+      "stock": {
+        "title": "Add or correct stock",
+        "type": "What happened?",
+        "types": {
+          "purchase": "Goods received",
+          "return": "Customer return",
+          "adjustment": "Correction (count, damage, loss)"
+        },
+        "quantity": "Units",
+        "addHint": "A positive number to add.",
+        "adjustHint": "Positive to add, negative to remove (for example -2).",
+        "note": "Note",
+        "submit": "Update stock",
+        "done": "Stock updated.",
+        "invalidAdd": "Enter a whole number above zero.",
+        "invalidAdjust": "Enter a whole number other than zero.",
+        "noteRequired": "Say why you are correcting the stock.",
+        "insufficient": "That would take stock below zero."
+      },
+      "movements": {
+        "title": "Stock history",
+        "empty": "No stock changes yet.",
+        "when": "When",
+        "type": "Type",
+        "change": "Change",
+        "balance": "Balance",
+        "by": "By",
+        "note": "Reference or note",
+        "types": {
+          "purchase": "Goods received",
+          "sale": "Sale",
+          "maintenance_usage": "Used in a job card",
+          "adjustment": "Correction",
+          "return": "Return"
+        }
       }
     }
   }

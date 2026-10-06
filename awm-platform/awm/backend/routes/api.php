@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\V1\Admin\AppointmentAdminController;
 use App\Http\Controllers\Api\V1\Admin\BatteryInspectionAdminController;
 use App\Http\Controllers\Api\V1\Admin\CategoryAdminController;
 use App\Http\Controllers\Api\V1\Admin\JobCardAdminController;
+use App\Http\Controllers\Api\V1\Admin\OrderAdminController;
+use App\Http\Controllers\Api\V1\Admin\PartAdminController;
 use App\Http\Controllers\Api\V1\Admin\PaymentAdminController;
 use App\Http\Controllers\Api\V1\Admin\PdiAdminController;
 use App\Http\Controllers\Api\V1\Admin\SeoAdminController;
@@ -95,6 +97,24 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
             Route::put('job-cards/{card}/technician', [JobCardAdminController::class, 'assign'])->middleware('permission:job_cards.manage');
         });
 
+        Route::middleware('permission:orders.manage')->group(function () {
+            Route::get('orders', [OrderAdminController::class, 'index']);
+            Route::get('orders/{number}', [OrderAdminController::class, 'show']);
+            Route::post('orders/{number}/payment', [OrderAdminController::class, 'recordPayment']);
+            Route::put('orders/{number}/status', [OrderAdminController::class, 'status']);
+            Route::post('orders/{number}/cancel', [OrderAdminController::class, 'cancel']);
+        });
+        Route::middleware('permission:parts.manage|stock.adjust')->group(function () {
+            Route::get('parts', [PartAdminController::class, 'index']);
+            Route::get('part-categories', [PartAdminController::class, 'categories']);
+            Route::get('parts/{part}', [PartAdminController::class, 'show'])->whereNumber('part');
+            Route::get('parts/{part}/movements', [PartAdminController::class, 'movements'])->whereNumber('part');
+            Route::post('parts/{part}/stock', [PartAdminController::class, 'adjust'])->whereNumber('part')->middleware('permission:stock.adjust');
+        });
+        Route::middleware('permission:parts.manage')->group(function () {
+            Route::post('parts', [PartAdminController::class, 'store']);
+            Route::put('parts/{part}', [PartAdminController::class, 'update'])->whereNumber('part');
+        });
         Route::middleware('permission:seo.manage')->group(function () {
             Route::get('seo', [SeoAdminController::class, 'index']);
             Route::put('seo/routes/{key}', [SeoAdminController::class, 'updateRoute']);
