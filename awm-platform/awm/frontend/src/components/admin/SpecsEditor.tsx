@@ -6,8 +6,10 @@ import { buttonClasses } from '@/components/ui/Button';
 
 export type SpecRow = { key: string; value: string };
 
-/** The spec names the website already shows with a translated label and unit. Any other name still works. */
-export const KNOWN_SPEC_KEYS = ['range_km', 'battery_kwh', 'seats', 'power_hp', 'torque_nm', 'acceleration_0_100_s', 'top_speed_kmh', 'charging_dc_kw', 'cargo_l'] as const;
+/** The spec names the website shows with a translated label, a unit and a section. Any other name still works (it appears under "Other specifications"). */
+export const KNOWN_SPEC_KEYS = [
+  'length_mm', 'width_mm', 'height_mm', 'wheelbase_mm', 'ground_clearance_mm', 'curb_weight_kg', 'cargo_l', 'fuel_tank_l', 'seats', 'hybrid_system', 'drive', 'transmission', 'engine_displacement_l', 'engine_aspiration', 'engine_power_hp', 'engine_torque_nm', 'motor_power_hp', 'motor_torque_nm', 'power_hp', 'torque_nm', 'acceleration_0_50_s', 'acceleration_0_100_s', 'top_speed_kmh', 'battery_type', 'battery_kwh', 'range_km', 'range_ev_km', 'range_total_km', 'consumption_kwh_100km', 'fuel_consumption_l100', 'charging_dc_kw', 'dc_charge_time_min', 'charging_ac_kw', 'v2l_kw', 'wheel_size_in',
+] as const;
 
 export const KEY_PATTERN = /^[a-z][a-z0-9_]{1,39}$/;
 

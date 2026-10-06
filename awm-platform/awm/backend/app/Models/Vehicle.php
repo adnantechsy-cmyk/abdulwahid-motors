@@ -30,6 +30,7 @@ class Vehicle extends Model implements Purchasable
         'price' => 'decimal:2',
         'deposit_amount' => 'decimal:2',
         'specs' => 'array',
+        'features' => 'array',
         'gallery' => 'array',
         'reserved_at' => 'datetime',
     ];
@@ -57,6 +58,20 @@ class Vehicle extends Model implements Purchasable
     public function coverUrl(): ?string
     {
         return $this->cover_image ? Storage::disk('public')->url($this->cover_image) : null;
+    }
+
+    /** Feature lines for one language, by section: ["exterior" => ["Front lighting: ...", ...], ...]. Falls back to English. */
+    public function featuresFor(string $locale): array
+    {
+        $out = [];
+        foreach ((array) $this->features as $section => $byLocale) {
+            $lines = $byLocale[$locale] ?? $byLocale['en'] ?? [];
+            if ($lines) {
+                $out[$section] = array_values($lines);
+            }
+        }
+
+        return $out;
     }
 
     /** The downloadable PDF catalogue, if staff uploaded one. */
@@ -139,6 +154,7 @@ class Vehicle extends Model implements Purchasable
             'body_type' => $this->body_type,
             'powertrain' => $this->powertrain,
             'specs' => $this->specs,
+            'features' => $this->featuresFor($locale),
             // "Contact us for price": a hidden price is never sent to the public site at all (null, not 0).
             'price' => $this->show_price ? (string) $this->price : null,
             'price_visible' => (bool) $this->show_price,

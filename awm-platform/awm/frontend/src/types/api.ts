@@ -20,6 +20,8 @@ export interface VehicleDto {
   body_type: string | null;
   powertrain: 'bev' | 'phev' | 'hev' | 'ice';
   specs: Record<string, string | number> | null;
+  /** Feature lines by section (chassis, exterior, interior, safety), already in the page language. */
+  features?: Record<string, string[]> | null;
   /** null when staff chose to hide it: show "Contact us for price". */
   price: string | null;
   price_visible: boolean;

@@ -183,6 +183,7 @@ export interface AdminVehicleDetail extends AdminVehicleRow {
   cover_url: string | null;
   brochure_url: string | null;
   specs: Record<string, string | number>;
+  features: Record<string, { ar?: string[]; en?: string[] }>;
   gallery: { path: string; url: string }[];
 }
 

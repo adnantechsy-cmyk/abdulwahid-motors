@@ -4,7 +4,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { AddToCartButton } from '@/components/cart/AddToCartButton';
 import { Breadcrumbs } from '@/components/catalog/Breadcrumbs';
 import { Gallery } from '@/components/catalog/Gallery';
-import { SpecList, type SpecRow } from '@/components/catalog/SpecList';
+import { type SpecRow } from '@/components/catalog/SpecList';
+import { VehicleFeatures } from '@/components/catalog/VehicleFeatures';
+import { VehicleSpecs } from '@/components/catalog/VehicleSpecs';
 import { VehicleCard } from '@/components/catalog/VehicleCard';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { ButtonLink } from '@/components/ui/Button';
@@ -13,7 +15,6 @@ import { apiGet } from '@/lib/api/server';
 import { getVehicleList } from '@/lib/api/catalog';
 import { formatMoney, formatYear } from '@/lib/format';
 import { toMetadata } from '@/lib/seo/buildMetadata';
-import { formatSpecValue, humanizeKey, unitFor } from '@/lib/specs';
 import type { VehicleDto } from '@/types/api';
 import type { SeoPayload } from '@/types/seo';
 
@@ -49,18 +50,10 @@ export default async function VehiclePage({ params }: Props) {
   const images = [...new Set([vehicle.image, ...vehicle.gallery].filter((src): src is string => Boolean(src)))];
   const others = (similar?.data ?? []).filter((v) => v.id !== vehicle.id).slice(0, 4);
 
-  const unitLabel = (key: string) => {
-    const unit = unitFor(key);
-    return unit ? t(`units.${unit}`) : undefined;
-  };
-  const rows: SpecRow[] = [
+  const overview: SpecRow[] = [
     { label: t('modelYear'), value: formatYear(vehicle.model_year, locale) },
     ...(vehicle.body_type ? [{ label: t('bodyType'), value: t.has(`bodyTypes.${vehicle.body_type}`) ? t(`bodyTypes.${vehicle.body_type}`) : vehicle.body_type }] : []),
     { label: t('powertrain'), value: tv(`powertrain.${vehicle.powertrain}`) },
-    ...Object.entries(vehicle.specs ?? {}).map(([key, value]) => ({
-      label: t.has(`specNames.${key}`) ? t(`specNames.${key}`) : humanizeKey(key),
-      value: formatSpecValue(value, locale, unitLabel(key)),
-    })),
   ];
 
   return (
@@ -81,7 +74,8 @@ export default async function VehiclePage({ params }: Props) {
 
           <dl className="grid grid-cols-2 gap-3">
             <div className="border border-awm-line bg-white p-4"><dt className="text-xs text-awm-muted">{tv('fullPrice')}</dt><dd className="mt-1 font-mono text-2xl font-extrabold tabular-nums">{vehicle.price !== null ? money(vehicle.price) : <span className="font-sans text-base">{td('contactForPrice')}</span>}</dd></div>
-            <div className="border border-awm-line bg-white p-4"><dt className="text-xs text-awm-muted">{tv('deposit')}</dt><dd className="mt-1 font-mono text-2xl font-extrabold tabular-nums text-awm-red">{money(vehicle.deposit_amount)}</dd></div>
+            {Number(vehicle.deposit_amount) > 0 && (            <div className="border border-awm-line bg-white p-4"><dt className="text-xs text-awm-muted">{tv('deposit')}</dt><dd className="mt-1 font-mono text-2xl font-extrabold tabular-nums text-awm-red">{money(vehicle.deposit_amount)}</dd></div>
+            )}
           </dl>
 
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -128,8 +122,15 @@ export default async function VehiclePage({ params }: Props) {
 
       <section aria-labelledby="specs" className="mt-12">
         <h2 id="specs" className="mb-4 text-2xl font-extrabold">{t('specs')}</h2>
-        <SpecList rows={rows} />
+        <VehicleSpecs specs={vehicle.specs} overview={overview} locale={locale} />
       </section>
+
+      {vehicle.features && Object.keys(vehicle.features).length > 0 && (
+        <section aria-labelledby="features" className="mt-12">
+          <h2 id="features" className="mb-4 text-2xl font-extrabold">{t('features')}</h2>
+          <VehicleFeatures features={vehicle.features} />
+        </section>
+      )}
 
       {others.length > 0 && (
         <section aria-labelledby="similar" className="mt-16">

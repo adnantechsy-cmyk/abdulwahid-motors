@@ -40,7 +40,7 @@
     "customerPortal": "Customer portal",
     "branches": "Our branches",
     "sahnaya": "Sahnaya branch: Sahnaya Highway, Damascus",
-    "kafrSousa": "Kafr Sousa branch: Kafr Sousa, Damascus",
+    "kafrSousa": "Kafr Sousa branch: Kafr Sousa, near Roman Restaurant, Damascus",
     "rights": "© {year} Abdul Wahid Motors. All rights reserved."
   },
   "cart": {
@@ -606,7 +606,13 @@
       "nm": "Nm",
       "kmh": "km/h",
       "s": "s",
-      "l": "L"
+      "l": "L",
+      "mm": "mm",
+      "kg": "kg",
+      "min": "min",
+      "in": "in",
+      "l100": "L/100 km",
+      "kwh100": "kWh/100 km"
     },
     "bodyTypes": {
       "sedan": "Sedan",
@@ -620,12 +626,71 @@
       "range_km": "Range",
       "battery_kwh": "Battery capacity",
       "seats": "Seats",
-      "power_hp": "Power",
+      "power_hp": "Total power",
       "torque_nm": "Torque",
-      "acceleration_0_100_s": "0-100 km/h",
+      "acceleration_0_100_s": "Acceleration 0-100 km/h",
       "top_speed_kmh": "Top speed",
-      "charging_dc_kw": "DC fast charging",
-      "cargo_l": "Boot space"
+      "charging_dc_kw": "DC fast-charging power",
+      "cargo_l": "Boot capacity",
+      "length_mm": "Overall length",
+      "width_mm": "Overall width",
+      "height_mm": "Overall height",
+      "wheelbase_mm": "Wheelbase",
+      "ground_clearance_mm": "Ground clearance",
+      "curb_weight_kg": "Curb weight",
+      "fuel_tank_l": "Fuel tank",
+      "hybrid_system": "Powertrain system",
+      "drive": "Drive",
+      "transmission": "Transmission",
+      "engine_displacement_l": "Engine displacement",
+      "engine_aspiration": "Petrol engine type",
+      "engine_power_hp": "Petrol engine power",
+      "engine_torque_nm": "Petrol engine torque",
+      "motor_power_hp": "Electric motor power",
+      "motor_torque_nm": "Electric motor torque",
+      "acceleration_0_50_s": "Acceleration 0-50 km/h",
+      "battery_type": "Battery technology",
+      "range_ev_km": "Pure electric range (CLTC)",
+      "range_total_km": "Total range (fuel + electric)",
+      "consumption_kwh_100km": "Energy consumption",
+      "fuel_consumption_l100": "Fuel consumption",
+      "dc_charge_time_min": "DC charge time 30% to 80%",
+      "charging_ac_kw": "AC charging power",
+      "v2l_kw": "External power output (V2L)",
+      "wheel_size_in": "Wheel size"
+    },
+    "features": "Features and equipment",
+    "specValues": {
+      "drive": {
+        "fwd": "Front-wheel drive (FWD)",
+        "awd": "All-wheel drive (AWD)",
+        "rwd": "Rear-wheel drive (RWD)",
+        "fwd_awd": "Front-wheel (FWD) or all-wheel drive (AWD), by version",
+        "varies": "Depends on the version"
+      },
+      "transmission": {
+        "e_cvt": "Hybrid-dedicated electronic (E-CVT)",
+        "single_speed": "Single-speed",
+        "varies": "Depends on the version"
+      },
+      "engine_aspiration": {
+        "na_atkinson": "Naturally aspirated (Atkinson cycle)",
+        "turbo": "Turbocharged"
+      }
+    },
+    "specSections": {
+      "overview": "Overview",
+      "dimensions": "Dimensions and weight",
+      "performance": "Powertrain and performance",
+      "battery": "Battery, charging and range",
+      "wheels": "Wheels",
+      "other": "Other specifications"
+    },
+    "featureSections": {
+      "chassis": "Suspension, steering and brakes",
+      "exterior": "Exterior design and lighting",
+      "interior": "Interior and comfort",
+      "safety": "Safety and driver assistance"
     }
   },
   "certificate": {
@@ -773,7 +838,7 @@
       },
       "kafr_sousa": {
         "title": "Kafr Sousa branch",
-        "text": "Kafr Sousa, Damascus"
+        "text": "Kafr Sousa, near Roman Restaurant, Damascus"
       }
     },
     "pickBranchFirst": "Choose a branch first to see the available times.",
@@ -1662,7 +1727,8 @@
             "value": "Give \"{name}\" a value, or remove the row.",
             "duplicate": "The spec \"{name}\" appears twice."
           }
-        }
+        },
+        "featuresTitle": "Features and equipment"
       },
       "specs": {
         "hint": "Each row is one line of the specification table. End the name with its unit so the site can show it: range_km, power_hp, battery_kwh, top_speed_kmh... Pick a suggested name or write your own.",
@@ -1673,15 +1739,41 @@
         "remove": "Remove",
         "row": "row {n}",
         "names": {
-          "range_km": "Range (km)",
-          "battery_kwh": "Battery capacity (kWh)",
+          "range_km": "Range",
+          "battery_kwh": "Battery capacity",
           "seats": "Seats",
-          "power_hp": "Power (hp)",
-          "torque_nm": "Torque (Nm)",
-          "acceleration_0_100_s": "Acceleration 0-100 km/h (s)",
-          "top_speed_kmh": "Top speed (km/h)",
-          "charging_dc_kw": "DC fast charging (kW)",
-          "cargo_l": "Boot space (litres)"
+          "power_hp": "Total power",
+          "torque_nm": "Torque",
+          "acceleration_0_100_s": "Acceleration 0-100 km/h",
+          "top_speed_kmh": "Top speed",
+          "charging_dc_kw": "DC fast-charging power",
+          "cargo_l": "Boot capacity",
+          "length_mm": "Overall length",
+          "width_mm": "Overall width",
+          "height_mm": "Overall height",
+          "wheelbase_mm": "Wheelbase",
+          "ground_clearance_mm": "Ground clearance",
+          "curb_weight_kg": "Curb weight",
+          "fuel_tank_l": "Fuel tank",
+          "hybrid_system": "Powertrain system",
+          "drive": "Drive",
+          "transmission": "Transmission",
+          "engine_displacement_l": "Engine displacement",
+          "engine_aspiration": "Petrol engine type",
+          "engine_power_hp": "Petrol engine power",
+          "engine_torque_nm": "Petrol engine torque",
+          "motor_power_hp": "Electric motor power",
+          "motor_torque_nm": "Electric motor torque",
+          "acceleration_0_50_s": "Acceleration 0-50 km/h",
+          "battery_type": "Battery technology",
+          "range_ev_km": "Pure electric range (CLTC)",
+          "range_total_km": "Total range (fuel + electric)",
+          "consumption_kwh_100km": "Energy consumption",
+          "fuel_consumption_l100": "Fuel consumption",
+          "dc_charge_time_min": "DC charge time 30% to 80%",
+          "charging_ac_kw": "AC charging power",
+          "v2l_kw": "External power output (V2L)",
+          "wheel_size_in": "Wheel size"
         }
       },
       "gallery": {
@@ -1699,6 +1791,17 @@
         "uploading": "Uploading…",
         "done": "Done.",
         "full": "The gallery is full ({max} photos). Remove one to add another."
+      },
+      "features": {
+        "hint": "Shown on the car page under \"Features and equipment\". One feature per line, written as \"Label: value\" (for example \"Front lighting: Full LED headlights\"). Write the Arabic and English text side by side.",
+        "arabic": "Arabic",
+        "english": "English",
+        "sections": {
+          "chassis": "Suspension, steering and brakes",
+          "exterior": "Exterior design and lighting",
+          "interior": "Interior and comfort",
+          "safety": "Safety and driver assistance"
+        }
       }
     },
     "categories": {
