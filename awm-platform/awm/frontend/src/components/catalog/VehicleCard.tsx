@@ -42,7 +42,7 @@ export async function VehicleCard({ vehicle, locale, priority = false }: { vehic
         <dl className="mt-auto grid grid-cols-2 gap-px bg-awm-line">
           <div className="bg-awm-panel p-3">
             <dt className="text-xs text-awm-muted">{t('fullPrice')}</dt>
-            <dd className="font-mono text-base font-bold tabular-nums">{formatMoney(vehicle.price, vehicle.currency, locale)}</dd>
+            <dd className="font-mono text-base font-bold tabular-nums">{vehicle.price !== null ? formatMoney(vehicle.price, vehicle.currency, locale) : <span className="font-sans text-sm">{tc('contactForPrice')}</span>}</dd>
           </div>
           <div className="bg-awm-panel p-3">
             <dt className="text-xs text-awm-muted">{t('deposit')}</dt>
@@ -61,7 +61,7 @@ export async function VehicleCard({ vehicle, locale, priority = false }: { vehic
             name: vehicle.name_i18n,
             image: vehicle.image ?? undefined,
             unitPrice: Number(vehicle.deposit_amount), // the DEPOSIT
-            vehiclePrice: Number(vehicle.price),
+            vehiclePrice: Number(vehicle.price ?? 0),
             currency: vehicle.currency,
           }}
         />

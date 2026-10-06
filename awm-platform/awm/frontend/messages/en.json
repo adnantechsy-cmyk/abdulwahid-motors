@@ -3,7 +3,11 @@
     "inCart": "In your cart",
     "addToCart": "Add to cart",
     "skipToContent": "Skip to content",
-    "dataUnavailable": "We couldn't load this right now. Please try again shortly."
+    "dataUnavailable": "We couldn't load this right now. Please try again shortly.",
+    "contactForPrice": "Contact us for price",
+    "contactUs": "Contact us",
+    "whatsappUs": "Message us on WhatsApp",
+    "opensNewTab": "opens in a new tab"
   },
   "brand": {
     "name": "Abdul Wahid Motors",
@@ -88,6 +92,12 @@
     "unit": {
       "km": "km",
       "kwh": "kWh"
+    },
+    "brochure": {
+      "title": "Catalogue",
+      "view": "View catalogue (PDF)",
+      "download": "Download catalogue",
+      "opens": "opens in a new tab"
     }
   },
   "part": {
@@ -1031,7 +1041,9 @@
       "jobCards": "Job cards",
       "appointments": "Appointments",
       "orders": "Orders",
-      "parts": "Spare parts"
+      "parts": "Spare parts",
+      "vehicles": "Cars",
+      "categories": "Categories"
     },
     "signedInAs": "Signed in as {name}",
     "viewSite": "View site",
@@ -1083,6 +1095,14 @@
         "title": "Spare parts inventory",
         "hint": "Stock, prices and what shows on the site.",
         "low": "{count} low or out of stock"
+      },
+      "vehicles": {
+        "title": "Cars",
+        "hint": "Showroom cars, prices, photos and PDF catalogues."
+      },
+      "categories": {
+        "title": "Categories",
+        "hint": "Organise cars and spare parts so customers can filter them."
       }
     },
     "payments": {
@@ -1413,7 +1433,9 @@
         "isOem": "Genuine BYD part",
         "save": "Save changes",
         "create": "Add part",
-        "saved": "Saved."
+        "saved": "Saved.",
+        "showPrice": "Show the price on the website",
+        "showPriceHint": "Turn this off to show \"Contact us for price\". Parts without a public price can't be ordered online."
       },
       "stock": {
         "title": "Add or correct stock",
@@ -1450,6 +1472,168 @@
           "adjustment": "Correction",
           "return": "Return"
         }
+      },
+      "photo": {
+        "title": "Photo",
+        "label": "Part photo",
+        "hint": "JPG, PNG or WebP, up to 5 MB."
+      }
+    },
+    "upload": {
+      "choose": "Choose a file first.",
+      "tooBig": "The file is larger than {mb} MB.",
+      "invalid": "That file was not accepted. Check the type and size.",
+      "none": "Nothing uploaded yet.",
+      "openPdf": "Open the PDF",
+      "openImage": "Open the image",
+      "opensNewTab": "opens in a new tab",
+      "remove": "Remove",
+      "upload": "Upload",
+      "replace": "Replace",
+      "uploading": "Uploading…",
+      "done": "Uploaded.",
+      "coverLabel": "Cover photo",
+      "coverHint": "JPG, PNG or WebP, up to 5 MB. Shown on the car card and page.",
+      "brochureLabel": "PDF catalogue (brochure)",
+      "brochureHint": "PDF only, up to 15 MB. Customers can view and download it from the car page."
+    },
+    "vehicles": {
+      "title": "Cars",
+      "intro": "Manage the showroom: details, price (you can hide it), photos, the PDF catalogue and whether a car shows on the website.",
+      "add": "Add a car",
+      "filtersLabel": "Filter cars",
+      "search": "Name, stock number or VIN",
+      "visibility": "On the website",
+      "anyVisibility": "Any",
+      "published": "Shown",
+      "hidden": "Hidden",
+      "apply": "Apply",
+      "statusLabel": "Car status",
+      "allStatuses": "All",
+      "statuses": {
+        "available": "Available",
+        "incoming": "Incoming",
+        "reserved": "Reserved",
+        "sold": "Sold"
+      },
+      "listTitle": "Cars",
+      "empty": "No cars match.",
+      "priceHidden": "Price hidden on the site",
+      "cols": {
+        "car": "Car",
+        "price": "Price",
+        "status": "Status",
+        "website": "Website",
+        "files": "Files"
+      },
+      "hasCover": "Photo added",
+      "noCover": "No photo",
+      "hasBrochure": "Catalogue added",
+      "noBrochure": "No catalogue",
+      "backToList": "Back to cars",
+      "newTitle": "Add a car",
+      "newHint": "Save the car first, then add its photo and PDF catalogue on the next screen.",
+      "details": "Car details",
+      "files": "Photo and catalogue",
+      "viewOnSite": "View on the website",
+      "form": {
+        "identity": "Name and description",
+        "nameAr": "Name (Arabic)",
+        "nameEn": "Name (English)",
+        "taglineAr": "Short line (Arabic)",
+        "taglineEn": "Short line (English)",
+        "descAr": "Description (Arabic)",
+        "descEn": "Description (English)",
+        "sku": "Stock number",
+        "vin": "VIN",
+        "vinHint": "17 letters and digits.",
+        "details": "Details",
+        "year": "Model year",
+        "powertrain": "Powertrain",
+        "powertrains": {
+          "bev": "Electric (BEV)",
+          "phev": "Plug-in hybrid (PHEV)",
+          "hev": "Hybrid (HEV)",
+          "ice": "Petrol"
+        },
+        "body": "Body type",
+        "bodies": {
+          "sedan": "Sedan",
+          "suv": "SUV",
+          "hatchback": "Hatchback",
+          "pickup": "Pickup"
+        },
+        "color": "Exterior colour",
+        "category": "Category",
+        "branch": "Branch",
+        "none": "None",
+        "pricing": "Price",
+        "price": "Price",
+        "deposit": "Reservation deposit",
+        "depositHint": "What the customer pays to reserve the car.",
+        "currency": "Currency",
+        "showPrice": "Show the price on the website",
+        "showPriceHint": "Turn this off to show \"Contact us for price\" instead of a number.",
+        "visibility": "Status and visibility",
+        "status": "Status",
+        "statuses": {
+          "available": "Available",
+          "incoming": "Incoming",
+          "sold": "Sold",
+          "reserved": "Reserved"
+        },
+        "reservedHint": "Reserved by an order. It changes when that order is paid out or cancelled.",
+        "published": "Show on the website",
+        "publishedHint": "Customers can find the car and send a reservation request.",
+        "featured": "Feature on the home page",
+        "featuredHint": "Cars marked this way are shown first.",
+        "order": "Sort order",
+        "orderHint": "Lower numbers show first.",
+        "save": "Save changes",
+        "create": "Add car",
+        "saved": "Saved."
+      }
+    },
+    "categories": {
+      "title": "Categories",
+      "intro": "Group cars and spare parts (headlights, bumpers, brakes and so on). Customers use these to filter the lists, and a category can sit under another one.",
+      "typeLabel": "Category type",
+      "types": {
+        "spare_part": "Spare part categories",
+        "vehicle": "Car categories"
+      },
+      "addTitle": "Add to: {type}",
+      "editTitle": "Edit {name}",
+      "empty": "No categories yet. Add the first one above.",
+      "cols": {
+        "name": "Name",
+        "parent": "Under",
+        "items": "Items",
+        "status": "Status",
+        "actions": "Action"
+      },
+      "active": "Active",
+      "inactive": "Hidden",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteAsk": "Delete \"{name}\"?",
+      "deleteKeeps": "{count} items stay, but lose this category.",
+      "deleteYes": "Yes, delete",
+      "form": {
+        "nameAr": "Name (Arabic)",
+        "nameEn": "Name (English)",
+        "slug": "Web address word",
+        "slugHint": "Letters, numbers and dashes. Made from the English name if left empty.",
+        "parent": "Sits under",
+        "noParent": "Top level",
+        "order": "Sort order",
+        "orderHint": "Lower numbers show first.",
+        "active": "Show on the website",
+        "activeHint": "Hidden categories disappear from the filters.",
+        "add": "Add category",
+        "save": "Save changes",
+        "cancel": "Cancel editing",
+        "saved": "Saved."
       }
     }
   },

@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { FileUpload } from '@/components/admin/FileUpload';
 import { PartForm } from '@/components/admin/PartForm';
 import { StockAdjust } from '@/components/admin/StockAdjust';
 import { EmptyNote, Panel, TableScroll, td, th } from '@/components/account/Panel';
@@ -47,6 +48,21 @@ export default async function PartPage({ params }: Props) {
       {can(user, 'stock.adjust') && (
         <Panel id="part-stock" title={t('stock.title')}>
           <StockAdjust partId={part.id} />
+        </Panel>
+      )}
+
+      {can(user, 'parts.manage') && (
+        <Panel id="part-photo" title={t('photo.title')}>
+          <FileUpload
+            path={`parts/${part.id}/cover`}
+            field="image"
+            accept="image/jpeg,image/png,image/webp"
+            maxMb={5}
+            kind="image"
+            label={t('photo.label')}
+            hint={t('photo.hint')}
+            currentUrl={part.cover_url}
+          />
         </Panel>
       )}
 

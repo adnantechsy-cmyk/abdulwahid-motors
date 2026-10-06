@@ -80,7 +80,7 @@ export default async function VehiclePage({ params }: Props) {
           </div>
 
           <dl className="grid grid-cols-2 gap-3">
-            <div className="border border-awm-line bg-white p-4"><dt className="text-xs text-awm-muted">{tv('fullPrice')}</dt><dd className="mt-1 font-mono text-2xl font-extrabold tabular-nums">{money(vehicle.price)}</dd></div>
+            <div className="border border-awm-line bg-white p-4"><dt className="text-xs text-awm-muted">{tv('fullPrice')}</dt><dd className="mt-1 font-mono text-2xl font-extrabold tabular-nums">{vehicle.price !== null ? money(vehicle.price) : <span className="font-sans text-base">{td('contactForPrice')}</span>}</dd></div>
             <div className="border border-awm-line bg-white p-4"><dt className="text-xs text-awm-muted">{tv('deposit')}</dt><dd className="mt-1 font-mono text-2xl font-extrabold tabular-nums text-awm-red">{money(vehicle.deposit_amount)}</dd></div>
           </dl>
 
@@ -97,13 +97,25 @@ export default async function VehiclePage({ params }: Props) {
                   name: vehicle.name_i18n,
                   image: vehicle.image ?? undefined,
                   unitPrice: Number(vehicle.deposit_amount), // the DEPOSIT
-                  vehiclePrice: Number(vehicle.price),
+                  vehiclePrice: Number(vehicle.price ?? 0),
                   currency: vehicle.currency,
                 }}
               />
             </div>
             <ButtonLink href="/service-booking" variant="outline" size="lg">{t('bookTestDrive')}</ButtonLink>
           </div>
+
+          {vehicle.brochure_url && (
+            <div className="flex flex-wrap items-center gap-3 border border-awm-line bg-white p-4">
+              <span className="text-sm font-bold">{tv('brochure.title')}</span>
+              <a href={vehicle.brochure_url} target="_blank" rel="noopener noreferrer" className="inline-flex h-11 items-center gap-2 border-2 border-awm-black px-5 text-sm font-bold hover:bg-awm-black hover:text-white">
+                {tv('brochure.view')}<span className="sr-only"> ({tv('brochure.opens')})</span>
+              </a>
+              <a href={vehicle.brochure_url} download className="inline-flex h-11 items-center gap-2 border-2 border-awm-red bg-awm-red px-5 text-sm font-bold text-white hover:bg-awm-black hover:border-awm-black">
+                {tv('brochure.download')}
+              </a>
+            </div>
+          )}
         </div>
       </div>
 

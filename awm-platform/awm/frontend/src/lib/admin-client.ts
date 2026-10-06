@@ -7,7 +7,7 @@ export type ActionResult<T = unknown> = { ok: true; data: T } | { ok: false; sta
  * `payments/<uuid>/confirm`). A 401 means the session ended: go through the cookie-clearing route to log in again.
  */
 export async function adminAction<T = unknown>(
-  method: 'POST' | 'PUT',
+  method: 'POST' | 'PUT' | 'DELETE',
   path: string,
   locale: string,
   body?: unknown,
@@ -16,8 +16,9 @@ export async function adminAction<T = unknown>(
   try {
     res = await fetch(`/api/admin/${path}`, {
       method,
-      headers: { Accept: 'application/json', 'X-Locale': locale, ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}) },
-      body: body !== undefined ? JSON.stringify(body) : undefined,
+      headers: { Accept: 'application/json', 'X-Locale': locale, ...(body !== undefined && !(body instanceof FormData) ? { 'Content-Type': 'application/json' } : {}) },
+      // A FormData body (file upload) sets its own multipart boundary header.
+      body: body === undefined ? undefined : body instanceof FormData ? body : JSON.stringify(body),
     });
   } catch {
     return { ok: false, status: 0, message: '' };

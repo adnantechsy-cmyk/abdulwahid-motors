@@ -17,7 +17,7 @@ export function useAdminRun() {
   const [error, setError] = useState<string | null>(null);
 
   async function run<T = unknown>(
-    method: 'POST' | 'PUT',
+    method: 'POST' | 'PUT' | 'DELETE',
     path: string,
     body?: unknown,
     codes: Record<string, string> = {},

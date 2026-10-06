@@ -156,7 +156,7 @@ function CartLine({ item, money }: { item: CartItem; money: (n: number) => strin
         <p className="font-bold leading-snug">{name}</p>
 
         {item.type === 'spare_part' && <p className="text-xs text-awm-black/60">{item.sku}</p>}
-        {item.type === 'vehicle_reservation' && (
+        {item.type === 'vehicle_reservation' && item.vehiclePrice > 0 && (
           <p className="text-xs text-awm-black/60">{t('depositOf', { price: money(item.vehiclePrice) })}</p>
         )}
         {item.type === 'maintenance_invoice' && (

@@ -20,7 +20,10 @@ export interface VehicleDto {
   body_type: string | null;
   powertrain: 'bev' | 'phev' | 'hev' | 'ice';
   specs: Record<string, string | number> | null;
-  price: string;
+  /** null when staff chose to hide it: show "Contact us for price". */
+  price: string | null;
+  price_visible: boolean;
+  brochure_url: string | null;
   deposit_amount: string;
   currency: Currency;
   status: 'available' | 'incoming' | 'reserved' | 'sold';
@@ -38,7 +41,8 @@ export interface SparePartDto {
   name: string;
   description: string | null;
   category: CategoryDto | null;
-  price: string;
+  price: string | null;
+  price_visible: boolean;
   currency: Currency;
   is_oem: boolean;
   compatible_models: string[] | null;

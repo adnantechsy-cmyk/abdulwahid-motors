@@ -27,6 +27,7 @@ class SparePart extends Model implements Purchasable
         'price' => 'decimal:2',
         'is_oem' => 'boolean',
         'is_published' => 'boolean',
+        'show_price' => 'boolean',
         'hide_when_out_of_stock' => 'boolean',
         'compatible_models' => 'array',
         'gallery' => 'array',
@@ -89,7 +90,8 @@ class SparePart extends Model implements Purchasable
 
     public function cartAvailableQuantity(): int
     {
-        return $this->is_published ? $this->availableQuantity() : 0;
+        // No public price means no online purchase: customers are asked to contact the team instead.
+        return $this->is_published && $this->show_price ? $this->availableQuantity() : 0;
     }
 
     public function cartSnapshot(): array
@@ -141,7 +143,8 @@ class SparePart extends Model implements Purchasable
             'name' => $this->getTranslation('name', $locale),
             'description' => $this->getTranslation('description', $locale),
             'category' => $this->category?->toPublicArray($locale),
-            'price' => (string) $this->price,
+            'price' => $this->show_price ? (string) $this->price : null,
+            'price_visible' => (bool) $this->show_price,
             'currency' => $this->currency,
             'is_oem' => $this->is_oem,
             'compatible_models' => $this->compatible_models,

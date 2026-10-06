@@ -1,4 +1,4 @@
-﻿import { NextResponse, type NextRequest } from 'next/server';
+import { NextResponse, type NextRequest } from 'next/server';
 import { API_BASE } from '@/lib/api/server';
 import { AUTH_COOKIE } from '@/lib/auth';
 
@@ -18,6 +18,14 @@ const ROUTES: { method: string; pattern: RegExp }[] = [
   { method: 'POST', pattern: new RegExp(`^admin/orders/${ORDER}/(payment|cancel)$`) },
   { method: 'PUT', pattern: new RegExp(`^admin/orders/${ORDER}/status$`) },
   { method: 'POST', pattern: /^admin\/parts$/ },
+  { method: 'POST', pattern: new RegExp(`^admin/parts/${NUM}/cover$`) },
+  { method: 'POST', pattern: /^admin\/vehicles$/ },
+  { method: 'PUT', pattern: new RegExp(`^admin/vehicles/${NUM}$`) },
+  { method: 'POST', pattern: new RegExp(`^admin/vehicles/${NUM}/(brochure|cover)$`) },
+  { method: 'DELETE', pattern: new RegExp(`^admin/vehicles/${NUM}/brochure$`) },
+  { method: 'POST', pattern: /^admin\/categories$/ },
+  { method: 'PUT', pattern: new RegExp(`^admin/categories/${NUM}$`) },
+  { method: 'DELETE', pattern: new RegExp(`^admin/categories/${NUM}$`) },
   { method: 'PUT', pattern: new RegExp(`^admin/parts/${NUM}$`) },
   { method: 'POST', pattern: new RegExp(`^admin/parts/${NUM}/stock$`) },
   { method: 'POST', pattern: new RegExp(`^admin/appointments/${NUM}/(confirm|cancel|no-show|check-in)$`) },
@@ -29,6 +37,9 @@ async function handle(request: NextRequest, { params }: { params: Promise<{ path
   if (!ROUTES.some((r) => r.method === request.method && r.pattern.test(path))) {
     return NextResponse.json({ message: 'Not found.' }, { status: 404 });
   }
+
+  // Uploads (the PDF catalogue is up to 15 MB) are the largest body staff send; Laravel enforces the exact per-file limits.
+  if (Number(request.headers.get('content-length') ?? 0) > 17 * 1024 * 1024) return NextResponse.json({ message: 'File too large.' }, { status: 413 });
 
   const token = request.cookies.get(AUTH_COOKIE)?.value;
   if (!token) return NextResponse.json({ message: 'Unauthenticated.' }, { status: 401 });
@@ -43,7 +54,7 @@ async function handle(request: NextRequest, { params }: { params: Promise<{ path
     upstream = await fetch(`${API_BASE}/${path}`, {
       method: request.method,
       headers,
-      body: request.method === 'GET' ? undefined : await request.arrayBuffer(),
+      body: request.method === 'GET' || request.method === 'DELETE' ? undefined : await request.arrayBuffer(),
       cache: 'no-store',
     });
   } catch {
@@ -62,5 +73,5 @@ async function handle(request: NextRequest, { params }: { params: Promise<{ path
   return response;
 }
 
-export { handle as GET, handle as POST, handle as PUT };
+export { handle as GET, handle as POST, handle as PUT, handle as DELETE };
 
