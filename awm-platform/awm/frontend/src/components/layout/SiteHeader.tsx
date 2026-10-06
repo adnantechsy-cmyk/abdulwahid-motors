@@ -32,7 +32,7 @@ export async function SiteHeader() {
           <NavLinks items={items} label={t('label')} />
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <CartButton />
           <LocaleSwitcher label={h('languageLabel')} text={h('language')} />
           <AuthLinks labels={auth} />

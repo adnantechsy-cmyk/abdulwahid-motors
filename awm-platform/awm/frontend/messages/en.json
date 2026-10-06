@@ -273,5 +273,231 @@
       "submit": "Search",
       "empty": "No parts match your search."
     }
+  },
+  "account": {
+    "title": "My account",
+    "welcome": "Welcome, {name}",
+    "navLabel": "Account sections",
+    "nav": {
+      "overview": "Overview",
+      "orders": "Orders and reservations",
+      "vehicles": "My cars",
+      "invoices": "Invoices",
+      "appointments": "Appointments"
+    },
+    "summary": {
+      "vehicles": "My cars",
+      "activeOrders": "Orders in progress",
+      "openJobCards": "Open service jobs",
+      "unpaidInvoices": "Unpaid invoices",
+      "appointments": "Upcoming appointments"
+    },
+    "viewAll": "View all",
+    "back": "Back",
+    "bookAppointment": "Book a service",
+    "error": {
+      "title": "We couldn't load your data",
+      "text": "Something went wrong loading this page. Please try again.",
+      "retry": "Try again"
+    },
+    "empty": {
+      "orders": "No orders yet.",
+      "vehicles": "No cars are registered to your account yet. Your car appears here after handover.",
+      "invoices": "No invoices.",
+      "appointments": "No appointments.",
+      "history": "There's no service history for this car yet.",
+      "battery": "There are no battery reports for this car yet."
+    },
+    "branch": {
+      "sahnaya": "Sahnaya branch",
+      "kafr_sousa": "Kafr Sousa branch"
+    },
+    "orders": {
+      "title": "Orders and reservations",
+      "recent": "Recent orders",
+      "number": "Order no.",
+      "type": "Type",
+      "status": "Status",
+      "total": "Total",
+      "date": "Date",
+      "open": "View order {number}",
+      "flow": {
+        "vehicle_reservation": "Car reservation",
+        "spare_part": "Spare parts",
+        "maintenance_invoice": "Service invoice"
+      },
+      "statuses": {
+        "pending": "Processing",
+        "awaiting_payment": "Awaiting payment",
+        "paid": "Paid",
+        "processing": "Being prepared",
+        "fulfilled": "Completed",
+        "cancelled": "Cancelled",
+        "failed": "Payment failed",
+        "refunded": "Refunded",
+        "partially_refunded": "Partially refunded"
+      }
+    },
+    "order": {
+      "title": "Order {number}",
+      "placedAt": "Placed on",
+      "paidAt": "Paid on",
+      "pickup": "Pickup branch",
+      "items": "Items",
+      "item": "Item",
+      "quantity": "Qty",
+      "unitPrice": "Unit price",
+      "lineTotal": "Total",
+      "payments": "Payments",
+      "method": "Method",
+      "paymentStatuses": {
+        "pending": "Pending",
+        "requires_action": "Action required",
+        "awaiting_confirmation": "Awaiting confirmation",
+        "captured": "Received",
+        "failed": "Failed",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded",
+        "partially_refunded": "Partially refunded"
+      }
+    },
+    "tracking": {
+      "title": "Delivery tracking",
+      "estimated": "Estimated delivery",
+      "note": "Note from the team",
+      "done": "Completed",
+      "current": "Current step",
+      "upcoming": "Upcoming",
+      "pdiTitle": "Pre-delivery inspection",
+      "pdiProgress": "{done} of {total} checks",
+      "sections": {
+        "documents": "Documents",
+        "exterior": "Exterior",
+        "interior": "Interior",
+        "battery": "Battery",
+        "systems": "Systems",
+        "road_test": "Road test"
+      },
+      "itemStatus": {
+        "pending": "Pending",
+        "pass": "OK",
+        "fail": "Needs attention",
+        "na": "Not applicable"
+      }
+    },
+    "vehicles": {
+      "title": "My cars",
+      "plate": "Plate",
+      "vin": "VIN",
+      "color": "Colour",
+      "mileage": "Last odometer reading",
+      "km": "{value} km",
+      "purchased": "Purchased",
+      "warranty": "Warranty until",
+      "underWarranty": "Under warranty",
+      "warrantyEnded": "Warranty ended",
+      "battery": "Latest battery check",
+      "soh": "Battery health {value}%",
+      "nextAppointment": "Next appointment",
+      "details": "Car details",
+      "history": "Service history",
+      "complaint": "Complaint",
+      "workDone": "Work done",
+      "opened": "Opened",
+      "completed": "Completed",
+      "branch": "Branch",
+      "mileageIn": "Odometer at check-in",
+      "invoice": "Invoice {number}",
+      "balance": "Balance",
+      "reports": "Blade battery reports",
+      "viewReport": "View report",
+      "certificate": "Certificate {number}",
+      "valid": "Valid",
+      "invalid": "Expired or revoked",
+      "appointments": "Appointments for this car",
+      "jobStatus": {
+        "pending": "Pending",
+        "in_progress": "In progress",
+        "waiting_parts": "Waiting for parts",
+        "completed": "Completed"
+      }
+    },
+    "invoices": {
+      "title": "Invoices",
+      "number": "Invoice no.",
+      "jobCard": "Job card",
+      "status": "Status",
+      "total": "Total",
+      "paid": "Paid",
+      "balance": "Balance",
+      "issued": "Issued",
+      "due": "Due",
+      "pay": "Add to cart",
+      "cartName": "Service invoice {number}",
+      "statuses": {
+        "unpaid": "Unpaid",
+        "partially_paid": "Partially paid",
+        "paid": "Paid",
+        "void": "Void"
+      }
+    },
+    "appointments": {
+      "title": "Appointments",
+      "number": "Appointment no.",
+      "when": "When",
+      "branch": "Branch",
+      "service": "Service",
+      "vehicle": "Car",
+      "status": "Status",
+      "cancel": "Cancel appointment",
+      "confirmCancel": "Yes, cancel it",
+      "keep": "Keep appointment",
+      "cancelling": "Cancelling…",
+      "cancelFailed": "We couldn't cancel the appointment. Please try again.",
+      "types": {
+        "maintenance": "Maintenance",
+        "repair": "Repair",
+        "diagnostics": "Diagnostics",
+        "warranty": "Warranty",
+        "inspection": "Inspection",
+        "battery_check": "Battery check"
+      },
+      "statuses": {
+        "requested": "Requested",
+        "confirmed": "Confirmed",
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "no_show": "No show"
+      }
+    },
+    "report": {
+      "title": "Blade battery inspection report",
+      "certificate": "Certificate no. {number}",
+      "valid": "Valid certificate",
+      "invalid": "Certificate not valid",
+      "revoked": "This certificate has been revoked",
+      "vehicle": "Car",
+      "vin": "VIN",
+      "mileage": "Mileage",
+      "inspectedAt": "Inspected on",
+      "validUntil": "Valid until",
+      "technician": "Technician",
+      "result": "Result",
+      "soh": "State of health (SOH)",
+      "soc": "State of charge (SOC)",
+      "packVoltage": "Pack voltage",
+      "cellVoltage": "Cell voltage (min / max)",
+      "cellTemp": "Cell temperature (min / max)",
+      "insulation": "Insulation resistance",
+      "cycles": "Charge cycles",
+      "findings": "Findings",
+      "recommendations": "Recommendations",
+      "verify": "Certificate verification link",
+      "results": {
+        "pass": "Healthy",
+        "attention": "Needs monitoring",
+        "fail": "Service required"
+      }
+    }
   }
 }

@@ -41,7 +41,7 @@ export function AuthLinks({ labels }: { labels: AuthLabels }) {
   if (user) {
     return (
       <div className="flex items-center gap-2 max-sm:hidden">
-        <span className="hidden max-w-32 truncate text-sm font-bold xl:inline" title={user.name}>{user.name}</span>
+        <span className="hidden max-w-32 truncate text-sm font-bold 2xl:inline" title={user.name}>{user.name}</span>
         <button type="button" onClick={logout} className={buttonClasses('outline', 'sm')}>{labels.logout}</button>
       </div>
     );

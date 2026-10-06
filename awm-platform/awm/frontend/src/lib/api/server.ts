@@ -2,6 +2,13 @@ import 'server-only';
 
 export const API_BASE = (process.env.API_URL_INTERNAL ?? process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8080/api/v1').replace(/\/$/, '');
 
+/** Non-404 failure from Laravel. Callers can branch on status (e.g. 401 = expired session). */
+export class ApiHttpError extends Error {
+  constructor(public status: number, message: string) {
+    super(message);
+  }
+}
+
 type Options = {
   locale?: string;
   /** Cache tags; Laravel purges them through /api/revalidate. */
@@ -28,7 +35,7 @@ export async function apiGet<T>(path: string, { locale, tags, revalidate = 300, 
   });
 
   if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`API ${res.status} on GET ${path}`);
+  if (!res.ok) throw new ApiHttpError(res.status, `API ${res.status} on GET ${path}`);
 
   return (await res.json()) as T;
 }
