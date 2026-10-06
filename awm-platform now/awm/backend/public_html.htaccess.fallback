@@ -1,0 +1,12 @@
+# ONLY if you cannot replace public_html with a symlink to laravel/public (see HOSTINGER-DEPLOY.md, step B4).
+# Save as public_html/.htaccess with the Laravel project at public_html/laravel/.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Never serve anything outside laravel/public
+    RewriteRule ^laravel/(?!public/) - [F,L]
+    RewriteRule (^|/)\.(?!well-known) - [F,L]
+
+    RewriteCond %{REQUEST_URI} !^/laravel/public/
+    RewriteRule ^(.*)$ laravel/public/$1 [L]
+</IfModule>

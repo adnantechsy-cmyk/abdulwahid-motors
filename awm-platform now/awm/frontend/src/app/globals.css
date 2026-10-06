@@ -1,0 +1,43 @@
+@import 'tailwindcss';
+
+/* Flat brand palette. No gradients anywhere. */
+@theme {
+  --color-awm-red: #d90429;
+  --color-awm-red-dark: #a8001f;
+  --color-awm-black: #1c1b1b;
+  --color-awm-surface: #f3f1f1;
+  --color-awm-line: #e2dede;
+  --color-awm-muted: #6b6767;
+  --color-awm-ok: #1f7a3a;
+  --color-white: #ffffff;
+
+  /* Latin first, Arabic fallback: the browser picks per glyph, so mixed text stays consistent */
+  --font-sans: var(--font-latin), var(--font-arabic), system-ui, sans-serif;
+  --font-mono: var(--font-code), ui-monospace, monospace;
+
+  /* Architectural: square corners, no soft shadows */
+  --radius-*: initial;
+  --shadow-*: initial;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { font-feature-settings: 'tnum' 1; }
+  :focus-visible { outline: 3px solid var(--color-awm-red); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+}
+
+/* Section heading marker from the designs: a solid red square before the title. */
+@utility marker-square {
+  &::before {
+    content: '';
+    display: inline-block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--color-awm-red);
+    margin-inline-end: 0.5rem;
+    vertical-align: middle;
+  }
+}

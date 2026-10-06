@@ -1,0 +1,40 @@
+{
+  "common": {
+    "inCart": "في السلة",
+    "addToCart": "أضف إلى السلة"
+  },
+  "cart": {
+    "title": "السلة",
+    "open": "فتح السلة، {count, plural, =0 {فارغة} one {قطعة واحدة} two {قطعتان} few {# قطع} many {# قطعة} other {# قطعة}}",
+    "close": "إغلاق السلة",
+    "empty": "سلتك فارغة.",
+    "browseVehicles": "تصفح السيارات",
+    "browseParts": "تصفح قطع الغيار",
+    "flows": {
+      "vehicle_reservation": "حجز سيارة",
+      "maintenance_invoice": "فواتير الصيانة",
+      "spare_part": "قطع الغيار"
+    },
+    "depositOf": "دفعة حجز لسيارة سعرها {price}",
+    "invoice": "فاتورة رقم {number}",
+    "quantity": "الكمية",
+    "increase": "زيادة الكمية",
+    "decrease": "إنقاص الكمية",
+    "remove": "إزالة",
+    "separateOrders": "كل مجموعة تُسجَّل كطلب مستقل وتُدفع على حدة.",
+    "dueNow": "المبلغ المطلوب الآن",
+    "checkout": "متابعة الدفع",
+    "currencyMismatch": "لا يمكن الجمع بين عملتين في سلة واحدة. أكمل الطلب الحالي أولاً أو أفرغ السلة."
+  },
+  "vehicle": {
+    "status": {
+      "available": "متوفرة",
+      "incoming": "قيد الوصول",
+      "reserved": "محجوزة",
+      "sold": "مباعة"
+    },
+    "fullPrice": "السعر الكامل",
+    "deposit": "دفعة الحجز",
+    "reserve": "احجز الآن بدفعة مقدمة"
+  }
+}

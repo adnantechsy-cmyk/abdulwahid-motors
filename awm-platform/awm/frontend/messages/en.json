@@ -1,0 +1,40 @@
+{
+  "common": {
+    "inCart": "In your cart",
+    "addToCart": "Add to cart"
+  },
+  "cart": {
+    "title": "Cart",
+    "open": "Open cart, {count, plural, =0 {empty} one {# item} other {# items}}",
+    "close": "Close cart",
+    "empty": "Your cart is empty.",
+    "browseVehicles": "Browse cars",
+    "browseParts": "Browse spare parts",
+    "flows": {
+      "vehicle_reservation": "Car reservation",
+      "maintenance_invoice": "Service invoices",
+      "spare_part": "Spare parts"
+    },
+    "depositOf": "Deposit on a car priced {price}",
+    "invoice": "Invoice {number}",
+    "quantity": "Quantity",
+    "increase": "Increase quantity",
+    "decrease": "Decrease quantity",
+    "remove": "Remove",
+    "separateOrders": "Each group is placed and paid as a separate order.",
+    "dueNow": "Due now",
+    "checkout": "Continue to payment",
+    "currencyMismatch": "A cart can't mix two currencies. Finish your current order or empty the cart first."
+  },
+  "vehicle": {
+    "status": {
+      "available": "Available",
+      "incoming": "Arriving soon",
+      "reserved": "Reserved",
+      "sold": "Sold"
+    },
+    "fullPrice": "Full price",
+    "deposit": "Reservation deposit",
+    "reserve": "Reserve with a deposit"
+  }
+}

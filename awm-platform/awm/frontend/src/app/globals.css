@@ -1,0 +1,16 @@
+@import 'tailwindcss';
+
+/* Flat brand palette. No gradients anywhere. Values taken from the Figma admin design. */
+@theme {
+  --color-awm-red: #d90429;
+  --color-awm-black: #1c1b1b;
+  --color-awm-surface: #ebe7e7;
+  --color-white: #ffffff;
+
+  /* Latin first, Arabic fallback: the browser picks per-glyph, so mixed text stays consistent */
+  --font-sans: var(--font-latin), var(--font-arabic), system-ui, sans-serif;
+
+  /* Architectural, square corners and no soft shadows */
+  --radius-*: initial;
+  --shadow-*: initial;
+}
