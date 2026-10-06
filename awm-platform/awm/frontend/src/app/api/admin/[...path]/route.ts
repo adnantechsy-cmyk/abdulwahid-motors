@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { API_BASE } from '@/lib/api/server';
 import { AUTH_COOKIE } from '@/lib/auth';
+import { rejectCrossOrigin } from '@/lib/same-origin';
 
 /**
  * Same-origin proxy for staff actions. The browser can't read the httpOnly session cookie, so this adds the
@@ -33,6 +34,9 @@ const ROUTES: { method: string; pattern: RegExp }[] = [
 
 async function handle(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
   // This file is app/api/admin/[...path], so `path` is what follows /api/admin/.
+  const blocked = rejectCrossOrigin(request);
+  if (blocked) return blocked;
+
   const path = `admin/${(await params).path.join('/')}`;
   if (!ROUTES.some((r) => r.method === request.method && r.pattern.test(path))) {
     return NextResponse.json({ message: 'Not found.' }, { status: 404 });

@@ -22,6 +22,12 @@ const config: NextConfig = {
         { key: 'X-Content-Type-Options', value: 'nosniff' },
         { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
         { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+        // HTTPS only (browsers ignore it on plain http). Hostinger serves the site over SSL.
+        { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
+        { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), payment=(), usb=()' },
+        // A deliberately loose baseline: it blocks plugins, base-tag and form hijacking and framing by other sites,
+        // without restricting scripts (Next.js inline scripts, Google sign-in and the Google Maps frames keep working).
+        { key: 'Content-Security-Policy', value: "object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'" },
       ],
     }];
   },

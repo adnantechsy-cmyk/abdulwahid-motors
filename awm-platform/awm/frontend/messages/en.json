@@ -65,7 +65,9 @@
     "dueNow": "Due now",
     "checkout": "Continue to payment",
     "currencyMismatch": "A cart can't mix two currencies. Finish your current order or empty the cart first.",
-    "count": "{count, plural, =0 {empty} one {# item} other {# items}}"
+    "count": "{count, plural, =0 {empty} one {# item} other {# items}}",
+    "checkoutRequest": "Send request",
+    "dueNowRequest": "Order total"
   },
   "vehicle": {
     "status": {
@@ -642,7 +644,8 @@
       "name": "Full name",
       "phone": "Mobile number",
       "phoneHint": "We use it to confirm your order. Keep it: without an account you need it to continue paying.",
-      "email": "Email"
+      "email": "Email",
+      "phoneHintRequest": "Our team calls this number to confirm your request. Please keep it reachable."
     },
     "submit": "Confirm order and continue to payment",
     "submitting": "Creating your order…",
@@ -664,7 +667,9 @@
         "unavailable": "One of the items is no longer available in the requested quantity.",
         "currency_changed": "The currency changed. Refresh the page and review your cart."
       }
-    }
+    },
+    "descriptionRequest": "Review your order and enter your details. Our sales team will contact you to confirm and arrange payment.",
+    "submitRequest": "Send my request"
   },
   "pay": {
     "title": "Payment",
@@ -1700,5 +1705,28 @@
       "email": "That email address looks wrong.",
       "message": "Write a message of at least 10 characters."
     }
+  },
+  "received": {
+    "title": "Request received",
+    "description": "Thank you. We have your request.",
+    "headline": "Your request is with our sales team",
+    "text": "We will call you shortly to confirm availability, agree the details and arrange payment with you directly. You do not need to pay anything on the website.",
+    "orderNumber": "Request number",
+    "flows": {
+      "vehicle_reservation": "Car reservation",
+      "spare_part": "Spare parts",
+      "maintenance_invoice": "Service invoice"
+    },
+    "nextTitle": "What happens next",
+    "step1": "A member of our sales team calls the mobile number you gave us.",
+    "step2": "We confirm availability and the final details with you.",
+    "step3": "You pay in person at the branch, by bank transfer or by mobile wallet, as agreed, and we complete your order.",
+    "trackSignedIn": "You can follow this request from your account.",
+    "trackGuest": "Keep the request number above. Create an account with the same mobile number to follow your requests online.",
+    "viewOrders": "View my orders",
+    "createAccount": "Create an account",
+    "whatsapp": "Message us on WhatsApp",
+    "opensNewTab": "opens in a new tab",
+    "home": "Back to home"
   }
 }

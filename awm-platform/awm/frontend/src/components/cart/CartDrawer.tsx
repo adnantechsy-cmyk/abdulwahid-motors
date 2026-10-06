@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useEffect, useMemo, useRef } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { modeKey } from '@/lib/checkout-mode';
 import { formatMoney } from '@/lib/format';
 import { selectSubtotal, useCartStore, type CartItem, type CartItemType } from '@/store/cartStore';
 
@@ -121,7 +122,7 @@ export function CartDrawer() {
             <div className="shrink-0 border-t-2 border-awm-black px-6 py-5">
               {flowsInCart.length > 1 && <p className="mb-4 text-sm text-awm-black/70">{t('separateOrders')}</p>}
               <div className="mb-4 flex items-baseline justify-between">
-                <span className="font-bold">{t('dueNow')}</span>
+                <span className="font-bold">{t(modeKey('dueNow'))}</span>
                 <span className="text-2xl font-extrabold tabular-nums">{money(subtotal)}</span>
               </div>
               <Link
@@ -129,7 +130,7 @@ export function CartDrawer() {
                 onClick={close}
                 className="flex h-14 items-center justify-center bg-awm-red text-base font-bold text-white hover:bg-awm-black focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-awm-black"
               >
-                {t('checkout')}
+                {t(modeKey('checkout'))}
               </Link>
             </div>
           </>

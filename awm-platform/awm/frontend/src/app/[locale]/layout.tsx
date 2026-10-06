@@ -39,7 +39,7 @@ export function generateStaticParams() {
  * rendered on the server, so shipping it would just make every page's HTML heavier.
  * A client component that needs another group must be added here.
  */
-const CLIENT_NAMESPACES = ['cart', 'auth', 'checkout', 'pay', 'booking', 'detail', 'contactForm'] as const;
+const CLIENT_NAMESPACES = ['cart', 'auth', 'checkout', 'pay', 'booking', 'detail', 'contactForm', 'received'] as const;
 
 export default async function LocaleLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const { locale } = await params;

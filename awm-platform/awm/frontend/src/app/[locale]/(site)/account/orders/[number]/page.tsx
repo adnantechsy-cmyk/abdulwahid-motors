@@ -1,3 +1,4 @@
+import { CHECKOUT_MODE } from '@/lib/checkout-mode';
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Panel, TableScroll, td, th } from '@/components/account/Panel';
@@ -38,7 +39,7 @@ export default async function OrderPage({ params }: Props) {
         <div className="flex flex-wrap items-center gap-4">
           <h1 className="text-3xl font-extrabold" dir="auto">{t('order.title', { number: order.number })}</h1>
           <StatusPill code={order.status} label={t(`orders.statuses.${order.status}`)} />
-          {PAYABLE.has(order.status) && <ButtonLink href={`/checkout/pay/${order.number}`} size="sm">{t('order.payNow')}</ButtonLink>}
+          {CHECKOUT_MODE === 'online' && PAYABLE.has(order.status) && <ButtonLink href={`/checkout/pay/${order.number}`} size="sm">{t('order.payNow')}</ButtonLink>}
         </div>
         <dl className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
           <Fact label={t('orders.type')} value={t(`orders.flow.${order.flow}`)} />

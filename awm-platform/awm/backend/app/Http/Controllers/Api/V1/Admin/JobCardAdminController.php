@@ -63,8 +63,17 @@ class JobCardAdminController extends Controller
 
         abort_if($card->status === JobCardStatus::Completed, 422, 'A completed job card cannot be changed.');
         abort_if($card->status->value === $data['status'], 422, 'The job card is already in that status.');
+        $this->authorizeWork($request, $card);
 
-        $card->update(['status' => $data['status']]);
+        $changes = ['status' => $data['status']];
+        if ($data['status'] === 'in_progress' && $card->started_at === null) {
+            $changes['started_at'] = now();
+        }
+        // A technician who picks up an unassigned card becomes its technician.
+        if ($card->technician_id === null && ! $request->user()->can('job_cards.manage')) {
+            $changes['technician_id'] = $request->user()->id;
+        }
+        $card->update($changes);
 
         return $this->cardArray($card->fresh(['customer:id,name,phone', 'customerVehicle', 'technician:id,name', 'invoice']));
     }
@@ -78,6 +87,7 @@ class JobCardAdminController extends Controller
         ]);
 
         abort_if($card->status === JobCardStatus::Completed, 422, 'This job card is already completed.');
+        $this->authorizeWork($request, $card);
 
         $this->cards->complete($card, number_format((float) $data['labor_total'], 2, '.', ''), $data['currency']);
 
@@ -98,6 +108,16 @@ class JobCardAdminController extends Controller
         $card->update(['technician_id' => $data['technician_id'] ?? null]);
 
         return $this->cardArray($card->fresh(['customer:id,name,phone', 'customerVehicle', 'technician:id,name', 'invoice']));
+    }
+
+    /** Managers can act on any card; a technician only on their own or an unassigned one. */
+    private function authorizeWork(Request $request, JobCard $card): void
+    {
+        $user = $request->user();
+        if ($user->can('job_cards.manage')) {
+            return;
+        }
+        abort_if($card->technician_id !== null && $card->technician_id !== $user->id, 403, 'This job card belongs to another technician.');
     }
 
     private function cardArray(JobCard $c): array

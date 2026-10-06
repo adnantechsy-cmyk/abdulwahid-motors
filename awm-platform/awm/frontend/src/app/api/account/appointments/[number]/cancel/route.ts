@@ -1,9 +1,13 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { API_BASE } from '@/lib/api/server';
 import { AUTH_COOKIE } from '@/lib/auth';
+import { rejectCrossOrigin } from '@/lib/same-origin';
 
 /** Cancel one of the signed-in customer's appointments. The token stays server-side. */
 export async function POST(request: NextRequest, { params }: { params: Promise<{ number: string }> }) {
+  const blocked = rejectCrossOrigin(request);
+  if (blocked) return blocked;
+
   const token = request.cookies.get(AUTH_COOKIE)?.value;
   if (!token) return NextResponse.json({ message: 'Unauthenticated.' }, { status: 401 });
 

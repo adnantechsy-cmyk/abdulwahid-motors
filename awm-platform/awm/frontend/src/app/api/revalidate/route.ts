@@ -1,3 +1,4 @@
+import { timingSafeEqual } from 'node:crypto';
 import { revalidateTag } from 'next/cache';
 import { NextResponse, type NextRequest } from 'next/server';
 
@@ -9,7 +10,10 @@ const ALLOWED = new Set(['seo', 'sitemap', 'vehicles', 'parts', 'pages', 'catego
  */
 export async function POST(request: NextRequest) {
   const secret = process.env.REVALIDATE_SECRET;
-  if (!secret || request.headers.get('x-revalidate-secret') !== secret) {
+  const given = request.headers.get('x-revalidate-secret') ?? '';
+  // Constant-time comparison, so response timing can't be used to guess the secret.
+  const match = given.length === (secret?.length ?? -1) && timingSafeEqual(Buffer.from(given), Buffer.from(secret ?? ''));
+  if (!secret || !match) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
