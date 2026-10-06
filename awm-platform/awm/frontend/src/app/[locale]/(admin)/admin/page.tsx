@@ -21,7 +21,22 @@ export default async function AdminOverview({ params }: Props) {
 
   const open = s.job_cards ? s.job_cards.pending + s.job_cards.in_progress + s.job_cards.waiting_parts : null;
 
-  const cards: { href: '/admin/payments' | '/admin/job-cards' | '/admin/appointments'; icon: IconName; title: string; hint?: string; lines: string[] }[] = [];
+  const cards: { href: '/admin/orders' | '/admin/parts' | '/admin/payments' | '/admin/job-cards' | '/admin/appointments'; icon: IconName; title: string; hint?: string; lines: string[] }[] = [];
+  if (can(user, 'orders.manage')) {
+    cards.push({
+      href: '/admin/orders',
+      icon: 'truck',
+      title: t('orders.title'),
+      hint: t('orders.hint'),
+      lines: [
+        ...(s.orders_unpaid != null ? [t('orders.unpaid', { count: n(s.orders_unpaid) })] : []),
+        ...(s.orders_to_fulfil != null ? [t('orders.toFulfil', { count: n(s.orders_to_fulfil) })] : []),
+      ],
+    });
+  }
+  if (can(user, 'parts.manage', 'stock.adjust')) {
+    cards.push({ href: '/admin/parts', icon: 'gear', title: t('parts.title'), hint: t('parts.hint'), lines: s.parts_low_stock != null ? [t('parts.low', { count: n(s.parts_low_stock) })] : [] });
+  }
   if (can(user, 'payments.confirm')) {
     cards.push({ href: '/admin/payments', icon: 'check', title: t('payments.title'), hint: t('payments.hint'), lines: s.payments_awaiting != null ? [n(s.payments_awaiting)] : [] });
   }

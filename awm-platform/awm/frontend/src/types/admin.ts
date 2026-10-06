@@ -1,4 +1,4 @@
-import type { Currency } from './api';
+﻿import type { Currency } from './api';
 import type { AppointmentRow, InvoiceRef } from './account';
 
 export interface AdminSummary {
@@ -6,6 +6,9 @@ export interface AdminSummary {
   job_cards?: Record<'pending' | 'in_progress' | 'waiting_parts' | 'completed', number>;
   appointments_requested?: number;
   appointments_today?: number;
+  orders_unpaid?: number;
+  orders_to_fulfil?: number;
+  parts_low_stock?: number;
 }
 
 export type PaymentTab = 'awaiting_confirmation' | 'captured' | 'failed';
@@ -68,4 +71,81 @@ export interface AdminAppointment extends AppointmentRow {
   staff_notes: string | null;
   handled_by: string | null;
   job_card_id: number | null;
+}
+
+export type OrderTab = 'unpaid' | 'paid' | 'processing' | 'fulfilled' | 'closed';
+
+export interface AdminOrder {
+  number: string;
+  flow: string;
+  status: string;
+  currency: Currency;
+  grand_total: string;
+  items_count: number;
+  branch_pickup: string | null;
+  placed_at: string | null;
+  paid_at: string | null;
+  customer: { name: string | null; phone: string | null; email: string | null };
+}
+
+export interface AdminOrderDetail extends AdminOrder {
+  items: { id: number; name: string; sku: string | null; quantity: number; unit_price: string; line_total: string }[];
+  payments: {
+    id: string;
+    status: string;
+    amount: string;
+    method: string | null;
+    method_code: string | null;
+    manual: boolean;
+    note: string | null;
+    has_proof: boolean;
+    failure_message: string | null;
+    created_at: string;
+    confirmed_at: string | null;
+  }[];
+  shipping_address: Record<string, string> | null;
+  pdi: { id: number; status: string } | null;
+  actions: { record_payment: boolean; advance: ('processing' | 'fulfilled')[]; cancel: boolean };
+}
+
+export interface AdminPart {
+  id: number;
+  sku: string;
+  oem_number: string | null;
+  name: { ar?: string; en?: string };
+  display_name: string;
+  category: { id: number; name: string } | null;
+  price: string;
+  currency: Currency;
+  is_oem: boolean;
+  is_published: boolean;
+  stock_quantity: number;
+  reserved_quantity: number;
+  available_quantity: number;
+  low_stock_threshold: number;
+  is_low_stock: boolean;
+}
+
+export interface AdminPartDetail extends AdminPart {
+  description: { ar?: string; en?: string };
+  cost_price: string | null;
+  compatible_models: string[];
+  bin_location: string | null;
+  hide_when_out_of_stock: boolean;
+}
+
+export interface StockMovementRow {
+  id: number;
+  type: string;
+  change: number;
+  balance: number;
+  note: string | null;
+  by: string | null;
+  reference: string | null;
+  created_at: string;
+}
+
+export interface PartCategory {
+  id: number;
+  name: string;
 }

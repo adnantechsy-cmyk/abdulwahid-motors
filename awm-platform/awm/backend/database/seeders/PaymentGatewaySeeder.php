@@ -44,6 +44,18 @@ class PaymentGatewaySeeder extends Seeder
             'sort_order' => 2,
         ]);
 
+        // Payments staff record by hand (cash at the branch, or settled by the sales head with the customer).
+        // Never offered on the website: PaymentService::recordManual() uses it directly.
+        $this->seed('in_person', [
+            'driver' => BankTransferDriver::class,
+            'name' => ['ar' => 'دفع مباشر (مسجَّل من الموظف)', 'en' => 'In person (recorded by staff)'],
+            'is_active' => false,
+            'is_online' => false,
+            'supported_currencies' => ['USD', 'SYP'],
+            'supported_flows' => null,
+            'sort_order' => 9,
+        ]);
+
         // Inactive until a card processor that can serve this business is set up.
         // Keys come from .env on first seed only; afterwards they live encrypted in the DB.
         $this->seed('stripe', [
