@@ -14,7 +14,7 @@ export async function VehicleCard({ vehicle, locale, priority = false }: { vehic
 
   return (
     <article className="flex flex-col border border-awm-line bg-white">
-      <Link href={`/vehicles/${vehicle.slug}`} className="group relative block aspect-[4/3] bg-awm-surface" aria-label={`${t('details')}: ${vehicle.name}`}>
+      <Link href={`/vehicles/${vehicle.slug}`} className="group relative block aspect-[4/3] bg-awm-surface" aria-hidden="true" tabIndex={-1}>
         {vehicle.image ? (
           <Image
             src={vehicle.image}

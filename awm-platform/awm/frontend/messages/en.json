@@ -27,7 +27,8 @@
     "languageLabel": "Switch language to Arabic",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "logout": "Log out"
+    "logout": "Log out",
+    "search": "Search the site"
   },
   "footer": {
     "about": "Authorized dealer for BYD electric and hybrid cars, with after-sales service and maintenance to manufacturer standards.",
@@ -59,7 +60,8 @@
     "separateOrders": "Each group is placed and paid as a separate order.",
     "dueNow": "Due now",
     "checkout": "Continue to payment",
-    "currencyMismatch": "A cart can't mix two currencies. Finish your current order or empty the cart first."
+    "currencyMismatch": "A cart can't mix two currencies. Finish your current order or empty the cart first.",
+    "count": "{count, plural, =0 {empty} one {# item} other {# items}}"
   },
   "vehicle": {
     "status": {
@@ -272,7 +274,9 @@
       "inStock": "In stock only",
       "submit": "Search",
       "empty": "No parts match your search."
-    }
+    },
+    "filtersHeading": "Filters",
+    "resultsHeading": "Results"
   },
   "account": {
     "title": "My account",
@@ -954,5 +958,62 @@
       },
       "note": "Online booking hours."
     }
+  },
+  "seo": {
+    "city": "Damascus",
+    "reserve": "Book an appointment",
+    "about": {
+      "title": "About us: authorized BYD dealer in Damascus",
+      "description": "Meet Abdul Wahid Motors, the authorized BYD dealer in Damascus: electric and hybrid cars, genuine spare parts and service at our Sahnaya and Kafr Sousa branches."
+    },
+    "services": {
+      "title": "BYD service, diagnostics and Blade battery inspection",
+      "description": "Periodic service, repairs, electronic diagnostics and Blade battery checks with a verifiable digital certificate in Damascus. Book your appointment online."
+    },
+    "contact": {
+      "title": "Contact us and our Damascus branches",
+      "description": "Contact details, opening hours and addresses of our Sahnaya and Kafr Sousa branches in Damascus, with map links and appointment booking."
+    },
+    "booking": {
+      "title": "Book a service or a test drive",
+      "description": "Book a service, inspection or test drive for your BYD at our Sahnaya or Kafr Sousa branch. Pick an available day and time."
+    },
+    "search": {
+      "title": "Search results",
+      "description": "Search BYD cars and genuine spare parts at Abdul Wahid Motors."
+    },
+    "home": {
+      "title": "Authorized BYD dealer in Damascus",
+      "description": "BYD electric and hybrid cars, full service, electronic diagnostics and genuine spare parts at our Sahnaya and Kafr Sousa branches. 16 years of trust in Syria."
+    },
+    "vehicles": {
+      "title": "BYD electric and hybrid cars for sale in Damascus",
+      "description": "Browse available BYD cars, compare prices and specifications, and reserve yours online with a deposit."
+    },
+    "parts": {
+      "title": "Genuine BYD spare parts in Damascus",
+      "description": "Original spare parts for BYD cars, in stock in Damascus. Search by name or part number and order online."
+    }
+  },
+  "search": {
+    "title": "Search the site",
+    "label": "Search for a car or a spare part",
+    "placeholder": "e.g. Seal, brake pads, BYD-BRK",
+    "submit": "Search",
+    "tooShort": "Type at least two characters to search.",
+    "summary": "{count, plural, =0 {No results} one {# result} other {# results}} for “{query}”",
+    "cars": "Cars",
+    "parts": "Spare parts",
+    "allParts": "See all part results",
+    "none": "We couldn't find a match. Try simpler words or browse the sections.",
+    "browse": "Browse the sections",
+    "unavailable": "Some results couldn't be loaded right now. Please try again shortly."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The link you followed is wrong or the page is no longer available. You can search, or head to one of the sections.",
+    "code": "Error 404",
+    "home": "Back to the home page",
+    "links": "Sections that may help"
   }
 }

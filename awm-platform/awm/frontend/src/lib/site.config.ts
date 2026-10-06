@@ -23,7 +23,7 @@ export const siteConfig = {
   whatsapp: '',
   /** Full https:// URLs of the company profiles. */
   social: {
-    facebook: '',
+    facebook: 'https://www.facebook.com/HadeForcarsHousesTrading',
     instagram: '',
     x: '',
     youtube: '',

@@ -187,7 +187,7 @@ export function BookingForm({ cars, signedIn, initialService }: Props) {
                       type="button"
                       onClick={() => setDate(d)}
                       aria-pressed={date === d}
-                      aria-label={formatLongDate(d, locale)}
+                      title={formatLongDate(d, locale)}
                       className={`flex w-20 shrink-0 flex-col items-center border-2 px-2 py-3 ${date === d ? 'border-awm-red bg-awm-red text-white' : 'border-awm-line bg-white hover:border-awm-black'}`}
                     >
                       <span className="text-xs">{p.weekday}</span>

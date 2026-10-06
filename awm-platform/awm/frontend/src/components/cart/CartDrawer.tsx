@@ -74,7 +74,7 @@ export function CartDrawer() {
           isOpen ? 'translate-x-0' : 'ltr:translate-x-full rtl:-translate-x-full'
         }`}
       >
-        <header className="flex h-20 shrink-0 items-center justify-between border-b-4 border-awm-red px-6">
+        <div className="flex h-20 shrink-0 items-center justify-between border-b-4 border-awm-red px-6">
           <h2 id="cart-title" className="text-2xl font-extrabold">{t('title')}</h2>
           <button
             ref={closeBtn}
@@ -87,7 +87,7 @@ export function CartDrawer() {
               <path d="M3 3l14 14M17 3L3 17" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
             </svg>
           </button>
-        </header>
+        </div>
 
         {items.length === 0 ? (
           <div className="flex flex-1 flex-col items-start justify-center gap-6 px-6">
@@ -118,7 +118,7 @@ export function CartDrawer() {
               ))}
             </div>
 
-            <footer className="shrink-0 border-t-2 border-awm-black px-6 py-5">
+            <div className="shrink-0 border-t-2 border-awm-black px-6 py-5">
               {flowsInCart.length > 1 && <p className="mb-4 text-sm text-awm-black/70">{t('separateOrders')}</p>}
               <div className="mb-4 flex items-baseline justify-between">
                 <span className="font-bold">{t('dueNow')}</span>
@@ -131,7 +131,7 @@ export function CartDrawer() {
               >
                 {t('checkout')}
               </Link>
-            </footer>
+            </div>
           </>
         )}
       </div>

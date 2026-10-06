@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Breadcrumbs } from '@/components/catalog/Breadcrumbs';
 import { BookingCta } from '@/components/home/BookingCta';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { PageHero } from '@/components/site/PageHero';
@@ -8,6 +9,7 @@ import { Icon, type IconName } from '@/components/ui/Icon';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Link } from '@/i18n/navigation';
 import { SERVICE_TYPES, type ServiceType } from '@/lib/booking-services';
+import { servicesJsonLd } from '@/lib/seo/jsonld';
 import { getRouteSeo, routeMetadata } from '@/lib/seo/route';
 
 type Props = { params: Promise<{ locale: string }> };
@@ -23,14 +25,13 @@ const ICONS: Record<ServiceType, IconName> = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'services.hero' });
-  return routeMetadata(locale, 'services', { title: t('title'), description: t('text') });
+  return routeMetadata(locale, 'services');
 }
 
 export default async function ServicesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const [t, tb, seo] = await Promise.all([getTranslations('services'), getTranslations('booking'), getRouteSeo(locale, 'services')]);
+  const [t, tb, tn, seo, catalogue] = await Promise.all([getTranslations('services'), getTranslations('booking'), getTranslations('nav'), getRouteSeo(locale, 'services'), servicesJsonLd(locale)]);
 
   const readings = t.raw('battery.items') as string[];
   const steps = t.raw('how.steps') as { title: string; text: string }[];
@@ -38,7 +39,9 @@ export default async function ServicesPage({ params }: Props) {
   return (
     <main>
       {seo && <JsonLd data={seo.json_ld} />}
+      <JsonLd data={catalogue} />
 
+      <div className="container-awm pt-6"><Breadcrumbs locale={locale} items={[{ label: tn('services') }]} /></div>
       <PageHero eyebrow={t('hero.eyebrow')} title={t('hero.title')} text={t('hero.text')}>
         <ButtonLink href="/service-booking" size="lg">{t('hero.book')}<Icon name="arrow" /></ButtonLink>
         <ButtonLink href="/parts" variant="outline" size="lg">{t('hero.parts')}</ButtonLink>

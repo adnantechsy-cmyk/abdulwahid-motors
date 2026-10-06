@@ -2,32 +2,24 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Pagination } from '@/components/catalog/Pagination';
 import { PartCard } from '@/components/catalog/PartCard';
+import { Breadcrumbs } from '@/components/catalog/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { ButtonLink } from '@/components/ui/Button';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { apiGet } from '@/lib/api/server';
 import { getCategories, getPartList } from '@/lib/api/catalog';
 import { pageParam, param, toQuery } from '@/lib/listing';
-import { toMetadata } from '@/lib/seo/buildMetadata';
-import type { SeoPayload } from '@/types/seo';
+import { itemListJsonLd } from '@/lib/seo/jsonld';
+import { getRouteSeo, routeMetadata } from '@/lib/seo/route';
+import { absoluteUrl } from '@/lib/seo/site';
 
 type Props = {
   params: Promise<{ locale: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-async function getSeo(locale: string): Promise<SeoPayload | null> {
-  try {
-    return await apiGet<SeoPayload>('/seo/routes/parts', { locale, tags: ['seo'] });
-  } catch {
-    return null;
-  }
-}
-
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const seo = await getSeo(locale);
-  const meta = seo ? toMetadata(seo) : {};
+  const meta = await routeMetadata(locale, 'parts');
   const filtered = Object.keys(await searchParams).length > 0;
   return filtered ? { ...meta, robots: { index: false, follow: true } } : meta;
 }
@@ -46,9 +38,10 @@ export default async function PartsPage({ params, searchParams }: Props) {
   const inStock = param(raw, 'in_stock') === '1';
   const page = pageParam(raw);
 
-  const [t, seo, categories, list] = await Promise.all([
+  const [t, tn, seo, categories, list] = await Promise.all([
     getTranslations('catalog'),
-    getSeo(locale),
+    getTranslations('nav'),
+    getRouteSeo(locale, 'parts'),
     getCategories(locale, 'spare_part'),
     getPartList(locale, { q, model, category, in_stock: inStock, page }),
   ]);
@@ -62,9 +55,14 @@ export default async function PartsPage({ params, searchParams }: Props) {
   return (
     <main className="container-awm py-12">
       {seo && <JsonLd data={seo.json_ld} />}
+      {list && list.data.length > 0 && (
+        <JsonLd data={itemListJsonLd(t('parts.title'), list.data.map((p) => ({ name: p.name, url: absoluteUrl(locale, `parts/${p.slug}`), image: p.image })))} />
+      )}
+      <Breadcrumbs locale={locale} items={[{ label: tn('parts') }]} />
       <SectionHeading as="h1" eyebrow={t('parts.eyebrow')} title={t('parts.title')} description={t('parts.description')} />
 
       {/* Plain GET form: no JavaScript needed, and every search is a shareable URL. */}
+      <h2 className="sr-only">{t('filtersHeading')}</h2>
       <form method="get" role="search" className="mb-8 grid grid-cols-1 items-end gap-4 border border-awm-line bg-white p-4 md:grid-cols-[2fr_1fr_1fr_auto]">
         <label className="flex flex-col gap-2 text-sm font-bold">
           {t('parts.searchLabel')}
@@ -100,6 +98,7 @@ export default async function PartsPage({ params, searchParams }: Props) {
         </div>
       ) : (
         <>
+          <h2 className="sr-only">{t('resultsHeading')}</h2>
           <p aria-live="polite" className="mb-4 text-sm font-bold text-awm-muted">{t('results', { count: list.meta.total })}</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {list.data.map((p) => <PartCard key={p.id} part={p} locale={locale} />)}

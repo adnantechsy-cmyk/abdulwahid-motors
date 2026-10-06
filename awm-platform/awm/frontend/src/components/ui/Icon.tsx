@@ -11,6 +11,7 @@ const paths = {
   battery: 'M3 8h15v8H3zM18 11h3v2h-3zM7 11v2M10 11v2',
   check: 'M5 12l4 4 10-10',
   arrow: 'M5 12h14M13 6l6 6-6 6',
+  search: 'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM20 20l-4-4',
 } as const;
 
 export type IconName = keyof typeof paths;

@@ -12,7 +12,7 @@ export function LocaleSwitcher({ label, text }: { label: string; text: string })
     <Link
       href={pathname}
       locale={locale === 'ar' ? 'en' : 'ar'}
-      aria-label={label}
+      title={label}
       lang={locale === 'ar' ? 'en' : 'ar'}
       className="flex h-10 items-center border-2 border-awm-black px-3 text-sm font-bold hover:bg-awm-black hover:text-white"
     >

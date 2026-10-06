@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { BookingCta } from '@/components/home/BookingCta';
+import { Breadcrumbs } from '@/components/catalog/Breadcrumbs';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { BranchCards } from '@/components/site/BranchCards';
 import { ContactChannels } from '@/components/site/ContactChannels';
@@ -15,14 +16,13 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'about.hero' });
-  return routeMetadata(locale, 'about', { title: t('title'), description: t('text') });
+  return routeMetadata(locale, 'about');
 }
 
 export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const [t, seo] = await Promise.all([getTranslations('about'), getRouteSeo(locale, 'about')]);
+  const [t, tn, seo] = await Promise.all([getTranslations('about'), getTranslations('nav'), getRouteSeo(locale, 'about')]);
 
   const offer: { key: 'cars' | 'parts' | 'service'; icon: IconName; href: '/vehicles' | '/parts' | '/services' }[] = [
     { key: 'cars', icon: 'car', href: '/vehicles' },
@@ -48,6 +48,7 @@ export default async function AboutPage({ params }: Props) {
       {seo && <JsonLd data={seo.json_ld} />}
       <JsonLd data={faqJsonLd} />
 
+      <div className="container-awm pt-6"><Breadcrumbs locale={locale} items={[{ label: tn('about') }]} /></div>
       <PageHero eyebrow={t('hero.eyebrow')} title={t('hero.title')} text={t('hero.text')}>
         <ButtonLink href="/vehicles" size="lg">{t('hero.cars')}<Icon name="arrow" /></ButtonLink>
         <ButtonLink href="/service-booking" variant="outline" size="lg">{t('hero.book')}</ButtonLink>

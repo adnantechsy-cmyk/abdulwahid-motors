@@ -2,9 +2,11 @@ import type { Metadata } from 'next';
 import { cookies } from 'next/headers';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { BookingForm, type OwnedCar } from '@/components/booking/BookingForm';
+import { Breadcrumbs } from '@/components/catalog/Breadcrumbs';
 import { accountGet } from '@/lib/api/account';
 import { AUTH_COOKIE } from '@/lib/auth';
 import { param } from '@/lib/listing';
+import { pageMetadata } from '@/lib/seo/pageMetadata';
 import type { OwnedVehicleListItem } from '@/types/account';
 
 type Props = {
@@ -14,8 +16,9 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'booking' });
-  return { title: t('title'), description: t('description') };
+  const t = await getTranslations({ locale, namespace: 'seo.booking' });
+  // ?service=... variants all canonicalize to the plain page.
+  return pageMetadata({ locale, path: 'service-booking', title: t('title'), description: t('description') });
 }
 
 export default async function ServiceBookingPage({ params, searchParams }: Props) {
@@ -33,6 +36,7 @@ export default async function ServiceBookingPage({ params, searchParams }: Props
   const t = await getTranslations('booking');
   return (
     <main className="container-awm py-10">
+      <Breadcrumbs locale={locale} items={[{ label: t('title') }]} />
       <h1 className="text-3xl font-extrabold sm:text-4xl">{t('title')}</h1>
       <p className="mb-8 mt-3 max-w-2xl text-awm-muted">{t('description')}</p>
       <BookingForm cars={cars} signedIn={signedIn} initialService={param(await searchParams, 'service')} />

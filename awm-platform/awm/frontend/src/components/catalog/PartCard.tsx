@@ -14,7 +14,7 @@ export async function PartCard({ part, locale }: { part: SparePartDto; locale: s
 
   return (
     <article className="flex flex-col border border-awm-line bg-white">
-      <Link href={`/parts/${part.slug}`} className="relative block aspect-[4/3] bg-awm-surface" aria-label={part.name}>
+      <Link href={`/parts/${part.slug}`} className="relative block aspect-[4/3] bg-awm-surface" aria-hidden="true" tabIndex={-1}>
         {part.image ? (
           <Image src={part.image} alt="" fill sizes="(min-width:1024px) 25vw, (min-width:640px) 50vw, 100vw" className="object-cover" />
         ) : (

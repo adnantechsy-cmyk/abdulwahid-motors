@@ -6,7 +6,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { formatDate, formatDateTime, formatNumber } from '@/lib/format';
 import type { OwnedVehicleListItem } from '@/types/account';
 
-export async function OwnedVehicleCard({ vehicle: v, locale }: { vehicle: OwnedVehicleListItem; locale: string }) {
+export async function OwnedVehicleCard({ vehicle: v, locale, as: Heading = 'h3' }: { vehicle: OwnedVehicleListItem; locale: string; as?: 'h2' | 'h3' }) {
   const t = await getTranslations('account.vehicles');
   const ta = await getTranslations('account.appointments');
   const title = [v.make, v.model, v.model_year].filter(Boolean).join(' ');
@@ -30,7 +30,7 @@ export async function OwnedVehicleCard({ vehicle: v, locale }: { vehicle: OwnedV
       </div>
 
       <div className="flex flex-1 flex-col gap-4 p-5">
-        <h3 className="text-xl font-extrabold">{title}</h3>
+        <Heading className="text-xl font-extrabold">{title}</Heading>
 
         <dl className="grid grid-cols-2 gap-2">
           {facts.map((f) => (

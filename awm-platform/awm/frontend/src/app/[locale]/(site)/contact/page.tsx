@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { Breadcrumbs } from '@/components/catalog/Breadcrumbs';
 import { BookingCta } from '@/components/home/BookingCta';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { BranchCards } from '@/components/site/BranchCards';
@@ -13,14 +14,13 @@ type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'contact.hero' });
-  return routeMetadata(locale, 'contact', { title: t('title'), description: t('text') });
+  return routeMetadata(locale, 'contact');
 }
 
 export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const [t, seo] = await Promise.all([getTranslations('contact'), getRouteSeo(locale, 'contact')]);
+  const [t, tn, seo] = await Promise.all([getTranslations('contact'), getTranslations('nav'), getRouteSeo(locale, 'contact')]);
 
   const c = contactChannels();
   const hasChannels = Boolean(c.emails.length || c.phone || c.whatsapp || c.social.length);
@@ -28,6 +28,7 @@ export default async function ContactPage({ params }: Props) {
   return (
     <main>
       {seo && <JsonLd data={seo.json_ld} />}
+      <div className="container-awm pt-6"><Breadcrumbs locale={locale} items={[{ label: tn('contact') }]} /></div>
       <PageHero eyebrow={t('hero.eyebrow')} title={t('hero.title')} text={t('hero.text')} />
 
       <section aria-labelledby="channels-title" className="container-awm py-12">

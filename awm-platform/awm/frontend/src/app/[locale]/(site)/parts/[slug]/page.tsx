@@ -20,7 +20,7 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
   const seo = await apiGet<SeoPayload>(`/seo/parts/${slug}`, { locale, tags: ['seo'] });
-  return seo ? toMetadata(seo) : {};
+  return seo ? toMetadata(seo, locale) : {};
 }
 
 export default async function PartPage({ params }: Props) {
@@ -52,7 +52,8 @@ export default async function PartPage({ params }: Props) {
 
   return (
     <main className="container-awm py-10">
-      {seo && <JsonLd data={seo.json_ld} />}
+      {/* Our breadcrumb trail below is localized and printed once; Laravel's English-only copy is skipped. */}
+      {seo && <JsonLd data={seo.json_ld.filter((item) => item['@type'] !== 'BreadcrumbList')} />}
       <Breadcrumbs locale={locale} items={[{ label: t('backToParts'), href: '/parts' }, { label: part.name }]} />
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
