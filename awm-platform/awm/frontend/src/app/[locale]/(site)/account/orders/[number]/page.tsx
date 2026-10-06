@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Panel, TableScroll, td, th } from '@/components/account/Panel';
 import { StatusPill } from '@/components/account/StatusPill';
 import { TrackingSteps } from '@/components/account/TrackingSteps';
+import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Link } from '@/i18n/navigation';
 import { accountGet } from '@/lib/api/account';
@@ -10,6 +11,9 @@ import { formatDate, formatDateTime, formatMoneyAuto, formatNumber } from '@/lib
 import type { OrderDetail } from '@/types/account';
 
 type Props = { params: Promise<{ locale: string; number: string }> };
+
+/** Mirrors OrderStatus::isPayable() in Laravel (failed stays payable so a declined payment can be retried). */
+const PAYABLE = new Set(['pending', 'awaiting_payment', 'failed']);
 
 export default async function OrderPage({ params }: Props) {
   const { locale, number } = await params;
@@ -34,6 +38,7 @@ export default async function OrderPage({ params }: Props) {
         <div className="flex flex-wrap items-center gap-4">
           <h1 className="text-3xl font-extrabold" dir="auto">{t('order.title', { number: order.number })}</h1>
           <StatusPill code={order.status} label={t(`orders.statuses.${order.status}`)} />
+          {PAYABLE.has(order.status) && <ButtonLink href={`/checkout/pay/${order.number}`} size="sm">{t('order.payNow')}</ButtonLink>}
         </div>
         <dl className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
           <Fact label={t('orders.type')} value={t(`orders.flow.${order.flow}`)} />

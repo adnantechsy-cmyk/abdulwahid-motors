@@ -359,7 +359,8 @@
         "cancelled": "Cancelled",
         "refunded": "Refunded",
         "partially_refunded": "Partially refunded"
-      }
+      },
+      "payNow": "Pay now"
     },
     "tracking": {
       "title": "Delivery tracking",
@@ -557,5 +558,102 @@
   "certificate": {
     "title": "Blade battery certificate verification",
     "intro": "This is the public verification page for a certificate issued by Abdul Wahid Motors. Only the certificate details and a partly hidden VIN are shown."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "description": "Review your order and enter your details. You choose how to pay after confirming.",
+    "loading": "Loading your cart…",
+    "empty": "Your cart is empty.",
+    "browseCars": "Browse cars",
+    "browseParts": "Browse spare parts",
+    "syncFailed": "We couldn't verify your cart prices right now.",
+    "retry": "Try again",
+    "dropped": "{count, plural, one {An item that's no longer available was removed from your cart.} other {# items that are no longer available were removed from your cart.}}",
+    "optional": "Optional",
+    "delivery": {
+      "title": "Receiving",
+      "partsMethod": "How do you want to receive spare parts?",
+      "pickup": "Pick up at a branch",
+      "delivery": "Deliver to an address",
+      "branchLabel": "Pickup branch",
+      "branchPlaceholder": "Choose a branch",
+      "city": "City",
+      "address": "Address",
+      "notes": "Delivery notes"
+    },
+    "branches": {
+      "sahnaya": "Sahnaya branch",
+      "kafr_sousa": "Kafr Sousa branch"
+    },
+    "customer": {
+      "title": "Your details",
+      "name": "Full name",
+      "phone": "Mobile number",
+      "phoneHint": "We use it to confirm your order. Keep it: without an account you need it to continue paying.",
+      "email": "Email"
+    },
+    "submit": "Confirm order and continue to payment",
+    "submitting": "Creating your order…",
+    "summary": {
+      "title": "Order summary"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "phone": "Enter a valid mobile number.",
+      "email": "Enter a valid email address.",
+      "branch": "Choose a pickup branch.",
+      "cartChanged": "Your cart changed. Review the order and confirm again.",
+      "tooMany": "Too many attempts. Wait a minute and try again.",
+      "generic": "We couldn't create your order. Please try again shortly.",
+      "codes": {
+        "cart_closed": "An order was already created from this cart. Add your items again.",
+        "cart_empty": "Your cart is empty.",
+        "item_missing": "One of the items is no longer available.",
+        "unavailable": "One of the items is no longer available in the requested quantity.",
+        "currency_changed": "The currency changed. Refresh the page and review your cart."
+      }
+    }
+  },
+  "pay": {
+    "title": "Payment",
+    "description": "Choose how to pay, then complete the payment. Each order is placed and paid separately.",
+    "loading": "Loading…",
+    "order": "Order {number}",
+    "amount": "Amount due",
+    "chooseMethod": "Choose a payment method",
+    "noMethods": "No payment methods are available for this order right now. Contact us to complete payment.",
+    "phone": "Mobile number used for the order",
+    "phoneHint": "It must match the number you entered when confirming the order.",
+    "continue": "Continue",
+    "continuing": "Continuing…",
+    "instructions": "Payment instructions",
+    "reference": "Reference",
+    "resumed": "A payment was already started for this order. Transfer the amount quoting order number {number}, then upload the receipt.",
+    "uploadTitle": "Upload your payment receipt",
+    "file": "Receipt file",
+    "uploadHint": "A JPG or PNG image or a PDF, up to 5 MB.",
+    "upload": "Upload receipt",
+    "uploading": "Uploading…",
+    "uploaded": "Receipt received. Our team will confirm the payment soon, and your order status updates once it's confirmed.",
+    "otherOrders": "Other orders awaiting payment",
+    "otherOrdersHint": "Your cart was split into more than one order. Complete the payment for each.",
+    "pay": "Pay",
+    "viewOrder": "View order in my account",
+    "errors": {
+      "chooseMethod": "Choose a payment method.",
+      "phone": "Enter the mobile number used for the order.",
+      "chooseFile": "Choose the receipt file first.",
+      "fileType": "That file type isn't supported. Use JPG, PNG or PDF.",
+      "fileSize": "The file is larger than 5 MB.",
+      "forbidden": "We couldn't verify you own this order. Check the mobile number used for it.",
+      "tooMany": "Too many attempts. Wait a moment and try again.",
+      "cardUnsupported": "Card payment isn't available yet. Choose another method.",
+      "generic": "That didn't work. Please try again shortly.",
+      "codes": {
+        "gateway_unsupported": "That payment method isn't available for this order.",
+        "order_not_payable": "This order can't be paid any more.",
+        "idempotency_conflict": "We couldn't complete that. Reload the page and try again."
+      }
+    }
   }
 }

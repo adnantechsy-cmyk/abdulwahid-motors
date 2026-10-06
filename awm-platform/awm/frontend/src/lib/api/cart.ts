@@ -2,7 +2,7 @@
 
 import { useCartStore, type CartItem } from '@/store/cartStore';
 import type { ServerCart } from '@/types/api';
-import { apiFetch } from './client';
+import { shopFetch } from './shop';
 
 /** Cart line type (store) -> morph alias (Laravel). */
 const toMorph = (i: CartItem) =>
@@ -11,14 +11,15 @@ const toMorph = (i: CartItem) =>
 /**
  * Push the local cart to Laravel and adopt the server's re-priced version.
  * Call before checkout and after login (merges the guest cart into the account).
+ * Lines Laravel can't sell any more come back in `dropped` so the page can tell the customer.
  */
 export async function syncCart(locale: string): Promise<ServerCart> {
   const { items, replaceItems } = useCartStore.getState();
 
-  const server = await apiFetch<ServerCart>('/cart', {
+  const server = await shopFetch<ServerCart>('cart', {
     method: 'PUT',
     locale,
-    body: JSON.stringify({ lines: items.map((i) => ({ type: toMorph(i), id: i.refId, quantity: i.quantity })) }),
+    json: { lines: items.map((i) => ({ type: toMorph(i), id: i.refId, quantity: i.quantity })) },
   });
 
   replaceItems(
