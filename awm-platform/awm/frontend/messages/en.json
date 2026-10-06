@@ -1,7 +1,41 @@
 {
   "common": {
     "inCart": "In your cart",
-    "addToCart": "Add to cart"
+    "addToCart": "Add to cart",
+    "skipToContent": "Skip to content",
+    "dataUnavailable": "We couldn't load this right now. Please try again shortly."
+  },
+  "brand": {
+    "name": "Abdul Wahid Motors",
+    "authorized": "Authorized BYD dealer"
+  },
+  "nav": {
+    "label": "Main navigation",
+    "home": "Home",
+    "about": "About us",
+    "vehicles": "Cars",
+    "parts": "Spare parts",
+    "services": "Service",
+    "contact": "Contact"
+  },
+  "header": {
+    "bookTestDrive": "Book a test drive",
+    "login": "Log in",
+    "register": "Create account",
+    "account": "My account",
+    "language": "العربية",
+    "languageLabel": "Switch language to Arabic",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "about": "Authorized dealer for BYD electric and hybrid cars, with after-sales service and maintenance to manufacturer standards.",
+    "quickLinks": "Quick links",
+    "customerPortal": "Customer portal",
+    "branches": "Our branches",
+    "sahnaya": "Sahnaya branch: Sahnaya Highway, Damascus",
+    "kafrSousa": "Kafr Sousa branch: Kafr Sousa, Damascus",
+    "rights": "© {year} Abdul Wahid Motors. All rights reserved."
   },
   "cart": {
     "title": "Cart",
@@ -33,8 +67,110 @@
       "reserved": "Reserved",
       "sold": "Sold"
     },
+    "powertrain": {
+      "bev": "Electric",
+      "phev": "Plug-in hybrid",
+      "hev": "Hybrid",
+      "ice": "Petrol"
+    },
     "fullPrice": "Full price",
     "deposit": "Reservation deposit",
-    "reserve": "Reserve with a deposit"
+    "reserve": "Reserve with a deposit",
+    "details": "Details",
+    "spec": {
+      "range_km": "Range",
+      "battery_kwh": "Battery",
+      "seats": "Seats"
+    },
+    "unit": {
+      "km": "km",
+      "kwh": "kWh"
+    }
+  },
+  "part": {
+    "oem": "Genuine OEM",
+    "inStock": "In stock: {count}",
+    "outOfStock": "Out of stock",
+    "sku": "Part no.",
+    "compatible": "Fits: {models}"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Authorized BYD dealer",
+      "title": "Your gateway to smart, electric mobility",
+      "description": "Explore BYD electric and hybrid cars, reserve yours online with a deposit, and manage service and genuine parts in one place.",
+      "ctaVehicles": "Browse the fleet",
+      "ctaTestDrive": "Book a test drive",
+      "featured": "Featured car",
+      "priceFrom": "Price",
+      "view": "View car"
+    },
+    "quick": {
+      "label": "Quick access",
+      "buy": "Buy a new car",
+      "buyHint": "Browse available cars",
+      "service": "Book a service",
+      "serviceHint": "Pick a branch and time",
+      "parts": "Genuine spare parts",
+      "partsHint": "From the company warehouse",
+      "branches": "Branches and service centers",
+      "branchesHint": "Sahnaya and Kafr Sousa"
+    },
+    "why": {
+      "eyebrow": "Why Abdul Wahid Motors",
+      "title": "Your trusted first stop for BYD cars",
+      "description": "A complete ownership experience, from choosing your car to routine service, to the manufacturer's standards.",
+      "support": {
+        "title": "After-sales support",
+        "text": "A dedicated team looks after your car long after you buy it."
+      },
+      "delivery": {
+        "title": "Organized preparation and handover",
+        "text": "A documented pre-delivery inspection, and you can follow your car's progress until handover."
+      },
+      "warranty": {
+        "title": "Official dealer warranty",
+        "text": "Warranty on the car and its Blade battery, with a digital service history."
+      }
+    },
+    "vehicles": {
+      "eyebrow": "Showroom",
+      "title": "The BYD fleet",
+      "description": "Electric and hybrid cars ready to reserve, with dealer warranty.",
+      "viewAll": "View all cars",
+      "empty": "No cars are listed right now."
+    },
+    "parts": {
+      "eyebrow": "Warehouse",
+      "title": "Genuine spare parts",
+      "description": "Original parts for BYD cars, available straight from stock.",
+      "viewAll": "View all parts",
+      "empty": "No parts are listed right now."
+    },
+    "service": {
+      "eyebrow": "Service",
+      "title": "Service and inspection packages",
+      "description": "Choose the right service and book at your nearest branch.",
+      "book": "Book an appointment",
+      "periodic": {
+        "title": "Periodic service",
+        "points": ["Oil and filter change", "Brake and tyre check", "Vehicle condition report"]
+      },
+      "battery": {
+        "title": "Blade battery inspection",
+        "badge": "Most requested",
+        "points": ["State-of-health (SOH) measurement", "Cell balance check", "Verifiable digital certificate"]
+      },
+      "adas": {
+        "title": "ADAS check and calibration",
+        "points": ["Radar and camera calibration", "Safety systems check", "Software updates"]
+      }
+    },
+    "cta": {
+      "eyebrow": "Test drive",
+      "title": "Book a test drive or a service in minutes",
+      "description": "Pick the branch and time that suit you and our team will confirm your appointment.",
+      "button": "Book now"
+    }
   }
 }

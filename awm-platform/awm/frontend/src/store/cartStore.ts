@@ -113,7 +113,7 @@ export const useCartStore = create<CartState>()(
           const next = clamp(existing.quantity + (incoming.quantity ?? 1), 1, incoming.maxQuantity);
           set({
             items: items.map((i) =>
-              matches(i, 'spare_part', incoming.refId)
+              i.type === 'spare_part' && i.refId === incoming.refId
                 ? { ...i, quantity: next, maxQuantity: incoming.maxQuantity, unitPrice: incoming.unitPrice }
                 : i,
             ),

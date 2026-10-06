@@ -1,16 +1,56 @@
 @import 'tailwindcss';
 
-/* Flat brand palette. No gradients anywhere. Values taken from the Figma admin design. */
+/* Flat brand palette. No gradients anywhere. Values taken from the Figma designs. */
 @theme {
   --color-awm-red: #d90429;
+  --color-awm-red-dark: #b00322;
   --color-awm-black: #1c1b1b;
   --color-awm-surface: #ebe7e7;
+  --color-awm-panel: #f6f2f2;
+  --color-awm-bg: #fcf9f8;
+  --color-awm-line: #e0dada;
+  --color-awm-muted: #5e5757;
   --color-white: #ffffff;
 
   /* Latin first, Arabic fallback: the browser picks per-glyph, so mixed text stays consistent */
   --font-sans: var(--font-latin), var(--font-arabic), system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
   /* Architectural, square corners and no soft shadows */
   --radius-*: initial;
   --shadow-*: initial;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-awm-red);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Page gutter + max width shared by every section. */
+@utility container-awm {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1rem;
+  @media (min-width: 40rem) {
+    padding-inline: 1.5rem;
+  }
 }
