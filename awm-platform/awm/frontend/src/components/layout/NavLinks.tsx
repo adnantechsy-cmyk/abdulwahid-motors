@@ -27,7 +27,7 @@ export function NavLinks({ items, label, orientation = 'row', onNavigate }: {
                 aria-current={active ? 'page' : undefined}
                 className={
                   orientation === 'row'
-                    ? `block whitespace-nowrap border-b-2 px-3 py-2 text-sm font-bold transition-colors hover:text-awm-red ${active ? 'border-awm-red text-awm-red' : 'border-transparent'}`
+                    ? `block whitespace-nowrap border-b-2 px-2 py-2 xl:px-3 text-sm font-bold transition-colors hover:text-awm-red ${active ? 'border-awm-red text-awm-red' : 'border-transparent'}`
                     : `block border-s-4 px-4 py-3 text-base font-bold ${active ? 'border-awm-red bg-awm-panel text-awm-red' : 'border-transparent'}`
                 }
               >

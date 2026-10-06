@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AWM"><rect width="64" height="64" fill="#1c1b1b"/><rect y="52" width="64" height="12" fill="#d90429"/><text x="32" y="38" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#ffffff">AWM</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AWM">
+  <rect width="64" height="64" fill="#1c1b1b"/>
+  <svg x="3" y="23" width="58" height="18" viewBox="30 30 320 100">
+    <defs><clipPath id="c"><rect x="0" y="30" width="400" height="100"/></clipPath></defs>
+    <g stroke="#D9002A" stroke-width="26" fill="none" stroke-linejoin="miter" stroke-miterlimit="4" clip-path="url(#c)">
+      <polyline points="50,150 110,10 170,150"/>
+      <line x1="75" y1="90" x2="145" y2="90"/>
+      <polyline points="180,10 215,150 255,40 295,150 330,10"/>
+    </g>
+  </svg>
+</svg>
