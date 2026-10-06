@@ -18,6 +18,7 @@ const ROUTES: { method: string; pattern: RegExp }[] = [
   { method: 'POST', pattern: new RegExp(`^admin/job-cards/${NUM}/complete$`) },
   { method: 'POST', pattern: new RegExp(`^admin/orders/${ORDER}/(payment|cancel)$`) },
   { method: 'PUT', pattern: new RegExp(`^admin/orders/${ORDER}/status$`) },
+  { method: 'POST', pattern: /^admin\/security\/2fa\/(setup|confirm|recovery-codes|disable)$/ },
   { method: 'POST', pattern: /^admin\/parts$/ },
   { method: 'POST', pattern: new RegExp(`^admin/parts/${NUM}/cover$`) },
   { method: 'POST', pattern: /^admin\/vehicles$/ },

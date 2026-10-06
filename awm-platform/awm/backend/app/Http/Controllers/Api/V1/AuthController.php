@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
@@ -61,6 +62,14 @@ class AuthController extends Controller
             throw ValidationException::withMessages(['login' => ['This account is disabled.']]);
         }
 
+        // Staff with an authenticator app get no session yet: they must also give the 6-digit code.
+        if ($user->hasTwoFactor()) {
+            return response()->json([
+                'two_factor' => true,
+                'challenge' => Crypt::encryptString(json_encode(['uid' => $user->id, 'exp' => time() + 300])),
+            ], 202);
+        }
+
         return $this->tokenResponse($user, $request);
     }
 
@@ -99,6 +108,10 @@ class AuthController extends Controller
             'locale' => $user->locale,
             'roles' => $user->getRoleNames(),
             'permissions' => $user->getAllPermissions()->pluck('name'),
+            'two_factor' => [
+                'enabled' => $user->hasTwoFactor(),
+                'setup_required' => $user->requiresTwoFactorSetup(),
+            ],
         ];
     }
 

@@ -9,12 +9,14 @@ import { postAuth, type SubmitResult } from '@/lib/auth-client';
 import { safeNextPath } from '@/lib/auth';
 import { FormAlert } from './FormAlert';
 import { GoogleButton } from './GoogleButton';
+import { TwoFactorStep } from './TwoFactorStep';
 
 export function LoginForm({ next }: { next?: string }) {
   const t = useTranslations('auth');
   const locale = useLocale();
   const [pending, setPending] = useState(false);
   const [failure, setFailure] = useState<Extract<SubmitResult, { ok: false }> | null>(null);
+  const [challenge, setChallenge] = useState<string | null>(null);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -23,6 +25,11 @@ export function LoginForm({ next }: { next?: string }) {
     setFailure(null);
 
     const result = await postAuth('login', { login: String(form.get('login')).trim(), password: form.get('password') }, locale);
+    if (result.ok && result.twoFactor) {
+      setChallenge(result.twoFactor.challenge);
+      setPending(false);
+      return;
+    }
     if (result.ok) {
       // Full navigation so every server component re-reads the new session cookie.
       window.location.assign(safeNextPath(next, locale));
@@ -33,6 +40,8 @@ export function LoginForm({ next }: { next?: string }) {
   }
 
   const errors = failure?.fieldErrors ?? {};
+
+  if (challenge) return <TwoFactorStep challenge={challenge} next={next} onBack={() => setChallenge(null)} />;
 
   return (
     <form onSubmit={onSubmit} noValidate className="flex flex-col gap-5">

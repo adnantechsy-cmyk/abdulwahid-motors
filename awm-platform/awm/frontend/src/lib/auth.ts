@@ -12,6 +12,8 @@ export type AuthUser = {
   locale: string;
   roles: string[];
   permissions: string[];
+  /** Staff only: whether the authenticator app is on, and whether it still has to be set up. */
+  two_factor?: { enabled: boolean; setup_required: boolean };
 };
 
 /**

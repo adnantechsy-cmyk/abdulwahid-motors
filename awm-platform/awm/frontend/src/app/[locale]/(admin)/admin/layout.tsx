@@ -5,7 +5,8 @@ import { AdminLogout } from '@/components/admin/AdminLogout';
 import { AdminNav, type AdminNavItem } from '@/components/admin/AdminNav';
 import { ButtonLink } from '@/components/ui/Button';
 import { Link } from '@/i18n/navigation';
-import { can, getAdminUser, isStaff } from '@/lib/api/admin';
+import { TwoFactorManager, type TwoFactorStatus } from '@/components/admin/TwoFactorManager';
+import { adminGet, can, getAdminUser, isStaff } from '@/lib/api/admin';
 
 export const metadata: Metadata = { title: { absolute: 'Admin | Abdul Wahid Motors' }, robots: { index: false, follow: false } };
 
@@ -45,7 +46,13 @@ export default async function AdminLayout({ children, params }: Props) {
     ...(can(user, 'categories.manage') ? [{ href: '/admin/categories', label: t('nav.categories') }] : []),
     ...(can(user, 'job_cards.work', 'job_cards.manage') ? [{ href: '/admin/job-cards', label: t('nav.jobCards') }] : []),
     ...(can(user, 'appointments.manage') ? [{ href: '/admin/appointments', label: t('nav.appointments') }] : []),
+    { href: '/admin/security', label: t('nav.security') },
   ];
+
+  // Staff who must still set up their authenticator app see only that, until it is done (Laravel enforces it too).
+  const mustSetUp = Boolean(user.two_factor?.setup_required);
+  const gate = mustSetUp ? await adminGet<TwoFactorStatus>('/admin/security/2fa', locale) : null;
+  const ts = await getTranslations('admin.security');
 
   return (
     <NextIntlClientProvider messages={messages}>
@@ -64,9 +71,23 @@ export default async function AdminLayout({ children, params }: Props) {
 
         <div className="lg:grid lg:grid-cols-[14rem_1fr]">
           <aside className="lg:border-e lg:border-awm-line lg:bg-white lg:pt-6">
-            <AdminNav items={items} label={t('navLabel')} />
+            {!mustSetUp && <AdminNav items={items} label={t('navLabel')} />}
           </aside>
-          <main className="min-w-0 p-4 sm:p-6 lg:p-8">{children}</main>
+          <main className="min-w-0 p-4 sm:p-6 lg:p-8">
+            {mustSetUp ? (
+              <div className="flex flex-col gap-6">
+                <div>
+                  <h1 className="text-3xl font-extrabold">{ts('gateTitle')}</h1>
+                  <p className="mt-2 max-w-3xl text-sm leading-7 text-awm-muted">{ts('gateIntro')}</p>
+                </div>
+                <div role="group" aria-label={ts('panel')} className="border border-awm-line bg-white p-5">
+                  <TwoFactorManager initial={gate ?? { enabled: false, pending_setup: false, required: true, recovery_codes_left: 0 }} />
+                </div>
+              </div>
+            ) : (
+              children
+            )}
+          </main>
         </div>
       </div>
     </NextIntlClientProvider>

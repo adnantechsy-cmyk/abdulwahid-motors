@@ -18,6 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
             'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
             'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+            'two_factor' => \App\Http\Middleware\EnsureTwoFactorSetup::class,
         ]);
 
         // Hostinger (and its CDN) sit in front of PHP: trust the proxy headers so
