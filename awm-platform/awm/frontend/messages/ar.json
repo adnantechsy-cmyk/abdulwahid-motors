@@ -273,5 +273,231 @@
       "submit": "بحث",
       "empty": "لا توجد قطع مطابقة للبحث."
     }
+  },
+  "account": {
+    "title": "حسابي",
+    "welcome": "مرحباً، {name}",
+    "navLabel": "أقسام الحساب",
+    "nav": {
+      "overview": "نظرة عامة",
+      "orders": "الطلبات والحجوزات",
+      "vehicles": "سياراتي",
+      "invoices": "الفواتير",
+      "appointments": "المواعيد"
+    },
+    "summary": {
+      "vehicles": "سياراتي",
+      "activeOrders": "طلبات قيد التنفيذ",
+      "openJobCards": "أعمال صيانة مفتوحة",
+      "unpaidInvoices": "فواتير غير مسددة",
+      "appointments": "مواعيد قادمة"
+    },
+    "viewAll": "عرض الكل",
+    "back": "رجوع",
+    "bookAppointment": "احجز موعد صيانة",
+    "error": {
+      "title": "تعذّر تحميل بياناتك",
+      "text": "حدث خطأ أثناء تحميل هذه الصفحة. حاول مجدداً.",
+      "retry": "إعادة المحاولة"
+    },
+    "empty": {
+      "orders": "لا توجد طلبات بعد.",
+      "vehicles": "لم تُسجَّل أي سيارة في حسابك بعد. تظهر سيارتك هنا بعد التسليم.",
+      "invoices": "لا توجد فواتير.",
+      "appointments": "لا توجد مواعيد.",
+      "history": "لا يوجد سجل صيانة لهذه السيارة بعد.",
+      "battery": "لا توجد تقارير بطارية لهذه السيارة بعد."
+    },
+    "branch": {
+      "sahnaya": "فرع صحنايا",
+      "kafr_sousa": "فرع كفرسوسة"
+    },
+    "orders": {
+      "title": "الطلبات والحجوزات",
+      "recent": "آخر الطلبات",
+      "number": "رقم الطلب",
+      "type": "النوع",
+      "status": "الحالة",
+      "total": "الإجمالي",
+      "date": "التاريخ",
+      "open": "عرض الطلب {number}",
+      "flow": {
+        "vehicle_reservation": "حجز سيارة",
+        "spare_part": "قطع غيار",
+        "maintenance_invoice": "فاتورة صيانة"
+      },
+      "statuses": {
+        "pending": "قيد المعالجة",
+        "awaiting_payment": "بانتظار الدفع",
+        "paid": "مدفوع",
+        "processing": "قيد التجهيز",
+        "fulfilled": "مكتمل",
+        "cancelled": "ملغى",
+        "failed": "فشلت عملية الدفع",
+        "refunded": "مُسترد",
+        "partially_refunded": "مُسترد جزئياً"
+      }
+    },
+    "order": {
+      "title": "طلب رقم {number}",
+      "placedAt": "تاريخ الطلب",
+      "paidAt": "تاريخ الدفع",
+      "pickup": "فرع الاستلام",
+      "items": "البنود",
+      "item": "البند",
+      "quantity": "الكمية",
+      "unitPrice": "سعر الوحدة",
+      "lineTotal": "المجموع",
+      "payments": "الدفعات",
+      "method": "طريقة الدفع",
+      "paymentStatuses": {
+        "pending": "قيد الانتظار",
+        "requires_action": "بانتظار إجراء",
+        "awaiting_confirmation": "بانتظار التأكيد",
+        "captured": "مستلمة",
+        "failed": "فشلت",
+        "cancelled": "ملغاة",
+        "refunded": "مستردة",
+        "partially_refunded": "مستردة جزئياً"
+      }
+    },
+    "tracking": {
+      "title": "تتبع التسليم",
+      "estimated": "موعد التسليم المتوقع",
+      "note": "ملاحظة من الفريق",
+      "done": "مكتملة",
+      "current": "الخطوة الحالية",
+      "upcoming": "قادمة",
+      "pdiTitle": "الفحص قبل التسليم",
+      "pdiProgress": "{done} من {total} بنود",
+      "sections": {
+        "documents": "الوثائق",
+        "exterior": "الهيكل الخارجي",
+        "interior": "المقصورة",
+        "battery": "البطارية",
+        "systems": "الأنظمة",
+        "road_test": "تجربة القيادة"
+      },
+      "itemStatus": {
+        "pending": "بالانتظار",
+        "pass": "سليم",
+        "fail": "يحتاج معالجة",
+        "na": "لا ينطبق"
+      }
+    },
+    "vehicles": {
+      "title": "سياراتي",
+      "plate": "اللوحة",
+      "vin": "رقم الهيكل",
+      "color": "اللون",
+      "mileage": "آخر قراءة للعداد",
+      "km": "{value} كم",
+      "purchased": "تاريخ الشراء",
+      "warranty": "الكفالة حتى",
+      "underWarranty": "ضمن الكفالة",
+      "warrantyEnded": "انتهت الكفالة",
+      "battery": "آخر فحص للبطارية",
+      "soh": "صحة البطارية {value}%",
+      "nextAppointment": "الموعد القادم",
+      "details": "تفاصيل السيارة",
+      "history": "سجل الصيانة",
+      "complaint": "الشكوى",
+      "workDone": "العمل المنجز",
+      "opened": "فُتح في",
+      "completed": "اكتمل في",
+      "branch": "الفرع",
+      "mileageIn": "قراءة العداد عند الدخول",
+      "invoice": "الفاتورة {number}",
+      "balance": "المتبقي",
+      "reports": "تقارير بطارية Blade",
+      "viewReport": "عرض التقرير",
+      "certificate": "الشهادة {number}",
+      "valid": "سارية",
+      "invalid": "منتهية أو ملغاة",
+      "appointments": "مواعيد هذه السيارة",
+      "jobStatus": {
+        "pending": "بالانتظار",
+        "in_progress": "قيد العمل",
+        "waiting_parts": "بانتظار القطع",
+        "completed": "مكتملة"
+      }
+    },
+    "invoices": {
+      "title": "الفواتير",
+      "number": "رقم الفاتورة",
+      "jobCard": "بطاقة العمل",
+      "status": "الحالة",
+      "total": "الإجمالي",
+      "paid": "المسدد",
+      "balance": "المتبقي",
+      "issued": "تاريخ الإصدار",
+      "due": "الاستحقاق",
+      "pay": "أضف للسلة",
+      "cartName": "فاتورة صيانة {number}",
+      "statuses": {
+        "unpaid": "غير مسددة",
+        "partially_paid": "مسددة جزئياً",
+        "paid": "مسددة",
+        "void": "ملغاة"
+      }
+    },
+    "appointments": {
+      "title": "المواعيد",
+      "number": "رقم الموعد",
+      "when": "الوقت",
+      "branch": "الفرع",
+      "service": "الخدمة",
+      "vehicle": "السيارة",
+      "status": "الحالة",
+      "cancel": "إلغاء الموعد",
+      "confirmCancel": "تأكيد الإلغاء",
+      "keep": "إبقاء الموعد",
+      "cancelling": "جارٍ الإلغاء…",
+      "cancelFailed": "تعذّر إلغاء الموعد. حاول مجدداً.",
+      "types": {
+        "maintenance": "صيانة",
+        "repair": "إصلاح",
+        "diagnostics": "فحص إلكتروني",
+        "warranty": "كفالة",
+        "inspection": "فحص",
+        "battery_check": "فحص البطارية"
+      },
+      "statuses": {
+        "requested": "قيد الطلب",
+        "confirmed": "مؤكد",
+        "cancelled": "ملغى",
+        "completed": "مكتمل",
+        "no_show": "لم يحضر"
+      }
+    },
+    "report": {
+      "title": "تقرير فحص بطارية Blade",
+      "certificate": "الشهادة رقم {number}",
+      "valid": "شهادة سارية",
+      "invalid": "الشهادة غير سارية",
+      "revoked": "تم إلغاء هذه الشهادة",
+      "vehicle": "السيارة",
+      "vin": "رقم الهيكل",
+      "mileage": "المسافة المقطوعة",
+      "inspectedAt": "تاريخ الفحص",
+      "validUntil": "صالحة حتى",
+      "technician": "الفني المسؤول",
+      "result": "النتيجة",
+      "soh": "صحة البطارية (SOH)",
+      "soc": "مستوى الشحن (SOC)",
+      "packVoltage": "جهد الحزمة",
+      "cellVoltage": "جهد الخلايا (أدنى / أعلى)",
+      "cellTemp": "حرارة الخلايا (أدنى / أعلى)",
+      "insulation": "مقاومة العزل",
+      "cycles": "دورات الشحن",
+      "findings": "الملاحظات",
+      "recommendations": "التوصيات",
+      "verify": "رابط التحقق من الشهادة",
+      "results": {
+        "pass": "سليمة",
+        "attention": "تحتاج متابعة",
+        "fail": "تحتاج صيانة"
+      }
+    }
   }
 }
