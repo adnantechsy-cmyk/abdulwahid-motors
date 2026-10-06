@@ -26,6 +26,7 @@ class Vehicle extends Model implements Purchasable
     protected $casts = [
         'status' => VehicleStatus::class,
         'is_published' => 'boolean',
+        'show_price' => 'boolean',
         'price' => 'decimal:2',
         'deposit_amount' => 'decimal:2',
         'specs' => 'array',
@@ -58,6 +59,12 @@ class Vehicle extends Model implements Purchasable
         return $this->cover_image ? Storage::disk('public')->url($this->cover_image) : null;
     }
 
+    /** The downloadable PDF catalogue, if staff uploaded one. */
+    public function brochureUrl(): ?string
+    {
+        return $this->brochure_path ? Storage::disk('public')->url($this->brochure_path) : null;
+    }
+
     /* ---------- Purchasable: vehicle reservation (deposit) ---------- */
 
     public function cartFlow(): CartFlow { return CartFlow::VehicleReservation; }
@@ -80,7 +87,7 @@ class Vehicle extends Model implements Purchasable
 
     public function cartSnapshot(): array
     {
-        return ['image' => $this->coverUrl(), 'vehicle_price' => (string) $this->price, 'year' => $this->model_year, 'slug' => $this->slug];
+        return ['image' => $this->coverUrl(), 'vehicle_price' => $this->show_price ? (string) $this->price : null, 'year' => $this->model_year, 'slug' => $this->slug];
     }
 
     public function onOrderPlaced(Order $order, int $quantity): void
@@ -132,7 +139,10 @@ class Vehicle extends Model implements Purchasable
             'body_type' => $this->body_type,
             'powertrain' => $this->powertrain,
             'specs' => $this->specs,
-            'price' => (string) $this->price,
+            // "Contact us for price": a hidden price is never sent to the public site at all (null, not 0).
+            'price' => $this->show_price ? (string) $this->price : null,
+            'price_visible' => (bool) $this->show_price,
+            'brochure_url' => $this->brochureUrl(),
             'deposit_amount' => (string) $this->deposit_amount,
             'currency' => $this->currency,
             'status' => $this->status->value,

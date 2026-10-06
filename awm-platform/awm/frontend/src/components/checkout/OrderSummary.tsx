@@ -59,7 +59,7 @@ function SummaryLine({ item, money, locale }: { item: CartItem; money: (n: numbe
       <div className="min-w-0 flex-1">
         <p className="text-sm font-bold leading-snug">{name}</p>
         {item.type === 'spare_part' && <p className="text-xs text-awm-muted"><span dir="ltr">{item.sku}</span> × {item.quantity}</p>}
-        {item.type === 'vehicle_reservation' && <p className="text-xs text-awm-muted">{t('depositOf', { price: money(item.vehiclePrice) })}</p>}
+        {item.type === 'vehicle_reservation' && item.vehiclePrice > 0 && <p className="text-xs text-awm-muted">{t('depositOf', { price: money(item.vehiclePrice) })}</p>}
         {item.type === 'maintenance_invoice' && <p className="text-xs text-awm-muted">{t('invoice', { number: item.invoiceNumber })}</p>}
       </div>
       <p className="font-mono text-sm font-bold tabular-nums">{money(item.unitPrice * item.quantity)}</p>

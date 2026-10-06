@@ -50,7 +50,7 @@ export async function Hero({ vehicle, locale }: { vehicle?: VehicleDto; locale: 
             <div className="flex flex-wrap items-end justify-between gap-4 p-5">
               <div>
                 <p className="text-lg font-extrabold">{vehicle.name} <span className="text-awm-red">{vehicle.model_year}</span></p>
-                <p className="mt-1 font-mono text-sm tabular-nums text-awm-muted">{t('priceFrom')}: {formatMoney(vehicle.price, vehicle.currency, locale)}</p>
+                {vehicle.price !== null && <p className="mt-1 font-mono text-sm tabular-nums text-awm-muted">{t('priceFrom')}: {formatMoney(vehicle.price, vehicle.currency, locale)}</p>}
               </div>
               <ButtonLink href={`/vehicles/${vehicle.slug}`} variant="dark" size="sm">{t('view')}</ButtonLink>
             </div>

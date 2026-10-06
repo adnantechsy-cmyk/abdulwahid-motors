@@ -1,4 +1,4 @@
-﻿import type { Currency } from './api';
+import type { Currency } from './api';
 import type { AppointmentRow, InvoiceRef } from './account';
 
 export interface AdminSummary {
@@ -116,6 +116,7 @@ export interface AdminPart {
   display_name: string;
   category: { id: number; name: string } | null;
   price: string;
+  show_price: boolean;
   currency: Currency;
   is_oem: boolean;
   is_published: boolean;
@@ -129,6 +130,7 @@ export interface AdminPart {
 export interface AdminPartDetail extends AdminPart {
   description: { ar?: string; en?: string };
   cost_price: string | null;
+  cover_url: string | null;
   compatible_models: string[];
   bin_location: string | null;
   hide_when_out_of_stock: boolean;
@@ -148,4 +150,47 @@ export interface StockMovementRow {
 export interface PartCategory {
   id: number;
   name: string;
+}
+
+export interface AdminVehicleRow {
+  id: number;
+  sku: string | null;
+  slug: string;
+  name: { ar?: string; en?: string };
+  display_name: string;
+  model_year: number;
+  powertrain: 'bev' | 'phev' | 'hev' | 'ice';
+  price: string;
+  show_price: boolean;
+  currency: Currency;
+  status: 'available' | 'incoming' | 'reserved' | 'sold';
+  branch: string | null;
+  is_published: boolean;
+  has_brochure: boolean;
+  has_cover: boolean;
+  category_id: number | null;
+}
+
+export interface AdminVehicleDetail extends AdminVehicleRow {
+  tagline: { ar?: string; en?: string };
+  description: { ar?: string; en?: string };
+  vin: string | null;
+  body_type: string | null;
+  exterior_color: string | null;
+  deposit_amount: string;
+  is_featured: boolean;
+  sort_order: number;
+  cover_url: string | null;
+  brochure_url: string | null;
+}
+
+export interface AdminCategory {
+  id: number;
+  type: 'vehicle' | 'spare_part';
+  parent_id: number | null;
+  slug: string;
+  name: { ar?: string; en?: string };
+  sort_order: number;
+  is_active: boolean;
+  items_count: number;
 }

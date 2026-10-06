@@ -40,6 +40,7 @@ export function PartForm({ part, categories, canEdit }: Props) {
     low_stock_threshold: String(part?.low_stock_threshold ?? 2),
     bin_location: part?.bin_location ?? '',
     is_published: part?.is_published ?? false,
+    show_price: part?.show_price ?? true,
     hide_when_out_of_stock: part?.hide_when_out_of_stock ?? false,
     initial_stock: '0',
   });
@@ -61,6 +62,7 @@ export function PartForm({ part, categories, canEdit }: Props) {
       low_stock_threshold: Number(f.low_stock_threshold) || 0,
       bin_location: f.bin_location.trim() || null,
       is_published: f.is_published,
+      show_price: f.show_price,
       hide_when_out_of_stock: f.hide_when_out_of_stock,
     };
 
@@ -73,7 +75,7 @@ export function PartForm({ part, categories, canEdit }: Props) {
     }
   }
 
-  const check = (key: 'is_oem' | 'is_published' | 'hide_when_out_of_stock', label: string, hint?: string) => (
+  const check = (key: 'is_oem' | 'is_published' | 'hide_when_out_of_stock' | 'show_price', label: string, hint?: string) => (
     <div className="flex items-start gap-3">
       <input id={`${id}-${key}`} type="checkbox" checked={f[key]} disabled={!canEdit} onChange={(e) => set(key, e.target.checked)} className="mt-1 size-5 accent-awm-red" aria-describedby={hint ? `${id}-${key}-hint` : undefined} />
       <div>
@@ -132,6 +134,7 @@ export function PartForm({ part, categories, canEdit }: Props) {
             <option value="SYP">SYP</option>
           </select>
         </div>
+        <div className="md:col-span-3">{check('show_price', t('showPrice'), t('showPriceHint'))}</div>
       </fieldset>
 
       <fieldset disabled={!canEdit || pending} className="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-3">

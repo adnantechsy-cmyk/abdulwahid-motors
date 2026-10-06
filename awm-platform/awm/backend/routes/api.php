@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\Admin\CategoryAdminController;
 use App\Http\Controllers\Api\V1\Admin\JobCardAdminController;
 use App\Http\Controllers\Api\V1\Admin\OrderAdminController;
 use App\Http\Controllers\Api\V1\Admin\PartAdminController;
+use App\Http\Controllers\Api\V1\Admin\VehicleAdminController;
 use App\Http\Controllers\Api\V1\Admin\PaymentAdminController;
 use App\Http\Controllers\Api\V1\Admin\PdiAdminController;
 use App\Http\Controllers\Api\V1\Admin\SeoAdminController;
@@ -104,6 +105,16 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
             Route::put('orders/{number}/status', [OrderAdminController::class, 'status']);
             Route::post('orders/{number}/cancel', [OrderAdminController::class, 'cancel']);
         });
+        Route::middleware('permission:vehicles.manage')->group(function () {
+            Route::get('vehicles', [VehicleAdminController::class, 'index']);
+            Route::get('vehicle-categories', [VehicleAdminController::class, 'categories']);
+            Route::post('vehicles', [VehicleAdminController::class, 'store']);
+            Route::get('vehicles/{vehicle}', [VehicleAdminController::class, 'show'])->whereNumber('vehicle');
+            Route::put('vehicles/{vehicle}', [VehicleAdminController::class, 'update'])->whereNumber('vehicle');
+            Route::post('vehicles/{vehicle}/brochure', [VehicleAdminController::class, 'uploadBrochure'])->whereNumber('vehicle')->middleware('throttle:30,1');
+            Route::delete('vehicles/{vehicle}/brochure', [VehicleAdminController::class, 'deleteBrochure'])->whereNumber('vehicle');
+            Route::post('vehicles/{vehicle}/cover', [VehicleAdminController::class, 'uploadCover'])->whereNumber('vehicle')->middleware('throttle:30,1');
+        });
         Route::middleware('permission:parts.manage|stock.adjust')->group(function () {
             Route::get('parts', [PartAdminController::class, 'index']);
             Route::get('part-categories', [PartAdminController::class, 'categories']);
@@ -114,6 +125,7 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
         Route::middleware('permission:parts.manage')->group(function () {
             Route::post('parts', [PartAdminController::class, 'store']);
             Route::put('parts/{part}', [PartAdminController::class, 'update'])->whereNumber('part');
+            Route::post('parts/{part}/cover', [PartAdminController::class, 'uploadCover'])->whereNumber('part')->middleware('throttle:30,1');
         });
         Route::middleware('permission:seo.manage')->group(function () {
             Route::get('seo', [SeoAdminController::class, 'index']);

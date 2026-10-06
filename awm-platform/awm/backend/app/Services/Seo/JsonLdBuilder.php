@@ -51,8 +51,7 @@ class JsonLdBuilder
             },
             'offers' => [
                 '@type' => 'Offer',
-                'price' => (string) $v->price,
-                'priceCurrency' => $v->currency,
+                ...($v->show_price ? ['price' => (string) $v->price, 'priceCurrency' => $v->currency] : []),
                 'url' => $url,
                 'availability' => match ($v->status) {
                     VehicleStatus::Available => 'https://schema.org/InStock',
@@ -83,8 +82,7 @@ class JsonLdBuilder
             'brand' => ['@type' => 'Brand', 'name' => $p->is_oem ? config('awm.brand') : 'Aftermarket'],
             'offers' => [
                 '@type' => 'Offer',
-                'price' => (string) $p->price,
-                'priceCurrency' => $p->currency,
+                ...($p->show_price ? ['price' => (string) $p->price, 'priceCurrency' => $p->currency] : []),
                 'url' => $url,
                 'itemCondition' => 'https://schema.org/NewCondition',
                 'availability' => $p->availableQuantity() > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',

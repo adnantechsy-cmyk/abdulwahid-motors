@@ -9,6 +9,8 @@ use App\Models\StockMovement;
 use App\Services\Inventory\InsufficientStockException;
 use App\Services\Inventory\StockService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 /**
@@ -56,7 +58,23 @@ class PartAdminController extends Controller
             'compatible_models' => $part->compatible_models ?? [],
             'bin_location' => $part->bin_location,
             'hide_when_out_of_stock' => $part->hide_when_out_of_stock,
+            'cover_url' => $part->coverUrl(),
         ];
+    }
+
+    /** POST /admin/parts/{part}/cover  (multipart: image = jpg/png/webp, max 5 MB) */
+    public function uploadCover(Request $request, SparePart $part)
+    {
+        $request->validate(['image' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120']]);
+
+        $file = $request->file('image');
+        $path = $file->storeAs('parts', Str::uuid() . '.' . $file->guessExtension(), 'public');
+        if ($part->cover_image) {
+            Storage::disk('public')->delete($part->cover_image);
+        }
+        $part->update(['cover_image' => $path]);
+
+        return $this->show($part->fresh());
     }
 
     /** GET /admin/part-categories: for the category dropdown. */
@@ -143,6 +161,7 @@ class PartAdminController extends Controller
             'display_name' => $p->getTranslation('name', $locale),
             'category' => $p->category ? ['id' => $p->category->id, 'name' => $p->category->getTranslation('name', $locale)] : null,
             'price' => (string) $p->price,
+            'show_price' => $p->show_price,
             'currency' => $p->currency,
             'is_oem' => $p->is_oem,
             'is_published' => $p->is_published,
@@ -178,6 +197,7 @@ class PartAdminController extends Controller
             'low_stock_threshold' => ['sometimes', 'integer', 'min:0', 'max:100000'],
             'bin_location' => ['nullable', 'string', 'max:40'],
             'is_published' => ['sometimes', 'boolean'],
+            'show_price' => ['sometimes', 'boolean'],
             'hide_when_out_of_stock' => ['sometimes', 'boolean'],
         ]);
     }

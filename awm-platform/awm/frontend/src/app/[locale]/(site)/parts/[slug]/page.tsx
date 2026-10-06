@@ -7,7 +7,9 @@ import { Gallery } from '@/components/catalog/Gallery';
 import { PartCard } from '@/components/catalog/PartCard';
 import { SpecList, type SpecRow } from '@/components/catalog/SpecList';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { ButtonLink } from '@/components/ui/Button';
 import { Tag } from '@/components/ui/Tag';
+import { contactChannels } from '@/lib/site.config';
 import { apiGet } from '@/lib/api/server';
 import { getPartList } from '@/lib/api/catalog';
 import { formatMoney, formatNumber } from '@/lib/format';
@@ -66,26 +68,41 @@ export default async function PartPage({ params }: Props) {
             <p className="mt-2 font-mono text-sm text-awm-muted" dir="ltr">{tp('sku')}: {part.sku}</p>
           </div>
 
-          <p className="font-mono text-3xl font-extrabold tabular-nums">{formatMoney(part.price, part.currency, locale, 2)}</p>
+          {part.price !== null ? (
+            <p className="font-mono text-3xl font-extrabold tabular-nums">{formatMoney(part.price, part.currency, locale, 2)}</p>
+          ) : (
+            <p className="text-2xl font-extrabold">{tc('contactForPrice')}</p>
+          )}
           <p className={`text-sm font-bold ${inStock ? 'text-awm-muted' : 'text-awm-red'}`}>
             {inStock ? t('available', { count: formatNumber(part.available_quantity, locale) }) : t('unavailable')}
           </p>
 
-          <AddToCartButton
-            disabled={!inStock}
-            label={tc('addToCart')}
-            inCartLabel={tc('inCart')}
-            item={{
-              type: 'spare_part',
-              refId: part.id,
-              sku: part.sku,
-              name: part.name_i18n,
-              image: part.image ?? undefined,
-              unitPrice: Number(part.price),
-              currency: part.currency,
-              maxQuantity: part.available_quantity,
-            }}
-          />
+          {part.price === null ? (
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/contact" size="lg">{tc('contactUs')}</ButtonLink>
+              {contactChannels().whatsappHref && (
+                <a href={contactChannels().whatsappHref ?? '#'} target="_blank" rel="noopener noreferrer" className="inline-flex h-14 items-center justify-center border-2 border-awm-black px-8 text-base font-bold hover:bg-awm-black hover:text-white">
+                  {tc('whatsappUs')}<span className="sr-only"> ({tc('opensNewTab')})</span>
+                </a>
+              )}
+            </div>
+          ) : (
+            <AddToCartButton
+              disabled={!inStock}
+              label={tc('addToCart')}
+              inCartLabel={tc('inCart')}
+              item={{
+                type: 'spare_part',
+                refId: part.id,
+                sku: part.sku,
+                name: part.name_i18n,
+                image: part.image ?? undefined,
+                unitPrice: Number(part.price),
+                currency: part.currency,
+                maxQuantity: part.available_quantity,
+              }}
+            />
+          )}
         </div>
       </div>
 

@@ -40,7 +40,9 @@ export default async function AdminLayout({ children, params }: Props) {
     { href: '/admin', label: t('nav.overview') },
     ...(can(user, 'orders.manage') ? [{ href: '/admin/orders', label: t('nav.orders') }] : []),
     ...(can(user, 'payments.confirm') ? [{ href: '/admin/payments', label: t('nav.payments') }] : []),
+    ...(can(user, 'vehicles.manage') ? [{ href: '/admin/vehicles', label: t('nav.vehicles') }] : []),
     ...(can(user, 'parts.manage', 'stock.adjust') ? [{ href: '/admin/parts', label: t('nav.parts') }] : []),
+    ...(can(user, 'categories.manage') ? [{ href: '/admin/categories', label: t('nav.categories') }] : []),
     ...(can(user, 'job_cards.work', 'job_cards.manage') ? [{ href: '/admin/job-cards', label: t('nav.jobCards') }] : []),
     ...(can(user, 'appointments.manage') ? [{ href: '/admin/appointments', label: t('nav.appointments') }] : []),
   ];

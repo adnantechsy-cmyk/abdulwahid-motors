@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { AddToCartButton } from '@/components/cart/AddToCartButton';
+import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Tag } from '@/components/ui/Tag';
 import { Link } from '@/i18n/navigation';
@@ -31,12 +32,15 @@ export async function PartCard({ part, locale }: { part: SparePartDto; locale: s
         )}
 
         <div className="mt-auto flex items-end justify-between gap-3">
-          <p className="font-mono text-lg font-bold tabular-nums">{formatMoney(part.price, part.currency, locale, 2)}</p>
+          <p className="font-mono text-lg font-bold tabular-nums">{part.price !== null ? formatMoney(part.price, part.currency, locale, 2) : <span className="font-sans text-sm">{tc('contactForPrice')}</span>}</p>
           <p className={`text-xs font-bold ${inStock ? 'text-awm-muted' : 'text-awm-red'}`}>
             {inStock ? t('inStock', { count: part.available_quantity }) : t('outOfStock')}
           </p>
         </div>
 
+        {part.price === null ? (
+          <ButtonLink href="/contact" variant="outline" size="md" className="h-11 px-4 text-sm">{tc('contactUs')}</ButtonLink>
+        ) : (
         <AddToCartButton
           disabled={!inStock}
           label={tc('addToCart')}
@@ -48,11 +52,12 @@ export async function PartCard({ part, locale }: { part: SparePartDto; locale: s
             sku: part.sku,
             name: part.name_i18n,
             image: part.image ?? undefined,
-            unitPrice: Number(part.price),
+            unitPrice: Number(part.price ?? 0),
             currency: part.currency,
             maxQuantity: part.available_quantity,
           }}
         />
+        )}
       </div>
     </article>
   );
