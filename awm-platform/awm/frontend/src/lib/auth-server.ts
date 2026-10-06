@@ -17,7 +17,7 @@ const localeOf = (request: NextRequest) => (request.headers.get('x-locale') === 
  * Forwards a login/register body to Laravel (only the listed fields), stores the returned token in the
  * httpOnly cookie, and gives the browser the user but never the token. Validation errors pass through.
  */
-export async function authenticate(request: NextRequest, path: '/auth/login' | '/auth/register', fields: string[]) {
+export async function authenticate(request: NextRequest, path: '/auth/login' | '/auth/register' | '/auth/google', fields: string[]) {
   const input = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!input) return NextResponse.json({ message: 'Invalid request.' }, { status: 400 });
 
@@ -37,11 +37,37 @@ export async function authenticate(request: NextRequest, path: '/auth/login' | '
   }
 
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) return NextResponse.json({ message: data.message, errors: data.errors }, { status: res.status });
+  if (!res.ok) return NextResponse.json({ message: data.message, code: data.code, errors: data.errors }, { status: res.status });
 
   const response = NextResponse.json({ user: data.user as AuthUser }, { status: res.status });
   response.cookies.set(AUTH_COOKIE, data.token, cookieOptions);
   return response;
+}
+
+/**
+ * Forwards a public, session-less call (forgot / reset password) to Laravel, with only the listed fields.
+ * Nothing about the account is revealed: Laravel answers the same way whether or not it exists.
+ */
+export async function relay(request: NextRequest, path: '/auth/forgot-password' | '/auth/reset-password', fields: string[]) {
+  const input = (await request.json().catch(() => null)) as Record<string, unknown> | null;
+  if (!input) return NextResponse.json({ message: 'Invalid request.' }, { status: 400 });
+
+  const body = Object.fromEntries(fields.filter((k) => input[k] !== undefined && input[k] !== '').map((k) => [k, input[k]]));
+
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}${path}`, {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'X-Locale': localeOf(request) },
+      body: JSON.stringify(body),
+      cache: 'no-store',
+    });
+  } catch {
+    return NextResponse.json({ message: 'Service unavailable.' }, { status: 503 });
+  }
+
+  const data = await res.json().catch(() => ({}));
+  return NextResponse.json(res.ok ? { status: data.status ?? 'ok' } : { message: data.message, code: data.code, errors: data.errors }, { status: res.status });
 }
 
 export async function currentUser(request: NextRequest): Promise<AuthUser | null> {

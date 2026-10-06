@@ -217,7 +217,8 @@
       "submit": "Log in",
       "submitting": "Logging in…",
       "noAccount": "Don't have an account yet?",
-      "createAccount": "Create an account"
+      "createAccount": "Create an account",
+      "forgot": "Forgot your password?"
     },
     "register": {
       "eyebrow": "Customer portal",
@@ -251,6 +252,43 @@
         "title": "Blade battery certificates",
         "text": "See the digital battery inspection reports for your car."
       }
+    },
+    "google": {
+      "or": "or",
+      "staff": "Staff accounts sign in with their password.",
+      "failed": "We couldn't sign you in with Google. Please try again.",
+      "unavailable": "The service is unavailable right now. Please try again shortly."
+    },
+    "forgot": {
+      "eyebrow": "Account recovery",
+      "title": "Forgot your password",
+      "description": "Enter the email or phone number your account uses and we'll send a reset link to the email address on the account. This works for customers and for staff.",
+      "loginLabel": "Email or phone number",
+      "loginHint": "For example 0944XXXXXX or name@example.com",
+      "required": "Enter your email or phone number.",
+      "submit": "Send reset link",
+      "submitting": "Sending…",
+      "backToLogin": "Back to log in",
+      "sentTitle": "Check your email",
+      "sentText": "If an account matches and has an email address, we've sent it a link to reset the password. The link works once and expires soon. If you can't find it, check your spam folder."
+    },
+    "reset": {
+      "eyebrow": "Account recovery",
+      "title": "Choose a new password",
+      "description": "Enter the new password for your account.",
+      "forAccount": "Account:",
+      "password": "New password",
+      "passwordHint": "At least 8 characters.",
+      "confirm": "Confirm password",
+      "submit": "Save password",
+      "submitting": "Saving…",
+      "tooShort": "The password must be at least 8 characters.",
+      "mismatch": "The two passwords don't match.",
+      "invalidLink": "This reset link is invalid or has expired.",
+      "requestNew": "Request a new link",
+      "doneTitle": "Password changed",
+      "doneText": "You were signed out of every device. Log in now with your new password.",
+      "toLogin": "Log in"
     }
   },
   "catalog": {
