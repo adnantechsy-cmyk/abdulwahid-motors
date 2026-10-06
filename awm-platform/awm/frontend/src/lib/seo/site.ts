@@ -21,5 +21,8 @@ export const otherLocale = (locale: string) => (locale === 'ar' ? 'en' : 'ar');
 /** Brand card used when a page has no photo of its own (see app/og/route.tsx). */
 export const defaultOgImage = (locale: string) => `${SITE}/og?l=${locale === 'ar' ? 'ar' : 'en'}`;
 
+/** Logo for structured data: the dark-text variant, readable on the white background search engines show. */
+export const LOGO_URL = `${SITE}/brand/logo-on-light.svg`;
+
 export const ORGANIZATION_ID = `${SITE}/#organization`;
 export const WEBSITE_ID = `${SITE}/#website`;

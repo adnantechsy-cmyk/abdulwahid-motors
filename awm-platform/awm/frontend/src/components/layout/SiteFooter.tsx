@@ -28,7 +28,7 @@ export async function SiteFooter() {
     <footer className="border-t border-awm-line bg-awm-panel">
       <div className="container-awm grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-4">
-          <Logo />
+          <Logo truncate={false} />
           <p className="max-w-xs text-sm leading-6 text-awm-muted">{t('about')}</p>
         </div>
 

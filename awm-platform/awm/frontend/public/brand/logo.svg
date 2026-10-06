@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+  <defs>
+    <clipPath id="logo-clip"><rect x="0" y="30" width="400" height="100" /></clipPath>
+  </defs>
+  <g stroke="#D9002A" stroke-width="26" fill="none" stroke-linejoin="miter" stroke-miterlimit="4" clip-path="url(#logo-clip)">
+    <polyline points="50,150 110,10 170,150" />
+    <line x1="75" y1="90" x2="145" y2="90" />
+    <polyline points="180,10 215,150 255,40 295,150 330,10" />
+  </g>
+  <text x="190" y="180" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#FFFFFF" text-anchor="middle">شركة عبد الواحد موتورز</text>
+  <text x="190" y="210" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="14" letter-spacing="3" fill="#D1D5DB" text-anchor="middle">ABDUL WAHID MOTORS</text>
+</svg>

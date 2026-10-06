@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 30 320 100" width="320" height="100">
+  <defs>
+    <clipPath id="mark-clip"><rect x="0" y="30" width="400" height="100" /></clipPath>
+  </defs>
+  <g stroke="#D9002A" stroke-width="26" fill="none" stroke-linejoin="miter" stroke-miterlimit="4" clip-path="url(#mark-clip)">
+    <polyline points="50,150 110,10 170,150" />
+    <line x1="75" y1="90" x2="145" y2="90" />
+    <polyline points="180,10 215,150 255,40 295,150 330,10" />
+  </g>
+</svg>

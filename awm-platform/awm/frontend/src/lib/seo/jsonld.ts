@@ -2,7 +2,7 @@ import 'server-only';
 import { getTranslations } from 'next-intl/server';
 import { SERVICE_TYPES } from '@/lib/booking-services';
 import { contactChannels, siteConfig } from '@/lib/site.config';
-import { absoluteUrl, ORGANIZATION_ID, otherLocale, SITE, WEBSITE_ID } from './site';
+import { absoluteUrl, LOGO_URL, ORGANIZATION_ID, otherLocale, SITE, WEBSITE_ID } from './site';
 
 type Json = Record<string, unknown>;
 
@@ -44,6 +44,8 @@ export async function siteJsonLd(locale: string): Promise<Json[]> {
     name: brand('name'),
     alternateName: other('name'),
     url: absoluteUrl(locale),
+    logo: { '@type': 'ImageObject', '@id': `${SITE}/#logo`, url: LOGO_URL, contentUrl: LOGO_URL, width: 400, height: 240, caption: brand('name') },
+    image: LOGO_URL,
     description: footer('about'),
     brand: { '@type': 'Brand', name: 'BYD' },
     areaServed: { '@type': 'Country', name: locale === 'ar' ? 'سوريا' : 'Syria' },
