@@ -26,7 +26,8 @@
     "language": "العربية",
     "languageLabel": "Switch language to Arabic",
     "openMenu": "Open menu",
-    "closeMenu": "Close menu"
+    "closeMenu": "Close menu",
+    "logout": "Log out"
   },
   "footer": {
     "about": "Authorized dealer for BYD electric and hybrid cars, with after-sales service and maintenance to manufacturer standards.",
@@ -154,16 +155,28 @@
       "book": "Book an appointment",
       "periodic": {
         "title": "Periodic service",
-        "points": ["Oil and filter change", "Brake and tyre check", "Vehicle condition report"]
+        "points": [
+          "Oil and filter change",
+          "Brake and tyre check",
+          "Vehicle condition report"
+        ]
       },
       "battery": {
         "title": "Blade battery inspection",
         "badge": "Most requested",
-        "points": ["State-of-health (SOH) measurement", "Cell balance check", "Verifiable digital certificate"]
+        "points": [
+          "State-of-health (SOH) measurement",
+          "Cell balance check",
+          "Verifiable digital certificate"
+        ]
       },
       "adas": {
         "title": "ADAS check and calibration",
-        "points": ["Radar and camera calibration", "Safety systems check", "Software updates"]
+        "points": [
+          "Radar and camera calibration",
+          "Safety systems check",
+          "Software updates"
+        ]
       }
     },
     "cta": {
@@ -171,6 +184,571 @@
       "title": "Book a test drive or a service in minutes",
       "description": "Pick the branch and time that suit you and our team will confirm your appointment.",
       "button": "Book now"
+    }
+  },
+  "auth": {
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "errors": {
+      "generic": "We couldn't complete that. Check your details and try again.",
+      "tooMany": "Too many attempts. Wait a minute and try again.",
+      "unavailable": "The service is unavailable right now. Please try again shortly.",
+      "mismatch": "The two passwords don't match."
+    },
+    "login": {
+      "eyebrow": "Customer portal",
+      "title": "Log in to your account",
+      "description": "Enter your details to follow your reservations, orders and your car's service history.",
+      "loginLabel": "Mobile number or email",
+      "loginHint": "e.g. 0944XXXXXX or name@example.com",
+      "password": "Password",
+      "submit": "Log in",
+      "submitting": "Logging in…",
+      "noAccount": "Don't have an account yet?",
+      "createAccount": "Create an account"
+    },
+    "register": {
+      "eyebrow": "Customer portal",
+      "title": "Create an account",
+      "description": "Create your account to reserve a car and follow service and spare-part orders.",
+      "name": "Full name",
+      "namePlaceholder": "e.g. Ahmad Mohammad",
+      "phone": "Mobile number",
+      "phoneHint": "A Syrian number starting with 09 or +963",
+      "email": "Email",
+      "optional": "Optional",
+      "password": "Password",
+      "passwordHint": "At least 8 characters",
+      "confirm": "Confirm password",
+      "submit": "Create account",
+      "submitting": "Creating account…",
+      "haveAccount": "Already have an account?",
+      "login": "Log in"
+    },
+    "side": {
+      "title": "The Abdul Wahid Motors customer portal",
+      "service": {
+        "title": "Service history and appointments",
+        "text": "Follow your car's service appointments and invoices in one place."
+      },
+      "orders": {
+        "title": "Order tracking",
+        "text": "Follow your car reservation and spare-part orders until handover."
+      },
+      "battery": {
+        "title": "Blade battery certificates",
+        "text": "See the digital battery inspection reports for your car."
+      }
+    }
+  },
+  "catalog": {
+    "results": "{count, plural, =0 {No results} one {# result} other {# results}}",
+    "clear": "Clear filters",
+    "all": "All",
+    "unavailable": "We couldn't load this list right now. Please try again shortly.",
+    "pagination": "Pages",
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page {page}",
+    "vehicles": {
+      "eyebrow": "Showroom",
+      "title": "BYD cars",
+      "description": "Browse electric and hybrid cars and reserve yours with a deposit.",
+      "filtersLabel": "Filter cars",
+      "powertrain": "Powertrain",
+      "status": "Availability",
+      "category": "Category",
+      "empty": "No cars match the selected filters."
+    },
+    "parts": {
+      "eyebrow": "Warehouse",
+      "title": "Genuine spare parts",
+      "description": "Find the right part for your car by name or part number.",
+      "searchLabel": "Name or part number",
+      "searchPlaceholder": "e.g. brake pads",
+      "model": "Model",
+      "modelPlaceholder": "e.g. Seal",
+      "category": "Category",
+      "inStock": "In stock only",
+      "submit": "Search",
+      "empty": "No parts match your search."
+    }
+  },
+  "account": {
+    "title": "My account",
+    "welcome": "Welcome, {name}",
+    "navLabel": "Account sections",
+    "nav": {
+      "overview": "Overview",
+      "orders": "Orders and reservations",
+      "vehicles": "My cars",
+      "invoices": "Invoices",
+      "appointments": "Appointments"
+    },
+    "summary": {
+      "vehicles": "My cars",
+      "activeOrders": "Orders in progress",
+      "openJobCards": "Open service jobs",
+      "unpaidInvoices": "Unpaid invoices",
+      "appointments": "Upcoming appointments"
+    },
+    "viewAll": "View all",
+    "back": "Back",
+    "bookAppointment": "Book a service",
+    "error": {
+      "title": "We couldn't load your data",
+      "text": "Something went wrong loading this page. Please try again.",
+      "retry": "Try again"
+    },
+    "empty": {
+      "orders": "No orders yet.",
+      "vehicles": "No cars are registered to your account yet. Your car appears here after handover.",
+      "invoices": "No invoices.",
+      "appointments": "No appointments.",
+      "history": "There's no service history for this car yet.",
+      "battery": "There are no battery reports for this car yet."
+    },
+    "branch": {
+      "sahnaya": "Sahnaya branch",
+      "kafr_sousa": "Kafr Sousa branch"
+    },
+    "orders": {
+      "title": "Orders and reservations",
+      "recent": "Recent orders",
+      "number": "Order no.",
+      "type": "Type",
+      "status": "Status",
+      "total": "Total",
+      "date": "Date",
+      "open": "View order {number}",
+      "flow": {
+        "vehicle_reservation": "Car reservation",
+        "spare_part": "Spare parts",
+        "maintenance_invoice": "Service invoice"
+      },
+      "statuses": {
+        "pending": "Processing",
+        "awaiting_payment": "Awaiting payment",
+        "paid": "Paid",
+        "processing": "Being prepared",
+        "fulfilled": "Completed",
+        "cancelled": "Cancelled",
+        "failed": "Payment failed",
+        "refunded": "Refunded",
+        "partially_refunded": "Partially refunded"
+      }
+    },
+    "order": {
+      "title": "Order {number}",
+      "placedAt": "Placed on",
+      "paidAt": "Paid on",
+      "pickup": "Pickup branch",
+      "items": "Items",
+      "item": "Item",
+      "quantity": "Qty",
+      "unitPrice": "Unit price",
+      "lineTotal": "Total",
+      "payments": "Payments",
+      "method": "Method",
+      "paymentStatuses": {
+        "pending": "Pending",
+        "requires_action": "Action required",
+        "awaiting_confirmation": "Awaiting confirmation",
+        "captured": "Received",
+        "failed": "Failed",
+        "cancelled": "Cancelled",
+        "refunded": "Refunded",
+        "partially_refunded": "Partially refunded"
+      },
+      "payNow": "Pay now"
+    },
+    "tracking": {
+      "title": "Delivery tracking",
+      "estimated": "Estimated delivery",
+      "note": "Note from the team",
+      "done": "Completed",
+      "current": "Current step",
+      "upcoming": "Upcoming",
+      "pdiTitle": "Pre-delivery inspection",
+      "pdiProgress": "{done} of {total} checks",
+      "sections": {
+        "documents": "Documents",
+        "exterior": "Exterior",
+        "interior": "Interior",
+        "battery": "Battery",
+        "systems": "Systems",
+        "road_test": "Road test"
+      },
+      "itemStatus": {
+        "pending": "Pending",
+        "pass": "OK",
+        "fail": "Needs attention",
+        "na": "Not applicable"
+      }
+    },
+    "vehicles": {
+      "title": "My cars",
+      "plate": "Plate",
+      "vin": "VIN",
+      "color": "Colour",
+      "mileage": "Last odometer reading",
+      "km": "{value} km",
+      "purchased": "Purchased",
+      "warranty": "Warranty until",
+      "underWarranty": "Under warranty",
+      "warrantyEnded": "Warranty ended",
+      "battery": "Latest battery check",
+      "soh": "Battery health {value}%",
+      "nextAppointment": "Next appointment",
+      "details": "Car details",
+      "history": "Service history",
+      "complaint": "Complaint",
+      "workDone": "Work done",
+      "opened": "Opened",
+      "completed": "Completed",
+      "branch": "Branch",
+      "mileageIn": "Odometer at check-in",
+      "invoice": "Invoice {number}",
+      "balance": "Balance",
+      "reports": "Blade battery reports",
+      "viewReport": "View report",
+      "certificate": "Certificate {number}",
+      "valid": "Valid",
+      "invalid": "Expired or revoked",
+      "appointments": "Appointments for this car",
+      "jobStatus": {
+        "pending": "Pending",
+        "in_progress": "In progress",
+        "waiting_parts": "Waiting for parts",
+        "completed": "Completed"
+      }
+    },
+    "invoices": {
+      "title": "Invoices",
+      "number": "Invoice no.",
+      "jobCard": "Job card",
+      "status": "Status",
+      "total": "Total",
+      "paid": "Paid",
+      "balance": "Balance",
+      "issued": "Issued",
+      "due": "Due",
+      "pay": "Add to cart",
+      "cartName": "Service invoice {number}",
+      "statuses": {
+        "unpaid": "Unpaid",
+        "partially_paid": "Partially paid",
+        "paid": "Paid",
+        "void": "Void"
+      }
+    },
+    "appointments": {
+      "title": "Appointments",
+      "number": "Appointment no.",
+      "when": "When",
+      "branch": "Branch",
+      "service": "Service",
+      "vehicle": "Car",
+      "status": "Status",
+      "cancel": "Cancel appointment",
+      "confirmCancel": "Yes, cancel it",
+      "keep": "Keep appointment",
+      "cancelling": "Cancelling…",
+      "cancelFailed": "We couldn't cancel the appointment. Please try again.",
+      "types": {
+        "maintenance": "Maintenance",
+        "repair": "Repair",
+        "diagnostics": "Diagnostics",
+        "warranty": "Warranty",
+        "inspection": "Inspection",
+        "battery_check": "Battery check"
+      },
+      "statuses": {
+        "requested": "Requested",
+        "confirmed": "Confirmed",
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "no_show": "No show"
+      }
+    },
+    "report": {
+      "title": "Blade battery inspection report",
+      "certificate": "Certificate no. {number}",
+      "valid": "Valid certificate",
+      "invalid": "Certificate not valid",
+      "revoked": "This certificate has been revoked",
+      "vehicle": "Car",
+      "vin": "VIN",
+      "mileage": "Mileage",
+      "inspectedAt": "Inspected on",
+      "validUntil": "Valid until",
+      "technician": "Technician",
+      "result": "Result",
+      "soh": "State of health (SOH)",
+      "soc": "State of charge (SOC)",
+      "packVoltage": "Pack voltage",
+      "cellVoltage": "Cell voltage (min / max)",
+      "cellTemp": "Cell temperature (min / max)",
+      "insulation": "Insulation resistance",
+      "cycles": "Charge cycles",
+      "findings": "Findings",
+      "recommendations": "Recommendations",
+      "verify": "Certificate verification link",
+      "results": {
+        "pass": "Healthy",
+        "attention": "Needs monitoring",
+        "fail": "Service required"
+      }
+    }
+  },
+  "detail": {
+    "breadcrumb": "Breadcrumb",
+    "home": "Home",
+    "backToCars": "Cars",
+    "backToParts": "Spare parts",
+    "specs": "Specifications",
+    "description": "Description",
+    "gallery": "Photo gallery",
+    "viewImage": "Show image {n} of {total}",
+    "noImage": "No image",
+    "bookTestDrive": "Book a test drive",
+    "similarCars": "More cars",
+    "similarParts": "Related parts",
+    "available": "In stock: {count}",
+    "unavailable": "Currently unavailable",
+    "category": "Category",
+    "modelYear": "Model year",
+    "bodyType": "Body type",
+    "powertrain": "Powertrain",
+    "branch": "Branch",
+    "status": "Status",
+    "sku": "Part no.",
+    "compatible": "Fits models",
+    "oem": "Genuine OEM part",
+    "units": {
+      "km": "km",
+      "kwh": "kWh",
+      "kw": "kW",
+      "hp": "hp",
+      "nm": "Nm",
+      "kmh": "km/h",
+      "s": "s",
+      "l": "L"
+    },
+    "bodyTypes": {
+      "sedan": "Sedan",
+      "suv": "SUV",
+      "hatchback": "Hatchback",
+      "mpv": "MPV",
+      "coupe": "Coupe",
+      "pickup": "Pickup"
+    },
+    "specNames": {
+      "range_km": "Range",
+      "battery_kwh": "Battery capacity",
+      "seats": "Seats",
+      "power_hp": "Power",
+      "torque_nm": "Torque",
+      "acceleration_0_100_s": "0-100 km/h",
+      "top_speed_kmh": "Top speed",
+      "charging_dc_kw": "DC fast charging",
+      "cargo_l": "Boot space"
+    }
+  },
+  "certificate": {
+    "title": "Blade battery certificate verification",
+    "intro": "This is the public verification page for a certificate issued by Abdul Wahid Motors. Only the certificate details and a partly hidden VIN are shown."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "description": "Review your order and enter your details. You choose how to pay after confirming.",
+    "loading": "Loading your cart…",
+    "empty": "Your cart is empty.",
+    "browseCars": "Browse cars",
+    "browseParts": "Browse spare parts",
+    "syncFailed": "We couldn't verify your cart prices right now.",
+    "retry": "Try again",
+    "dropped": "{count, plural, one {An item that's no longer available was removed from your cart.} other {# items that are no longer available were removed from your cart.}}",
+    "optional": "Optional",
+    "delivery": {
+      "title": "Receiving",
+      "partsMethod": "How do you want to receive spare parts?",
+      "pickup": "Pick up at a branch",
+      "delivery": "Deliver to an address",
+      "branchLabel": "Pickup branch",
+      "branchPlaceholder": "Choose a branch",
+      "city": "City",
+      "address": "Address",
+      "notes": "Delivery notes"
+    },
+    "branches": {
+      "sahnaya": "Sahnaya branch",
+      "kafr_sousa": "Kafr Sousa branch"
+    },
+    "customer": {
+      "title": "Your details",
+      "name": "Full name",
+      "phone": "Mobile number",
+      "phoneHint": "We use it to confirm your order. Keep it: without an account you need it to continue paying.",
+      "email": "Email"
+    },
+    "submit": "Confirm order and continue to payment",
+    "submitting": "Creating your order…",
+    "summary": {
+      "title": "Order summary"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "phone": "Enter a valid mobile number.",
+      "email": "Enter a valid email address.",
+      "branch": "Choose a pickup branch.",
+      "cartChanged": "Your cart changed. Review the order and confirm again.",
+      "tooMany": "Too many attempts. Wait a minute and try again.",
+      "generic": "We couldn't create your order. Please try again shortly.",
+      "codes": {
+        "cart_closed": "An order was already created from this cart. Add your items again.",
+        "cart_empty": "Your cart is empty.",
+        "item_missing": "One of the items is no longer available.",
+        "unavailable": "One of the items is no longer available in the requested quantity.",
+        "currency_changed": "The currency changed. Refresh the page and review your cart."
+      }
+    }
+  },
+  "pay": {
+    "title": "Payment",
+    "description": "Choose how to pay, then complete the payment. Each order is placed and paid separately.",
+    "loading": "Loading…",
+    "order": "Order {number}",
+    "amount": "Amount due",
+    "chooseMethod": "Choose a payment method",
+    "noMethods": "No payment methods are available for this order right now. Contact us to complete payment.",
+    "phone": "Mobile number used for the order",
+    "phoneHint": "It must match the number you entered when confirming the order.",
+    "continue": "Continue",
+    "continuing": "Continuing…",
+    "instructions": "Payment instructions",
+    "reference": "Reference",
+    "resumed": "A payment was already started for this order. Transfer the amount quoting order number {number}, then upload the receipt.",
+    "uploadTitle": "Upload your payment receipt",
+    "file": "Receipt file",
+    "uploadHint": "A JPG or PNG image or a PDF, up to 5 MB.",
+    "upload": "Upload receipt",
+    "uploading": "Uploading…",
+    "uploaded": "Receipt received. Our team will confirm the payment soon, and your order status updates once it's confirmed.",
+    "otherOrders": "Other orders awaiting payment",
+    "otherOrdersHint": "Your cart was split into more than one order. Complete the payment for each.",
+    "pay": "Pay",
+    "viewOrder": "View order in my account",
+    "errors": {
+      "chooseMethod": "Choose a payment method.",
+      "phone": "Enter the mobile number used for the order.",
+      "chooseFile": "Choose the receipt file first.",
+      "fileType": "That file type isn't supported. Use JPG, PNG or PDF.",
+      "fileSize": "The file is larger than 5 MB.",
+      "forbidden": "We couldn't verify you own this order. Check the mobile number used for it.",
+      "tooMany": "Too many attempts. Wait a moment and try again.",
+      "cardUnsupported": "Card payment isn't available yet. Choose another method.",
+      "generic": "That didn't work. Please try again shortly.",
+      "codes": {
+        "gateway_unsupported": "That payment method isn't available for this order.",
+        "order_not_payable": "This order can't be paid any more.",
+        "idempotency_conflict": "We couldn't complete that. Reload the page and try again."
+      }
+    }
+  },
+  "booking": {
+    "title": "Book a service or a test drive",
+    "description": "Choose the service, branch and time that suit you. Our team will contact you to confirm.",
+    "stepService": "1. Choose a service",
+    "stepBranch": "2. Choose a branch",
+    "stepTime": "3. Choose a day and time",
+    "stepVehicle": "4. Your car",
+    "stepContact": "5. Contact details",
+    "services": {
+      "maintenance": {
+        "title": "Periodic service",
+        "text": "Oil and filter change and a general check."
+      },
+      "repair": {
+        "title": "Repair",
+        "text": "Diagnose and fix a fault."
+      },
+      "diagnostics": {
+        "title": "Electronic diagnostics",
+        "text": "Scan the car's computer and systems."
+      },
+      "warranty": {
+        "title": "Warranty service",
+        "text": "Work covered by the dealer warranty."
+      },
+      "inspection": {
+        "title": "Full inspection",
+        "text": "A check before buying or before a trip."
+      },
+      "battery_check": {
+        "title": "Blade battery check",
+        "text": "Measure battery health and get a digital certificate."
+      }
+    },
+    "branches": {
+      "sahnaya": {
+        "title": "Sahnaya branch",
+        "text": "Sahnaya Highway, Damascus"
+      },
+      "kafr_sousa": {
+        "title": "Kafr Sousa branch",
+        "text": "Kafr Sousa, Damascus"
+      }
+    },
+    "pickBranchFirst": "Choose a branch first to see the available times.",
+    "pickDay": "Pick a day",
+    "pickTime": "Available times",
+    "slotsLoading": "Loading times…",
+    "slotsEmpty": "No times are available on this day (it may be a day off). Try another day.",
+    "slotsError": "We couldn't load the times. Please try again.",
+    "slotFull": "Full",
+    "slotsLeft": "{count} left",
+    "vehicleOwned": "Choose from your cars",
+    "vehicleOther": "Another car",
+    "vehicleDescription": "Describe the car",
+    "vehicleDescriptionHint": "e.g. BYD Seal 2025, or the plate number",
+    "name": "Name",
+    "phone": "Mobile number",
+    "phoneHint": "We'll call this number to confirm the appointment.",
+    "notes": "Notes",
+    "notesHint": "Anything the technician should know before the visit.",
+    "optional": "Optional",
+    "summary": "Booking summary",
+    "summaryEmpty": "Not chosen yet",
+    "summaryService": "Service",
+    "summaryBranch": "Branch",
+    "summaryWhen": "When",
+    "summaryVehicle": "Car",
+    "submit": "Confirm booking",
+    "submitting": "Booking…",
+    "loginHint": "Have an account? Log in to pick your car and link the appointment to your account.",
+    "errors": {
+      "service": "Choose a service.",
+      "branch": "Choose a branch.",
+      "slot": "Choose a time.",
+      "name": "Enter your name.",
+      "phone": "Enter a valid mobile number.",
+      "tooMany": "Too many attempts. Wait a minute and try again.",
+      "generic": "We couldn't book the appointment. Please try again shortly.",
+      "codes": {
+        "slot_full": "That time was just taken. Choose another time.",
+        "slot_invalid": "That time isn't available any more. Choose another time.",
+        "vehicle_not_owned": "That car isn't registered to your account."
+      }
+    },
+    "done": {
+      "title": "Booking request received",
+      "text": "Our team will contact you to confirm. Keep your booking number.",
+      "number": "Booking number",
+      "status": "Status",
+      "pending": "Awaiting confirmation",
+      "myAppointments": "My appointments",
+      "another": "Book another appointment"
     }
   }
 }

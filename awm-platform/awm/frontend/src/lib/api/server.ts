@@ -1,6 +1,13 @@
 import 'server-only';
 
-const BASE = (process.env.API_URL_INTERNAL ?? process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8080/api/v1').replace(/\/$/, '');
+export const API_BASE = (process.env.API_URL_INTERNAL ?? process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8080/api/v1').replace(/\/$/, '');
+
+/** Non-404 failure from Laravel. Callers can branch on status (e.g. 401 = expired session). */
+export class ApiHttpError extends Error {
+  constructor(public status: number, message: string) {
+    super(message);
+  }
+}
 
 type Options = {
   locale?: string;
@@ -16,7 +23,7 @@ type Options = {
  * Returns null on 404 so pages can call notFound(); throws on other errors so they surface.
  */
 export async function apiGet<T>(path: string, { locale, tags, revalidate = 300, token }: Options = {}): Promise<T | null> {
-  const res = await fetch(`${BASE}${path}`, {
+  const res = await fetch(`${API_BASE}${path}`, {
     headers: {
       Accept: 'application/json',
       ...(locale ? { 'X-Locale': locale } : {}),
@@ -28,7 +35,7 @@ export async function apiGet<T>(path: string, { locale, tags, revalidate = 300, 
   });
 
   if (res.status === 404) return null;
-  if (!res.ok) throw new Error(`API ${res.status} on GET ${path}`);
+  if (!res.ok) throw new ApiHttpError(res.status, `API ${res.status} on GET ${path}`);
 
   return (await res.json()) as T;
 }

@@ -5,6 +5,8 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Tag } from '@/components/ui/Tag';
 
 const PACKAGES = ['periodic', 'battery', 'adas'] as const;
+/** Which booking service each package pre-selects. */
+const BOOKING_SERVICE = { periodic: 'maintenance', battery: 'battery_check', adas: 'diagnostics' } as const;
 
 /** Marketing copy only. Prices are deliberately absent until the service price list exists in the API. */
 export async function ServicePackages() {
@@ -29,7 +31,7 @@ export async function ServicePackages() {
                   </li>
                 ))}
               </ul>
-              <ButtonLink href="/service-booking" variant={featured ? 'primary' : 'dark'} size="md" className="mt-auto">{t('book')}</ButtonLink>
+              <ButtonLink href={{ pathname: '/service-booking', query: { service: BOOKING_SERVICE[key] } }} variant={featured ? 'primary' : 'dark'} size="md" className="mt-auto">{t('book')}</ButtonLink>
             </li>
           );
         })}
