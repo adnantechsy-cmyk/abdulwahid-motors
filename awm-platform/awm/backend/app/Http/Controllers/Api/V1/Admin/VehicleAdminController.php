@@ -55,6 +55,7 @@ class VehicleAdminController extends Controller
             'cover_url' => $vehicle->coverUrl(),
             'brochure_url' => $vehicle->brochureUrl(),
             'specs' => (object) ($vehicle->specs ?? []),
+            'features' => (object) ($vehicle->features ?? []),
             'gallery' => collect($vehicle->gallery ?? [])->map(fn ($p) => ['path' => $p, 'url' => Storage::disk('public')->url($p)])->values(),
         ];
     }
@@ -241,6 +242,18 @@ class VehicleAdminController extends Controller
                 }
             }],
             'specs.*' => ['nullable', 'string', 'max:80'],
+            // Feature lists shown on the car page, one "Label: value" line each, per section and language.
+            'features' => ['nullable', 'array', function (string $attribute, mixed $value, \Closure $fail) {
+                foreach (array_keys((array) $value) as $section) {
+                    if (! in_array($section, ['chassis', 'exterior', 'interior', 'safety'], true)) {
+                        $fail("Unknown feature section \"{$section}\".");
+                    }
+                }
+            }],
+            'features.*.ar' => ['nullable', 'array', 'max:30'],
+            'features.*.ar.*' => ['string', 'max:300'],
+            'features.*.en' => ['nullable', 'array', 'max:30'],
+            'features.*.en.*' => ['string', 'max:300'],
         ]);
     }
 }

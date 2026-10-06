@@ -6,6 +6,7 @@ import { buttonClasses } from '@/components/ui/Button';
 import { TextField } from '@/components/ui/Field';
 import { useRouter } from '@/i18n/navigation';
 import type { AdminVehicleDetail, PartCategory } from '@/types/admin';
+import { FeaturesEditor, featuresFromText, featuresToText } from './FeaturesEditor';
 import { SpecsEditor, specsFromRows, type SpecRow } from './SpecsEditor';
 import { useAdminRun } from './useAdminRun';
 
@@ -26,6 +27,7 @@ export function VehicleForm({ vehicle, categories }: Props) {
   const [saved, setSaved] = useState(false);
   const [specRows, setSpecRows] = useState<SpecRow[]>(() => Object.entries(vehicle?.specs ?? {}).map(([key, value]) => ({ key, value: String(value) })));
   const [specError, setSpecError] = useState<string | null>(null);
+  const [featureText, setFeatureText] = useState(() => featuresToText(vehicle?.features));
   const reserved = vehicle?.status === 'reserved';
 
   const [f, setF] = useState({
@@ -62,6 +64,7 @@ export function VehicleForm({ vehicle, categories }: Props) {
 
     const body = {
       specs: parsed.specs,
+      features: featuresFromText(featureText),
       sku: f.sku.trim() || null,
       vin: f.vin.trim() || null,
       name: { ar: f.name_ar.trim(), en: f.name_en.trim() },
@@ -173,6 +176,11 @@ export function VehicleForm({ vehicle, categories }: Props) {
       <fieldset disabled={pending} className="min-w-0">
         <legend className="mb-3 text-sm font-extrabold">{t('specsTitle')}</legend>
         <SpecsEditor rows={specRows} onChange={(rows) => { setSpecRows(rows); setSaved(false); }} error={specError} />
+      </fieldset>
+
+      <fieldset disabled={pending} className="min-w-0">
+        <legend className="mb-3 text-sm font-extrabold">{t('featuresTitle')}</legend>
+        <FeaturesEditor value={featureText} onChange={(next) => { setFeatureText(next); setSaved(false); }} />
       </fieldset>
 
       <fieldset disabled={pending} className="flex min-w-0 flex-col gap-5">

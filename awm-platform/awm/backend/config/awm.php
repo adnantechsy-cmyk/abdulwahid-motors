@@ -30,7 +30,7 @@ return [
         ],
         'kafr_sousa' => [
             'name' => ['ar' => 'عبد الواحد موتورز - فرع كفرسوسة', 'en' => 'Abdul Wahid Motors - Kafr Sousa Branch'],
-            'street' => ['ar' => 'كفرسوسة، بالقرب من مطعم زمان', 'en' => 'Kafr Sousa, near Zaman Restaurant'],
+            'street' => ['ar' => 'كفرسوسة، بالقرب من مطعم رومان', 'en' => 'Kafr Sousa, near Roman Restaurant'],
             'city' => ['ar' => 'دمشق', 'en' => 'Damascus'],
         ],
     ],
