@@ -1173,7 +1173,9 @@
       "categories": "Categories",
       "security": "Security",
       "delivery": "Car handover",
-      "battery": "Battery certificates"
+      "battery": "Battery certificates",
+      "customers": "Customers",
+      "messages": "Messages"
     },
     "signedInAs": "Signed in as {name}",
     "viewSite": "View site",
@@ -1243,6 +1245,15 @@
       "battery": {
         "title": "Battery certificates",
         "hint": "Blade battery health reports for customers' cars."
+      },
+      "customers": {
+        "title": "Customers",
+        "hint": "Find customers, open accounts and register their cars."
+      },
+      "messages": {
+        "title": "Website messages",
+        "hint": "Questions sent through the contact form.",
+        "open": "{count} to answer"
       }
     },
     "payments": {
@@ -1394,7 +1405,8 @@
         "cancelled": "Cancelled",
         "completed": "Completed",
         "no_show": "No show"
-      }
+      },
+      "linkCustomer": "Link customer and car"
     },
     "optional": "Optional",
     "working": "Working…",
@@ -1496,7 +1508,11 @@
       "cancelYes": "Yes, cancel order",
       "notPayable": "This order can no longer take a payment. Refresh the page.",
       "badTransition": "That change isn't allowed for this order. Refresh the page.",
-      "notCancellable": "Only unpaid orders can be cancelled."
+      "notCancellable": "Only unpaid orders can be cancelled.",
+      "account": "Account",
+      "hasAccount": "Linked to a customer account",
+      "noAccount": "Guest order, no account.",
+      "linkAccount": "Link to a customer"
     },
     "parts": {
       "title": "Spare parts inventory",
@@ -2072,6 +2088,141 @@
         "backToList": "Back to certificates",
         "issuedHint": "The customer sees it in their account, and anyone can verify it with the code or the QR code on the page."
       }
+    },
+    "messages": {
+      "title": "Website messages",
+      "intro": "Everything sent through the contact form is kept here, even if the email could not be delivered. Call or write back, then mark it as answered.",
+      "statusLabel": "Status",
+      "statuses": {
+        "open": "To answer",
+        "handled": "Answered",
+        "all": "All"
+      },
+      "topicLabel": "Topic",
+      "allTopics": "All topics",
+      "topics": {
+        "info": "General enquiry",
+        "sales": "Car sales",
+        "parts": "Spare parts",
+        "management": "Management and investment"
+      },
+      "empty": "No messages here.",
+      "inArabic": "written in Arabic",
+      "inEnglish": "written in English",
+      "notMailed": "The email to the team failed: this is the only copy.",
+      "markHandled": "Mark as answered",
+      "reopen": "Reopen",
+      "handledAt": "Answered {when}",
+      "whatsapp": "WhatsApp",
+      "opensNewTab": "opens in a new tab"
+    },
+    "customers": {
+      "title": "Customers",
+      "intro": "Customers with an account on the website. Open an account for someone who booked as a guest, and register the cars they own so we can open job cards and issue battery certificates.",
+      "add": "Add a customer",
+      "search": "Name, phone or email",
+      "searchLabel": "Search customers",
+      "searchButton": "Search",
+      "listTitle": "Customers",
+      "empty": "No customers match.",
+      "cols": {
+        "name": "Name",
+        "phone": "Phone",
+        "email": "Email",
+        "cars": "Cars",
+        "orders": "Orders",
+        "since": "Since"
+      },
+      "disabled": "Account disabled",
+      "backToList": "Back to customers",
+      "newTitle": "Add a customer",
+      "newIntro": "Open an account for a customer who booked or ordered as a guest. They sign in with their phone number and the temporary password you will give them.",
+      "details": "Customer details",
+      "since": "customer since {date}",
+      "cars": "Cars ({count})",
+      "noCars": "No cars registered yet.",
+      "carCols": {
+        "car": "Car",
+        "plate": "Plate",
+        "vin": "VIN",
+        "mileage": "Odometer",
+        "warranty": "Warranty until",
+        "actions": "Action"
+      },
+      "issueBattery": "Issue battery certificate",
+      "addCar": "Register a car",
+      "recentOrders": "Recent orders",
+      "noOrders": "No orders.",
+      "recentAppointments": "Recent bookings",
+      "noAppointments": "No bookings.",
+      "form": {
+        "name": "Full name",
+        "phone": "Mobile number",
+        "phoneHint": "Used to sign in. 09XXXXXXXX or +9639XXXXXXXX.",
+        "email": "Email",
+        "emailHint": "Needed for \"forgot password\" emails.",
+        "language": "Language",
+        "create": "Open the account",
+        "errors": {
+          "name": "Enter the customer's name.",
+          "phone": "Enter a valid mobile number.",
+          "email": "That email address looks wrong.",
+          "taken": "An account with this phone or email already exists. Search for it instead."
+        },
+        "createdTitle": "Account opened for {name}",
+        "createdText": "Give the customer these sign-in details. They can change the password after signing in.",
+        "loginWith": "Sign in with",
+        "tempPassword": "Temporary password",
+        "shownOnce": "This password is shown only now and is not stored anywhere readable. If it is lost, the customer can use \"Forgot password\" (needs an email) or you can open the account again with a new phone number.",
+        "openCustomer": "Open the customer",
+        "copy": "Copy the password"
+      },
+      "car": {
+        "intro": "Cars bought from us are added automatically when handed over. Use this for a car the customer owns that was bought elsewhere, or to correct a record.",
+        "model": "Model",
+        "modelHint": "For example Seal 06, Song Plus.",
+        "year": "Model year",
+        "color": "Colour",
+        "vin": "VIN",
+        "vinHint": "17 letters and digits.",
+        "plate": "Plate number",
+        "mileage": "Odometer (km)",
+        "purchased": "Purchase date",
+        "warranty": "Warranty until",
+        "add": "Register the car",
+        "added": "Car registered.",
+        "errors": {
+          "model": "Enter the car model.",
+          "vin": "A VIN has 17 letters and digits."
+        }
+      }
+    },
+    "link": {
+      "searchTitle": "Find the customer",
+      "searchLabel": "Name, phone or email",
+      "searchButton": "Search",
+      "searchHint": "Search by the phone number the customer gave.",
+      "choose": "Choose",
+      "noMatch": "No customer matches this search.",
+      "noAccountYet": "The customer has no account yet?",
+      "openAccount": "Open an account for them",
+      "backToAppointments": "Back to appointments",
+      "appointmentTitle": "Link a booking to a customer",
+      "appointmentIntro": "Linking lets you check the customer in and open a job card. Pick the customer, then the car the booking is for.",
+      "chosenTitle": "Link to {name}",
+      "whichCar": "Which car is {name} bringing?",
+      "noCar": "No car yet (link the customer only)",
+      "noCarsYet": "This customer has no registered car yet.",
+      "addCarFirst": "Register their car first",
+      "carHint": "A job card needs both a customer and a car. You can link the customer now and the car later.",
+      "linkAppointment": "Link the booking",
+      "backToOrder": "Back to the order",
+      "orderTitle": "Link order to a customer",
+      "orderIntro": "This order was placed as a guest: {name}, {phone}. Attach it to the customer's account so they can follow it and the car lands in their cars when handed over.",
+      "orderAsk": "Attach order {order} to {name}'s account?",
+      "orderHint": "This cannot be undone here.",
+      "linkOrder": "Attach the order",
+      "alreadyLinked": "This order already belongs to a customer account."
     }
   },
   "contactForm": {

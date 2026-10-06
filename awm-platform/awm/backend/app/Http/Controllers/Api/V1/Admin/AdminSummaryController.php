@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\Admin;
 use App\Enums\JobCardStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\ContactMessage;
 use App\Models\JobCard;
 use App\Models\Order;
 use App\Models\Payment;
@@ -38,6 +39,10 @@ class AdminSummaryController extends Controller
 
         if ($user->can('parts.manage') || $user->can('stock.adjust')) {
             $out['parts_low_stock'] = SparePart::where('is_published', true)->lowStock()->count();
+        }
+
+        if ($user->can('customers.manage')) {
+            $out['contact_open'] = ContactMessage::whereNull('handled_at')->count();
         }
 
         if ($user->can('pdi.manage')) {

@@ -49,6 +49,15 @@ export default async function OrderDetailPage({ params }: Props) {
             <dt className="font-bold">{t('name')}</dt><dd>{order.customer.name ?? '—'}</dd>
             <dt className="font-bold">{t('phone')}</dt><dd className="font-mono" dir="ltr">{order.customer.phone ?? '—'}</dd>
             <dt className="font-bold">{t('email')}</dt><dd dir="ltr" className="break-all">{order.customer.email ?? '—'}</dd>
+            <dt className="font-bold">{t('account')}</dt>
+            <dd>
+              {order.has_account ? t('hasAccount') : (
+                <>
+                  {t('noAccount')}{' '}
+                  <Link href={`/admin/orders/${order.number}/link` as '/admin/orders'} className="font-bold text-awm-red underline underline-offset-4">{t('linkAccount')}</Link>
+                </>
+              )}
+            </dd>
             {order.branch_pickup && (<><dt className="font-bold">{t('pickupBranch')}</dt><dd>{ta.has(`branch.${order.branch_pickup}`) ? ta(`branch.${order.branch_pickup}`) : order.branch_pickup}</dd></>)}
             {address && (<><dt className="font-bold">{t('address')}</dt><dd>{address}</dd></>)}
           </dl>

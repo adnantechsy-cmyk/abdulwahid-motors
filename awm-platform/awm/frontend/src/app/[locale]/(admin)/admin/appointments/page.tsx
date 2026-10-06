@@ -75,6 +75,11 @@ export default async function AdminAppointmentsPage({ params, searchParams }: Pr
                         <span className="block font-bold">{a.contact_name ?? (a.user_id ? '' : t('guest'))}</span>
                         {a.contact_phone && <span className="block font-mono text-xs text-awm-muted" dir="ltr">{a.contact_phone}</span>}
                         {!a.user_id && a.contact_name && <span className="block text-xs text-awm-muted">{t('guest')}</span>}
+                        {(a.status === 'requested' || a.status === 'confirmed') && (!a.user_id || !a.customer_vehicle_id) && (
+                          <Link href={{ pathname: `/admin/appointments/${a.id}/link` as '/admin/appointments', query: { n: a.number, ...(a.contact_phone ? { q: a.contact_phone } : {}), ...(a.contact_name ? { name: a.contact_name } : {}) } }} className="mt-1 inline-block text-xs font-bold text-awm-red underline underline-offset-4">
+                            {t('linkCustomer')}<span className="sr-only"> {a.number}</span>
+                          </Link>
+                        )}
                       </td>
                       <td className={td}>{a.vehicle ?? '—'}</td>
                       <td className={td}><StatusPill code={a.status} label={label('statuses', a.status)} /></td>

@@ -21,7 +21,7 @@ export default async function AdminOverview({ params }: Props) {
 
   const open = s.job_cards ? s.job_cards.pending + s.job_cards.in_progress + s.job_cards.waiting_parts : null;
 
-  const cards: { href: '/admin/delivery' | '/admin/battery' | '/admin/orders' | '/admin/vehicles' | '/admin/categories' | '/admin/parts' | '/admin/payments' | '/admin/job-cards' | '/admin/appointments'; icon: IconName; title: string; hint?: string; lines: string[] }[] = [];
+  const cards: { href: '/admin/messages' | '/admin/customers' | '/admin/delivery' | '/admin/battery' | '/admin/orders' | '/admin/vehicles' | '/admin/categories' | '/admin/parts' | '/admin/payments' | '/admin/job-cards' | '/admin/appointments'; icon: IconName; title: string; hint?: string; lines: string[] }[] = [];
   if (can(user, 'orders.manage')) {
     cards.push({
       href: '/admin/orders',
@@ -33,6 +33,10 @@ export default async function AdminOverview({ params }: Props) {
         ...(s.orders_to_fulfil != null ? [t('orders.toFulfil', { count: n(s.orders_to_fulfil) })] : []),
       ],
     });
+  }
+  if (can(user, 'customers.manage')) {
+    cards.push({ href: '/admin/messages', icon: 'headset', title: t('messages.title'), hint: t('messages.hint'), lines: s.contact_open != null ? [t('messages.open', { count: n(s.contact_open) })] : [] });
+    cards.push({ href: '/admin/customers', icon: 'shield', title: t('customers.title'), hint: t('customers.hint'), lines: [] });
   }
   if (can(user, 'pdi.manage')) {
     cards.push({
