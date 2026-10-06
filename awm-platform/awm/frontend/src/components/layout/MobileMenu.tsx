@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { buttonClasses } from '@/components/ui/Button';
+import { AuthMenuLinks, type AuthLabels } from './AuthLinks';
 import { NavLinks, type NavItem } from './NavLinks';
 
 type Props = {
@@ -10,13 +11,12 @@ type Props = {
   navLabel: string;
   openLabel: string;
   closeLabel: string;
-  login: { href: string; label: string };
-  register: { href: string; label: string };
+  auth: AuthLabels;
   testDrive: { href: string; label: string };
 };
 
 /** Disclosure panel for < lg screens. Escape closes it and returns focus to the toggle. */
-export function MobileMenu({ items, navLabel, openLabel, closeLabel, login, register, testDrive }: Props) {
+export function MobileMenu({ items, navLabel, openLabel, closeLabel, auth, testDrive }: Props) {
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
 
@@ -54,10 +54,7 @@ export function MobileMenu({ items, navLabel, openLabel, closeLabel, login, regi
             <NavLinks items={items} label={navLabel} orientation="column" onNavigate={() => setOpen(false)} />
             <div className="flex flex-col gap-2 border-t border-awm-line pt-4">
               <Link href={testDrive.href} onClick={() => setOpen(false)} className={buttonClasses('primary', 'md')}>{testDrive.label}</Link>
-              <div className="grid grid-cols-2 gap-2">
-                <Link href={login.href} onClick={() => setOpen(false)} className={buttonClasses('outline', 'md')}>{login.label}</Link>
-                <Link href={register.href} onClick={() => setOpen(false)} className={buttonClasses('outline', 'md')}>{register.label}</Link>
-              </div>
+              <AuthMenuLinks labels={auth} onNavigate={() => setOpen(false)} />
             </div>
           </div>
         </div>

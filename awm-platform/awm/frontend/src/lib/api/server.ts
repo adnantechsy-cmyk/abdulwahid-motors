@@ -1,6 +1,6 @@
 import 'server-only';
 
-const BASE = (process.env.API_URL_INTERNAL ?? process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8080/api/v1').replace(/\/$/, '');
+export const API_BASE = (process.env.API_URL_INTERNAL ?? process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8080/api/v1').replace(/\/$/, '');
 
 type Options = {
   locale?: string;
@@ -16,7 +16,7 @@ type Options = {
  * Returns null on 404 so pages can call notFound(); throws on other errors so they surface.
  */
 export async function apiGet<T>(path: string, { locale, tags, revalidate = 300, token }: Options = {}): Promise<T | null> {
-  const res = await fetch(`${BASE}${path}`, {
+  const res = await fetch(`${API_BASE}${path}`, {
     headers: {
       Accept: 'application/json',
       ...(locale ? { 'X-Locale': locale } : {}),

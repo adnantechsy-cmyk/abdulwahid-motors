@@ -1,7 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { CartButton } from '@/components/cart/CartButton';
 import { ButtonLink } from '@/components/ui/Button';
-import { Link } from '@/i18n/navigation';
+import { AuthLinks } from './AuthLinks';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { Logo } from './Logo';
 import { MobileMenu } from './MobileMenu';
@@ -20,8 +20,7 @@ export async function SiteHeader() {
     { href: '/contact', label: t('contact') },
   ];
 
-  const login = { href: '/login', label: h('login') };
-  const register = { href: '/register', label: h('register') };
+  const auth = { login: h('login'), register: h('register'), logout: h('logout') };
   const testDrive = { href: '/service-booking', label: h('bookTestDrive') };
 
   return (
@@ -36,18 +35,14 @@ export async function SiteHeader() {
         <div className="flex items-center gap-2">
           <CartButton />
           <LocaleSwitcher label={h('languageLabel')} text={h('language')} />
-          <div className="hidden items-center gap-2 xl:flex">
-            <Link href={login.href} className="px-3 py-2 text-sm font-bold hover:text-awm-red">{login.label}</Link>
-            <ButtonLink href={register.href} variant="outline" size="sm">{register.label}</ButtonLink>
-          </div>
+          <AuthLinks labels={auth} />
           <ButtonLink href={testDrive.href} size="sm" className="max-md:hidden">{testDrive.label}</ButtonLink>
           <MobileMenu
             items={items}
             navLabel={t('label')}
             openLabel={h('openMenu')}
             closeLabel={h('closeMenu')}
-            login={login}
-            register={register}
+            auth={auth}
             testDrive={testDrive}
           />
         </div>
