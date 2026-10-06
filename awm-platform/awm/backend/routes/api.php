@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Account\AccountController;
+use App\Http\Controllers\Api\V1\Admin\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Admin\AppointmentAdminController;
 use App\Http\Controllers\Api\V1\Admin\BatteryInspectionAdminController;
 use App\Http\Controllers\Api\V1\Admin\CategoryAdminController;
+use App\Http\Controllers\Api\V1\Admin\JobCardAdminController;
+use App\Http\Controllers\Api\V1\Admin\PaymentAdminController;
 use App\Http\Controllers\Api\V1\Admin\PdiAdminController;
 use App\Http\Controllers\Api\V1\Admin\SeoAdminController;
 use App\Http\Controllers\Api\V1\AppointmentController;
@@ -74,9 +77,22 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
 
     // ---- Admin ----
     Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
+        Route::get('summary', AdminSummaryController::class)->middleware('permission:dashboard.view');
+
         Route::middleware('permission:payments.confirm')->group(function () {
+            Route::get('payments', [PaymentAdminController::class, 'index']);
+            Route::get('payments/{uuid}/proof', [PaymentAdminController::class, 'proof']);
             Route::post('payments/{uuid}/confirm', [PaymentController::class, 'confirm']);
             Route::post('payments/{uuid}/reject', [PaymentController::class, 'reject']);
+        });
+
+        // Workshop board: technicians work cards, only job_cards.manage can assign them.
+        Route::middleware('permission:job_cards.work|job_cards.manage')->group(function () {
+            Route::get('job-cards', [JobCardAdminController::class, 'index']);
+            Route::get('technicians', [JobCardAdminController::class, 'technicians']);
+            Route::put('job-cards/{card}/status', [JobCardAdminController::class, 'status']);
+            Route::post('job-cards/{card}/complete', [JobCardAdminController::class, 'complete']);
+            Route::put('job-cards/{card}/technician', [JobCardAdminController::class, 'assign'])->middleware('permission:job_cards.manage');
         });
 
         Route::middleware('permission:seo.manage')->group(function () {

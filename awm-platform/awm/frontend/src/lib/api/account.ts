@@ -12,9 +12,9 @@ import { ApiHttpError, apiGet } from './server';
  * before showing the login form. Redirecting straight to /login would loop, because that page
  * skips the form whenever a cookie is present.
  */
-export async function accountGet<T>(path: string, locale: string): Promise<T | null> {
+export async function accountGet<T>(path: string, locale: string, area: 'account' | 'admin' = 'account'): Promise<T | null> {
   const token = (await cookies()).get(AUTH_COOKIE)?.value;
-  const home = `/${locale}/account`;
+  const home = `/${locale}/${area}`;
   if (!token) redirect(`/${locale}/login?next=${encodeURIComponent(home)}`);
 
   try {

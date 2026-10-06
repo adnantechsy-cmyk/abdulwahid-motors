@@ -1015,5 +1015,207 @@
     "code": "Error 404",
     "home": "Back to the home page",
     "links": "Sections that may help"
+  },
+  "admin": {
+    "title": "Admin",
+    "navLabel": "Admin sections",
+    "nav": {
+      "overview": "Overview",
+      "payments": "Payment confirmation",
+      "jobCards": "Job cards",
+      "appointments": "Appointments"
+    },
+    "signedInAs": "Signed in as {name}",
+    "viewSite": "View site",
+    "logout": "Log out",
+    "back": "Back",
+    "yes": "Yes",
+    "forbidden": {
+      "title": "This area is for staff only",
+      "text": "Your account doesn't have permission to open the admin area. If you work here, ask the manager to enable your access.",
+      "account": "Go to my account",
+      "site": "Back to the site"
+    },
+    "errors": {
+      "generic": "That didn't work. Please try again.",
+      "forbidden": "You don't have permission to do that.",
+      "unavailable": "The service is unavailable right now. Please try again shortly.",
+      "reload": "We couldn't load the data. Reload the page."
+    },
+    "branch": {
+      "sahnaya": "Sahnaya branch",
+      "kafr_sousa": "Kafr Sousa branch"
+    },
+    "overview": {
+      "title": "Overview",
+      "welcome": "Welcome, {name}",
+      "none": "No sections are available for your account yet.",
+      "payments": {
+        "title": "Payments awaiting confirmation",
+        "hint": "Bank transfers and mobile wallet payments that need their receipt checked."
+      },
+      "jobCards": {
+        "title": "Job cards",
+        "hint": "Open work in the workshop.",
+        "open": "{count} open"
+      },
+      "appointments": {
+        "title": "Appointments",
+        "requested": "{count} awaiting confirmation",
+        "today": "{count} today"
+      },
+      "open": "Open"
+    },
+    "payments": {
+      "title": "Payment confirmation",
+      "intro": "Bank transfers and mobile wallet payments are confirmed by hand. Compare the receipt, the amount and the order number before you confirm: confirming marks the order as paid and can't be undone from here.",
+      "tabs": {
+        "awaiting_confirmation": "Awaiting confirmation",
+        "captured": "Confirmed",
+        "failed": "Rejected or failed"
+      },
+      "tabsLabel": "Payment status",
+      "empty": {
+        "awaiting_confirmation": "No payments are waiting for confirmation.",
+        "captured": "No confirmed payments yet.",
+        "failed": "No rejected or failed payments."
+      },
+      "cols": {
+        "order": "Order",
+        "customer": "Customer",
+        "method": "Method",
+        "amount": "Amount",
+        "when": "Submitted",
+        "receipt": "Receipt",
+        "actions": "Action"
+      },
+      "flow": {
+        "vehicle_reservation": "Car reservation",
+        "spare_part": "Spare parts",
+        "maintenance_invoice": "Service invoice"
+      },
+      "receipt": {
+        "view": "View receipt",
+        "none": "No receipt",
+        "opens": "opens in a new tab"
+      },
+      "pickup": "Pickup: {branch}",
+      "confirm": "Confirm payment",
+      "confirmAsk": "Confirm receipt of {amount} for order {order}?",
+      "confirmYes": "Yes, confirm payment",
+      "confirming": "Confirming…",
+      "reject": "Reject",
+      "rejectReason": "Reason for rejecting",
+      "rejectHint": "Visible to the team; not sent to the customer automatically.",
+      "rejectYes": "Reject payment",
+      "rejecting": "Rejecting…",
+      "reasonRequired": "Write the reason for rejecting.",
+      "done": {
+        "captured": "Payment confirmed.",
+        "failed": "Payment rejected."
+      },
+      "failure": "Reason: {reason}",
+      "confirmedAt": "Confirmed {when}",
+      "badState": "This payment is no longer awaiting confirmation. Refresh the page."
+    },
+    "jobCards": {
+      "title": "Job cards",
+      "intro": "Follow the workshop: start work, pause it while waiting for parts, or complete it to issue an invoice the customer pays on the website.",
+      "filters": "Filter cards",
+      "allBranches": "All branches",
+      "mine": "My cards only",
+      "columns": {
+        "pending": "Pending",
+        "in_progress": "In progress",
+        "waiting_parts": "Waiting for parts",
+        "completed": "Completed (last 7 days)"
+      },
+      "emptyColumn": "No cards.",
+      "customer": "Customer",
+      "vehicle": "Car",
+      "service": "Service",
+      "complaint": "Complaint",
+      "scheduled": "Scheduled",
+      "mileage": "Odometer: {value} km",
+      "technician": "Technician",
+      "unassigned": "Unassigned",
+      "invoice": "Invoice {number}",
+      "actions": {
+        "start": "Start work",
+        "wait_parts": "Waiting for parts",
+        "resume": "Resume",
+        "complete": "Complete and invoice"
+      },
+      "complete": {
+        "title": "Complete card {number}",
+        "labor": "Labour charge",
+        "currency": "Currency",
+        "submit": "Complete and issue invoice",
+        "cancel": "Cancel",
+        "hint": "Parts used on the job are added to the invoice automatically.",
+        "invalid": "Enter a valid amount."
+      },
+      "assign": {
+        "label": "Assign technician",
+        "none": "No technician",
+        "saving": "Saving…"
+      },
+      "busy": "Working…",
+      "serviceTypes": {
+        "maintenance": "Maintenance",
+        "repair": "Repair",
+        "diagnostics": "Diagnostics",
+        "warranty": "Warranty",
+        "inspection": "Inspection",
+        "battery_check": "Battery check"
+      }
+    },
+    "appointments": {
+      "title": "Appointments",
+      "intro": "See booking requests and confirm or cancel them. When the customer arrives, \"Check in\" opens a job card (the appointment must be linked to a customer account and car).",
+      "tabsLabel": "Appointment status",
+      "tabs": {
+        "requested": "Awaiting confirmation",
+        "confirmed": "Confirmed",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      },
+      "empty": "No appointments with this status.",
+      "cols": {
+        "number": "No.",
+        "when": "When",
+        "branch": "Branch",
+        "service": "Service",
+        "customer": "Customer",
+        "vehicle": "Car",
+        "status": "Status",
+        "actions": "Action"
+      },
+      "guest": "Guest (no account)",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "noShow": "No show",
+      "checkIn": "Check in",
+      "checkedIn": "Job card {number} opened.",
+      "viewBoard": "View job cards",
+      "needsLink": "Link the appointment to a customer account and car first. This screen can't link them yet.",
+      "askCancel": "Cancel this appointment?",
+      "askNoShow": "Record that the customer didn't come?",
+      "types": {
+        "maintenance": "Maintenance",
+        "repair": "Repair",
+        "diagnostics": "Diagnostics",
+        "warranty": "Warranty",
+        "inspection": "Inspection",
+        "battery_check": "Battery check"
+      },
+      "statuses": {
+        "requested": "Requested",
+        "confirmed": "Confirmed",
+        "cancelled": "Cancelled",
+        "completed": "Completed",
+        "no_show": "No show"
+      }
+    }
   }
 }
