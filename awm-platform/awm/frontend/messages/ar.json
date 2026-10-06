@@ -499,5 +499,63 @@
         "fail": "تحتاج صيانة"
       }
     }
+  },
+  "detail": {
+    "breadcrumb": "مسار التنقل",
+    "home": "الرئيسية",
+    "backToCars": "السيارات",
+    "backToParts": "قطع الغيار",
+    "specs": "المواصفات",
+    "description": "الوصف",
+    "gallery": "معرض الصور",
+    "viewImage": "عرض الصورة {n} من {total}",
+    "noImage": "لا توجد صورة",
+    "bookTestDrive": "احجز تجربة قيادة",
+    "similarCars": "سيارات أخرى",
+    "similarParts": "قطع مشابهة",
+    "available": "متوفر في المخزون: {count}",
+    "unavailable": "غير متوفرة حالياً",
+    "category": "الفئة",
+    "modelYear": "سنة الصنع",
+    "bodyType": "نوع الهيكل",
+    "powertrain": "نوع الدفع",
+    "branch": "الفرع",
+    "status": "الحالة",
+    "sku": "رمز القطعة",
+    "compatible": "تناسب الموديلات",
+    "oem": "قطعة أصلية OEM",
+    "units": {
+      "km": "كم",
+      "kwh": "ك.و.س",
+      "kw": "ك.و",
+      "hp": "حصان",
+      "nm": "نيوتن.م",
+      "kmh": "كم/س",
+      "s": "ث",
+      "l": "لتر"
+    },
+    "bodyTypes": {
+      "sedan": "سيدان",
+      "suv": "SUV",
+      "hatchback": "هاتشباك",
+      "mpv": "عائلية",
+      "coupe": "كوبيه",
+      "pickup": "بيك أب"
+    },
+    "specNames": {
+      "range_km": "المدى",
+      "battery_kwh": "سعة البطارية",
+      "seats": "عدد المقاعد",
+      "power_hp": "القدرة",
+      "torque_nm": "عزم الدوران",
+      "acceleration_0_100_s": "التسارع 0-100 كم/س",
+      "top_speed_kmh": "السرعة القصوى",
+      "charging_dc_kw": "الشحن السريع DC",
+      "cargo_l": "حجم صندوق الأمتعة"
+    }
+  },
+  "certificate": {
+    "title": "التحقق من شهادة فحص بطارية Blade",
+    "intro": "هذه صفحة التحقق العامة من شهادة صادرة عن عبد الواحد موتورز. لا تُعرض هنا إلا بيانات الشهادة ورقم هيكل مخفي جزئياً."
   }
 }
