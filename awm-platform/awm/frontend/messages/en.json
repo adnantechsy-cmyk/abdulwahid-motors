@@ -1171,7 +1171,9 @@
       "parts": "Spare parts",
       "vehicles": "Cars",
       "categories": "Categories",
-      "security": "Security"
+      "security": "Security",
+      "delivery": "Car handover",
+      "battery": "Battery certificates"
     },
     "signedInAs": "Signed in as {name}",
     "viewSite": "View site",
@@ -1231,6 +1233,16 @@
       "categories": {
         "title": "Categories",
         "hint": "Organise cars and spare parts so customers can filter them."
+      },
+      "delivery": {
+        "title": "Car handover",
+        "hint": "Pre-delivery inspection and handover of reserved cars.",
+        "open": "{count} inspections open",
+        "handover": "{count} ready to hand over"
+      },
+      "battery": {
+        "title": "Battery certificates",
+        "hint": "Blade battery health reports for customers' cars."
       }
     },
     "payments": {
@@ -1880,6 +1892,186 @@
       "savedCodes": "I have saved my recovery codes",
       "continue": "Continue",
       "codesFileTitle": "Abdul Wahid Motors recovery codes (each works once)"
+    },
+    "delivery": {
+      "title": "Car handover",
+      "intro": "When a car is reserved and paid, it gets a pre-delivery inspection. Check every item, complete the inspection, then hand the car over. Customers follow these steps from their account.",
+      "stagesLabel": "Stage",
+      "stages": {
+        "pending": "Awaiting inspection",
+        "in_progress": "Being inspected",
+        "failed": "Needs attention",
+        "handover": "Ready to hand over",
+        "delivered": "Handed over"
+      },
+      "statuses": {
+        "pending": "Awaiting inspection",
+        "in_progress": "Being inspected",
+        "passed": "Passed",
+        "failed": "Needs attention"
+      },
+      "delivered": "Handed over",
+      "search": "Order number, name or phone",
+      "searchLabel": "Search inspections",
+      "searchButton": "Search",
+      "empty": "Nothing here.",
+      "guest": "Guest order (no account)",
+      "cols": {
+        "order": "Order",
+        "customer": "Customer",
+        "car": "Car",
+        "progress": "Checked",
+        "eta": "Expected / handed over",
+        "status": "Status"
+      },
+      "failedItems": "{count} failed",
+      "backToList": "Back to car handover",
+      "car": "Car",
+      "orderLabel": "Order",
+      "progress": "Progress",
+      "progressText": "{done} of {total} items checked",
+      "customer": "Customer and team",
+      "name": "Name",
+      "phone": "Phone",
+      "technician": "Inspected by",
+      "completedAt": "Completed",
+      "deliveredAt": "Handed over",
+      "guestWarning": "This order was placed without an account, so handing the car over will not add it to a customer's cars. Link or create the customer first if they should see it in their account.",
+      "checklist": "Inspection checklist",
+      "sections": {
+        "documents": "Documents",
+        "exterior": "Exterior",
+        "interior": "Interior",
+        "battery": "Battery and charging",
+        "systems": "Systems",
+        "road_test": "Road test and preparation"
+      },
+      "choices": {
+        "pass": "Pass",
+        "fail": "Fail",
+        "na": "Not applicable"
+      },
+      "itemNote": "Note",
+      "required": "required",
+      "noteRequired": "Write what is wrong before marking an item as failed.",
+      "closed": "This inspection is closed.",
+      "checkedBy": "Checked by {name}, {when}",
+      "start": "Start inspection",
+      "complete": "Complete inspection",
+      "deliver": "Hand the car over",
+      "itemsLeft": "{count, plural, one {# item still to check.} other {# items still to check.}}",
+      "allChecked": "Every item is checked. You can complete the inspection.",
+      "failedHelp": "Some items failed. Fix them, mark them again, then complete the inspection again.",
+      "deliverNeedsSales": "Only sales staff can hand the car over.",
+      "deliverAsk": "Hand over the car for order {order}?",
+      "deliverWithAccount": "This marks the order completed and the car sold, and adds the car to the customer's cars with its warranty. It cannot be undone here.",
+      "deliverGuest": "This marks the order completed and the car sold. The order has no account, so the car is not added to a customer's cars.",
+      "deliverYes": "Yes, hand over",
+      "deliveredNote": "This car has been handed over.",
+      "codes": {
+        "badState": "The inspection was already started. Refresh the page.",
+        "incomplete": "Some items are still unchecked.",
+        "notPassed": "Only a passed inspection can be handed over."
+      },
+      "details": {
+        "title": "Handover details",
+        "eta": "Expected handover date",
+        "etaHint": "Shown to the customer on their order page.",
+        "customerNoteAr": "Message for the customer (Arabic)",
+        "customerNoteEn": "Message for the customer (English)",
+        "customerNoteHint": "Optional. The customer sees it with the delivery steps in their account.",
+        "internalNotes": "Internal notes",
+        "internalHint": "Only staff see these.",
+        "save": "Save details",
+        "saved": "Saved."
+      }
+    },
+    "battery": {
+      "title": "Battery certificates",
+      "intro": "Digital Blade battery health reports. Each certificate has a number and a verification code anyone can check on the website.",
+      "issueNew": "Issue a certificate",
+      "filterLabel": "Result",
+      "all": "All",
+      "results": {
+        "pass": "Healthy",
+        "attention": "Needs monitoring",
+        "fail": "Service required"
+      },
+      "listTitle": "Certificates",
+      "empty": "No certificates yet.",
+      "cols": {
+        "certificate": "Certificate",
+        "car": "Car",
+        "owner": "Owner",
+        "soh": "Battery health",
+        "inspected": "Inspected",
+        "status": "Status",
+        "actions": "Action"
+      },
+      "validUntil": "Valid until {date}",
+      "expired": "Expired",
+      "revoked": "Revoked",
+      "revoke": "Revoke",
+      "revokeAsk": "Revoke certificate {number}?",
+      "revokeHint": "The public verification page will show it as revoked. This cannot be undone.",
+      "revokeYes": "Yes, revoke",
+      "backToList": "Back to certificates",
+      "newTitle": "Issue a battery certificate",
+      "newIntro": "Choose the customer's car, then enter the readings from the diagnostic tool.",
+      "findTitle": "Find the car",
+      "findLabel": "Owner name or phone, plate, VIN or model",
+      "findButton": "Search",
+      "findHint": "Type at least a few letters or digits and search.",
+      "noMatch": "No car matches. Check the spelling, or register the car for the customer first.",
+      "choose": "Choose",
+      "noOwner": "No owner",
+      "car": "Car",
+      "changeCar": "Choose another car",
+      "readingsTitle": "Readings",
+      "form": {
+        "health": "Battery health",
+        "soh": "State of health (%)",
+        "sohHint": "Required. Sets the result unless you choose one below.",
+        "soc": "State of charge (%)",
+        "cycles": "Charge cycles",
+        "readings": "Readings",
+        "pack": "Pack voltage (V)",
+        "cellMin": "Lowest cell voltage (V)",
+        "cellMax": "Highest cell voltage (V)",
+        "tempMin": "Lowest cell temperature (°C)",
+        "tempMax": "Highest cell temperature (°C)",
+        "insulation": "Insulation resistance (MΩ)",
+        "visit": "Visit",
+        "mileage": "Odometer (km)",
+        "date": "Inspection date",
+        "resultLabel": "Result",
+        "resultAuto": "Work out from battery health",
+        "resultHint": "Healthy from 85%, needs monitoring from 70%, otherwise service required, unless you choose.",
+        "results": {
+          "pass": "Healthy",
+          "attention": "Needs monitoring",
+          "fail": "Service required"
+        },
+        "notes": "Findings and recommendations",
+        "findingsAr": "Findings (Arabic)",
+        "findingsEn": "Findings (English)",
+        "recommendationsAr": "Recommendations (Arabic)",
+        "recommendationsEn": "Recommendations (English)",
+        "notesHint": "Optional. Shown on the certificate in the reader's language.",
+        "errors": {
+          "soh": "Enter the state of health, between 0 and 100.",
+          "range": "The highest value must not be below the lowest."
+        },
+        "issue": "Issue certificate",
+        "issuedTitle": "Certificate issued",
+        "number": "Certificate number",
+        "code": "Verification code",
+        "result": "Result",
+        "validUntil": "Valid until",
+        "viewCertificate": "View the certificate",
+        "backToList": "Back to certificates",
+        "issuedHint": "The customer sees it in their account, and anyone can verify it with the code or the QR code on the page."
+      }
     }
   },
   "contactForm": {

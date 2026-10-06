@@ -9,6 +9,8 @@ export interface AdminSummary {
   orders_unpaid?: number;
   orders_to_fulfil?: number;
   parts_low_stock?: number;
+  pdi_open?: number;
+  pdi_handover?: number;
 }
 
 export type PaymentTab = 'awaiting_confirmation' | 'captured' | 'failed';
@@ -196,4 +198,65 @@ export interface AdminCategory {
   sort_order: number;
   is_active: boolean;
   items_count: number;
+}
+export type PdiStage = 'pending' | 'in_progress' | 'failed' | 'handover' | 'delivered';
+
+export interface AdminPdi {
+  id: number;
+  order_number: string | null;
+  has_account: boolean;
+  customer: { name?: string | null; phone?: string | null; email?: string | null } | null;
+  vehicle: { id: number | null; name: string | null; vin: string | null };
+  status: 'pending' | 'in_progress' | 'passed' | 'failed';
+  technician: string | null;
+  progress: { total: number; done: number; failed: number; percent: number };
+  estimated_delivery_at: string | null;
+  completed_at: string | null;
+  delivered_at: string | null;
+  delivered: boolean;
+}
+
+export type PdiItemStatus = 'pending' | 'pass' | 'fail' | 'na';
+
+export interface AdminPdiDetail extends AdminPdi {
+  notes: string | null;
+  customer_note: { ar?: string; en?: string } | [];
+  items: {
+    id: number;
+    section: string;
+    code: string;
+    label: { ar?: string; en?: string };
+    status: PdiItemStatus;
+    note: string | null;
+    checked_by: string | null;
+    checked_at: string | null;
+  }[];
+}
+
+export interface AdminBatteryReport {
+  id: number;
+  certificate_number: string;
+  verification_code: string;
+  verify_url: string;
+  is_valid: boolean;
+  is_revoked: boolean;
+  inspected_at: string;
+  valid_until: string | null;
+  vehicle: { make: string; model: string; model_year: number | null; vin: string | null };
+  mileage_km: number | null;
+  result: { code: 'pass' | 'attention' | 'fail'; label: string };
+  state_of_health_pct: string;
+  technician: string | null;
+  owner: { id: number; name: string; phone: string | null } | null;
+}
+
+export interface AdminCustomerVehicle {
+  id: number;
+  make: string;
+  model: string;
+  model_year: number | null;
+  vin: string | null;
+  plate_number: string | null;
+  last_mileage_km: number | null;
+  owner: { id: number; name: string; phone: string | null } | null;
 }

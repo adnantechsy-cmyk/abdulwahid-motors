@@ -12,19 +12,37 @@ class PdiAdminController extends Controller
 {
     public function __construct(private PdiService $pdi) {}
 
-    /** GET /admin/pdi?status=pending */
+    /**
+     * GET /admin/pdi?stage=pending|in_progress|failed|handover|delivered&q=
+     * `handover` = passed and waiting to be handed over; `delivered` = already handed over.
+     */
     public function index(Request $request)
     {
-        return PdiInspection::with(['order:id,number,customer', 'vehicle', 'technician:id,name'])
-            ->when($request->query('status'), fn ($q, $s) => $q->where('status', $s))
+        $data = $request->validate([
+            'stage' => ['nullable', 'in:pending,in_progress,failed,handover,delivered'],
+            'status' => ['nullable', 'in:pending,in_progress,passed,failed'],
+            'q' => ['nullable', 'string', 'max:60'],
+        ]);
+        $q = $data['q'] ?? null;
+        $stage = $data['stage'] ?? null;
+
+        return PdiInspection::with(['order:id,number,customer,user_id', 'vehicle', 'technician:id,name', 'items'])
+            ->when($data['status'] ?? null, fn ($query, $s) => $query->where('status', $s))
+            ->when(in_array($stage, ['pending', 'in_progress', 'failed'], true), fn ($query) => $query->where('status', $stage)->whereNull('delivered_at'))
+            ->when($stage === 'handover', fn ($query) => $query->where('status', 'passed')->whereNull('delivered_at'))
+            ->when($stage === 'delivered', fn ($query) => $query->whereNotNull('delivered_at'))
+            ->when($q, fn ($query) => $query->whereHas('order', fn ($o) => $o
+                ->where('number', 'like', "%{$q}%")
+                ->orWhere('customer->name', 'like', "%{$q}%")
+                ->orWhere('customer->phone', 'like', "%{$q}%")))
             ->latest()->paginate(25)
             ->through(fn (PdiInspection $p) => $this->summary($p));
     }
-
     /** GET /admin/pdi/{pdi} */
     public function show(PdiInspection $pdi)
     {
         $pdi->load(['items.checker:id,name', 'order', 'vehicle', 'technician:id,name']);
+        $locale = app()->getLocale();
 
         return $this->summary($pdi) + [
             'notes' => $pdi->notes,
@@ -93,6 +111,7 @@ class PdiAdminController extends Controller
         return [
             'id' => $p->id,
             'order_number' => $p->order?->number,
+            'has_account' => (bool) $p->order?->user_id,
             'customer' => $p->order?->customer,
             'vehicle' => ['id' => $p->vehicle?->id, 'name' => $p->vehicle?->getTranslation('name', app()->getLocale()), 'vin' => $p->vehicle?->vin],
             'status' => $p->status->value,
@@ -101,6 +120,7 @@ class PdiAdminController extends Controller
             'estimated_delivery_at' => $p->estimated_delivery_at?->toAtomString(),
             'completed_at' => $p->completed_at?->toAtomString(),
             'delivered_at' => $p->delivered_at?->toAtomString(),
+            'delivered' => $p->delivered_at !== null,
         ];
     }
 }

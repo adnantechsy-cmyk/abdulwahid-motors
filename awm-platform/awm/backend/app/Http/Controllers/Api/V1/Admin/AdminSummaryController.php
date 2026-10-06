@@ -8,6 +8,7 @@ use App\Models\Appointment;
 use App\Models\JobCard;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\PdiInspection;
 use App\Models\SparePart;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,12 @@ class AdminSummaryController extends Controller
 
         if ($user->can('parts.manage') || $user->can('stock.adjust')) {
             $out['parts_low_stock'] = SparePart::where('is_published', true)->lowStock()->count();
+        }
+
+        if ($user->can('pdi.manage')) {
+            $open = PdiInspection::whereNull('delivered_at');
+            $out['pdi_open'] = (clone $open)->whereIn('status', ['pending', 'in_progress', 'failed'])->count();
+            $out['pdi_handover'] = (clone $open)->where('status', 'passed')->count();
         }
 
         if ($user->can('appointments.manage')) {

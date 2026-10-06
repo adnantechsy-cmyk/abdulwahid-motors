@@ -21,7 +21,7 @@ export default async function AdminOverview({ params }: Props) {
 
   const open = s.job_cards ? s.job_cards.pending + s.job_cards.in_progress + s.job_cards.waiting_parts : null;
 
-  const cards: { href: '/admin/orders' | '/admin/vehicles' | '/admin/categories' | '/admin/parts' | '/admin/payments' | '/admin/job-cards' | '/admin/appointments'; icon: IconName; title: string; hint?: string; lines: string[] }[] = [];
+  const cards: { href: '/admin/delivery' | '/admin/battery' | '/admin/orders' | '/admin/vehicles' | '/admin/categories' | '/admin/parts' | '/admin/payments' | '/admin/job-cards' | '/admin/appointments'; icon: IconName; title: string; hint?: string; lines: string[] }[] = [];
   if (can(user, 'orders.manage')) {
     cards.push({
       href: '/admin/orders',
@@ -33,6 +33,21 @@ export default async function AdminOverview({ params }: Props) {
         ...(s.orders_to_fulfil != null ? [t('orders.toFulfil', { count: n(s.orders_to_fulfil) })] : []),
       ],
     });
+  }
+  if (can(user, 'pdi.manage')) {
+    cards.push({
+      href: '/admin/delivery',
+      icon: 'truck',
+      title: t('delivery.title'),
+      hint: t('delivery.hint'),
+      lines: [
+        ...(s.pdi_open != null ? [t('delivery.open', { count: n(s.pdi_open) })] : []),
+        ...(s.pdi_handover != null ? [t('delivery.handover', { count: n(s.pdi_handover) })] : []),
+      ],
+    });
+  }
+  if (can(user, 'battery.inspect')) {
+    cards.push({ href: '/admin/battery', icon: 'battery', title: t('battery.title'), hint: t('battery.hint'), lines: [] });
   }
   if (can(user, 'vehicles.manage')) {
     cards.push({ href: '/admin/vehicles', icon: 'car', title: t('vehicles.title'), hint: t('vehicles.hint'), lines: [] });

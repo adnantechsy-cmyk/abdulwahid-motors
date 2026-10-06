@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\Admin\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Admin\AppointmentAdminController;
 use App\Http\Controllers\Api\V1\Admin\BatteryInspectionAdminController;
 use App\Http\Controllers\Api\V1\Admin\CategoryAdminController;
+use App\Http\Controllers\Api\V1\Admin\CustomerVehicleAdminController;
 use App\Http\Controllers\Api\V1\Admin\JobCardAdminController;
 use App\Http\Controllers\Api\V1\Admin\OrderAdminController;
 use App\Http\Controllers\Api\V1\Admin\PartAdminController;
@@ -169,6 +170,10 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
             Route::post('pdi/{pdi}/deliver', [PdiAdminController::class, 'deliver'])->middleware('permission:orders.manage');
         });
 
+        Route::middleware('permission:battery.inspect|customers.manage|appointments.manage')->group(function () {
+            Route::get('customer-vehicles', [CustomerVehicleAdminController::class, 'index']);
+            Route::get('customer-vehicles/{vehicle}', [CustomerVehicleAdminController::class, 'show'])->whereNumber('vehicle');
+        });
         Route::middleware('permission:battery.inspect')->group(function () {
             Route::get('battery-inspections', [BatteryInspectionAdminController::class, 'index']);
             Route::post('customer-vehicles/{vehicle}/battery-inspections', [BatteryInspectionAdminController::class, 'store']);
