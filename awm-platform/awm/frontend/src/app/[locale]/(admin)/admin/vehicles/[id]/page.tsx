@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { FileUpload } from '@/components/admin/FileUpload';
+import { GalleryManager } from '@/components/admin/GalleryManager';
 import { VehicleForm } from '@/components/admin/VehicleForm';
 import { Panel } from '@/components/account/Panel';
 import { Link } from '@/i18n/navigation';
@@ -57,6 +58,10 @@ export default async function VehiclePage({ params }: Props) {
             currentUrl={vehicle.brochure_url}
           />
         </div>
+      </Panel>
+
+      <Panel id="vehicle-gallery" title={t('gallery.panel')}>
+        <GalleryManager vehicleId={vehicle.id} images={vehicle.gallery} />
       </Panel>
 
       <Panel id="vehicle-form" title={t('details')}>

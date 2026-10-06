@@ -6,6 +6,7 @@ import { buttonClasses } from '@/components/ui/Button';
 import { TextField } from '@/components/ui/Field';
 import { useRouter } from '@/i18n/navigation';
 import type { AdminVehicleDetail, PartCategory } from '@/types/admin';
+import { SpecsEditor, specsFromRows, type SpecRow } from './SpecsEditor';
 import { useAdminRun } from './useAdminRun';
 
 type Props = { vehicle?: AdminVehicleDetail; categories: PartCategory[] };
@@ -23,6 +24,8 @@ export function VehicleForm({ vehicle, categories }: Props) {
   const { run, pending, error } = useAdminRun();
   const id = useId();
   const [saved, setSaved] = useState(false);
+  const [specRows, setSpecRows] = useState<SpecRow[]>(() => Object.entries(vehicle?.specs ?? {}).map(([key, value]) => ({ key, value: String(value) })));
+  const [specError, setSpecError] = useState<string | null>(null);
   const reserved = vehicle?.status === 'reserved';
 
   const [f, setF] = useState({
@@ -53,7 +56,12 @@ export function VehicleForm({ vehicle, categories }: Props) {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    const parsed = specsFromRows(specRows);
+    if (!parsed.ok) return setSpecError(t(`specs.errors.${parsed.error}`, { name: parsed.key }));
+    setSpecError(null);
+
     const body = {
+      specs: parsed.specs,
       sku: f.sku.trim() || null,
       vin: f.vin.trim() || null,
       name: { ar: f.name_ar.trim(), en: f.name_en.trim() },
@@ -160,6 +168,11 @@ export function VehicleForm({ vehicle, categories }: Props) {
           </select>
         </div>
         <div className="md:col-span-3">{check('show_price', t('showPrice'), t('showPriceHint'))}</div>
+      </fieldset>
+
+      <fieldset disabled={pending} className="min-w-0">
+        <legend className="mb-3 text-sm font-extrabold">{t('specsTitle')}</legend>
+        <SpecsEditor rows={specRows} onChange={(rows) => { setSpecRows(rows); setSaved(false); }} error={specError} />
       </fieldset>
 
       <fieldset disabled={pending} className="flex min-w-0 flex-col gap-5">
