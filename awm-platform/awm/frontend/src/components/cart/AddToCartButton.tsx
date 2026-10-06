@@ -12,7 +12,7 @@ type Props = {
   className?: string;
 };
 
-export function AddToCartButton({ item, label, inCartLabel, disabled, className = '' }: Props) {
+export function AddToCartButton({ item, label, inCartLabel, disabled, className = 'h-14 px-8 text-base' }: Props) {
   const t = useTranslations('cart');
   const addItem = useCartStore((s) => s.addItem);
   const inCart = useCartStore((s) => s.items.some((i) => itemKey(i.type, i.refId) === itemKey(item.type, item.refId)));
@@ -30,7 +30,7 @@ export function AddToCartButton({ item, label, inCartLabel, disabled, className 
           const result = addItem(item);
           setError(result === 'currency_mismatch' ? t('currencyMismatch') : null);
         }}
-        className={`h-14 bg-awm-red px-8 text-base font-bold text-white transition-colors hover:bg-awm-black focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-awm-black disabled:cursor-not-allowed disabled:bg-awm-black/30 ${className}`}
+        className={`bg-awm-red font-bold text-white transition-colors hover:bg-awm-black focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-awm-black disabled:cursor-not-allowed disabled:bg-awm-black/30 ${className}`}
       >
         {locked ? inCartLabel : label}
       </button>

@@ -22,7 +22,7 @@ export function CartButton() {
         <circle cx="9" cy="20" r="1.5" fill="currentColor" stroke="none" />
         <circle cx="18" cy="20" r="1.5" fill="currentColor" stroke="none" />
       </svg>
-      <span>{t('title')}</span>
+      <span className="hidden sm:inline">{t('title')}</span>
       {count > 0 && (
         <span className="min-w-6 bg-awm-red px-1.5 text-center text-xs leading-6 text-white tabular-nums">{count}</span>
       )}
