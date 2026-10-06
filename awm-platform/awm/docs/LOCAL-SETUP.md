@@ -14,20 +14,7 @@ docker compose run --rm app composer require \
     laravel/sanctum spatie/laravel-permission spatie/laravel-translatable stripe/stripe-php
 ```
 
-Copy `backend/.env.example` to `backend/.env` and add:
-
-```
-APP_LOCALE=ar
-DB_HOST=mysql
-DB_DATABASE=awm
-DB_USERNAME=awm
-DB_PASSWORD=secret
-
-FRONTEND_URL=http://localhost:3000
-REVALIDATE_SECRET=change-me          # must equal the frontend's REVALIDATE_SECRET
-STRIPE_SECRET=
-STRIPE_WEBHOOK_SECRET=
-```
+Copy `backend/.env.example` to `backend/.env`, then merge in the settings from `backend/.env.additions` (locale, timezone, database, CORS, `REVALIDATE_SECRET`, admin and Stripe keys). `REVALIDATE_SECRET` must equal the frontend's `REVALIDATE_SECRET`.
 
 ## 2. Wire it up (Laravel 11/12 `bootstrap/app.php`)
 
@@ -73,8 +60,9 @@ curl "http://localhost:8080/api/v1/seo/vehicles/demo-seal-awd?locale=en"
 
 # Sitemap feed
 curl http://localhost:8080/api/v1/seo/sitemap
-
-# Public page
-open http://localhost:3000/ar/vehicles/demo-seal-awd
-open http://localhost:3000/sitemap.xml
 ```
+
+Then open these in your browser:
+
+- http://localhost:3000/ar/vehicles/demo-seal-awd
+- http://localhost:3000/sitemap.xml
