@@ -18,7 +18,7 @@ const localeOf = (request: NextRequest) => (request.headers.get('x-locale') === 
  * Forwards a login/register body to Laravel (only the listed fields), stores the returned token in the
  * httpOnly cookie, and gives the browser the user but never the token. Validation errors pass through.
  */
-export async function authenticate(request: NextRequest, path: '/auth/login' | '/auth/register' | '/auth/google', fields: string[]) {
+export async function authenticate(request: NextRequest, path: '/auth/login' | '/auth/register' | '/auth/google' | '/auth/2fa/verify', fields: string[]) {
   const blocked = rejectCrossOrigin(request);
   if (blocked) return blocked;
 
@@ -42,6 +42,9 @@ export async function authenticate(request: NextRequest, path: '/auth/login' | '
 
   const data = await res.json().catch(() => ({}));
   if (!res.ok) return NextResponse.json({ message: data.message, code: data.code, errors: data.errors }, { status: res.status });
+
+  // Staff with an authenticator app: the password was right, but no session exists until the code is checked.
+  if (res.status === 202 && data.two_factor) return NextResponse.json({ two_factor: true, challenge: data.challenge }, { status: 202 });
 
   const response = NextResponse.json({ user: data.user as AuthUser }, { status: res.status });
   response.cookies.set(AUTH_COOKIE, data.token, cookieOptions);

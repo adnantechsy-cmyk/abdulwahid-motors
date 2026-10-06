@@ -11,6 +11,7 @@ Scope: the Next.js site, the Laravel API, and every flow between them (catalogue
 | Customer and staff session | Sanctum token in an `httpOnly`, `SameSite=Lax`, `Secure` (production) cookie. The browser never sees the token; the Next proxies add it. Verified: the token never appears in any response body. | Verified |
 | Logout / reset | Logout revokes the token. A password reset revokes every token and sends a "password changed" email. | Laravel: untested |
 | Staff access | Every `/admin/*` route sits behind `auth:sanctum` plus a permission (`orders.manage`, `payments.confirm`, `parts.manage`, `stock.adjust`, `vehicles.manage`, `categories.manage`, `job_cards.*`, `appointments.manage`, `pdi.manage`, `battery.inspect`, `seo.manage`). Staff pages also hide what the role can't use. Verified: a technician or sales user is redirected away from other sections and gets 403 from the proxy. | Frontend verified, Laravel untested |
+| Staff two-factor | Password, then a TOTP code (RFC 6238, checked against the official test vectors). Codes can't be reused, secrets are encrypted with APP_KEY, recovery codes are stored hashed. Turning it off or replacing recovery codes needs the password and a fresh code, and is refused while AWM_2FA_REQUIRED=true. | Algorithm verified, Laravel untested |
 | Google sign-in | The Google ID token is verified by Laravel (audience = your client ID, issuer, verified email, expiry). **Staff accounts are refused**: staff must use their password. | Laravel: untested |
 | Customer data | All `/account/*` queries go through `$request->user()` relations, so a customer can only ever read their own orders, cars, invoices and reports. | Read and confirmed |
 | Guest orders | A guest proves ownership with order number + the phone entered at checkout. The comparison is now digits-only and constant-time, and the endpoints are rate limited. | Fixed in this PR |
@@ -34,7 +35,7 @@ Scope: the Next.js site, the Laravel API, and every flow between them (catalogue
 
 ## 3. Known gaps and recommendations
 
-- **No two-factor login for staff.** Strongly recommended for the admin account (Laravel Fortify/Breeze 2FA or an SSO layer). Until then use long unique passwords.
+- **Two-factor login for staff is on.** Staff must set up an authenticator app (Google/Microsoft Authenticator, Authy, 1Password) the first time they log in; after that each login needs a 6-digit code (or a one-time recovery code). Five wrong codes lock the second step for 15 minutes. If someone loses their phone and recovery codes, an administrator with server access runs `php artisan awm:2fa-reset their@email`. Customers are not asked for a code.
 - **No CAPTCHA** on the contact, register or booking forms. They have a honeypot (contact) and rate limits; add Cloudflare Turnstile or reCAPTCHA if spam appears.
 - **`trustProxies('*')`** means rate limits read the client IP from `X-Forwarded-For`. Keep the API reachable only through Hostinger's proxy/CDN so that header can't be forged.
 - **Contact messages** are stored in `contact_messages` and mailed, but there is no admin screen for them yet.
@@ -67,6 +68,7 @@ APP_URL=https://api.abdulwahidmotors.com
 FRONTEND_URL=https://abdulwahidmotors.com
 REVALIDATE_SECRET=<same as frontend>
 GOOGLE_CLIENT_ID=<same as NEXT_PUBLIC_GOOGLE_CLIENT_ID>
+AWM_2FA_REQUIRED=true                  # staff must use an authenticator app (default)
 
 MAIL_MAILER=smtp
 MAIL_HOST=smtp.hostinger.com
@@ -89,7 +91,7 @@ Set up SPF and DKIM for the domain in hPanel (Emails → DNS) so password-reset 
 ## 5. Commands after deploying this code
 
 ```bash
-php artisan migrate --force                       # contact_messages, users.google_id, brochure_path + show_price
+php artisan migrate --force                       # contact_messages, users.google_id, brochure_path + show_price, two-factor columns
 php artisan db:seed --class=PaymentGatewaySeeder --force   # adds the hidden "in person" payment method
 php artisan storage:link                          # photos and PDF catalogues are served from storage/app/public
 php artisan optimize
@@ -106,6 +108,7 @@ PHP limits (hPanel → PHP Configuration): `upload_max_filesize` and `post_max_s
 ## 7. Pre-launch checklist
 
 - [ ] `APP_DEBUG=false`, strong `APP_KEY`, `.env` outside the web root and not readable by others.
+- [ ] Log in as the first admin and finish the two-step setup; save the recovery codes somewhere safe. Do this before creating other staff accounts.
 - [ ] The first admin has a strong password; `ADMIN_EMAIL` / `ADMIN_PASSWORD` removed from `.env` after seeding.
 - [ ] Staff accounts created with the least role they need (`sales`, `technician`, `inventory`).
 - [ ] SMTP works: send a password reset and a contact-form message to yourself.

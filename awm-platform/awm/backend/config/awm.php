@@ -50,6 +50,11 @@ return [
         'client_id' => env('GOOGLE_CLIENT_ID'),
     ],
 
+    // Two-factor login (authenticator app) for staff. On: staff without it can only open the security screen until they set it up.
+    'two_factor' => [
+        'required' => (bool) env('AWM_2FA_REQUIRED', true),
+    ],
+
     // Code-defined public pages. The admin SEO module edits these via seo_metas.route_key.
     'static_routes' => [
         'home' => ['path' => '', 'priority' => 1.0, 'changefreq' => 'weekly'],

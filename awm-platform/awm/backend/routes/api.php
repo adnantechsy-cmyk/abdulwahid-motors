@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\V1\Account\AccountController;
 use App\Http\Controllers\Api\V1\ContactController;
 use App\Http\Controllers\Api\V1\GoogleAuthController;
 use App\Http\Controllers\Api\V1\PasswordResetController;
+use App\Http\Controllers\Api\V1\TwoFactorChallengeController;
+use App\Http\Controllers\Api\V1\Admin\SecurityController;
 use App\Http\Controllers\Api\V1\Admin\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Admin\AppointmentAdminController;
 use App\Http\Controllers\Api\V1\Admin\BatteryInspectionAdminController;
@@ -31,6 +33,7 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
     // ---- Auth ----
     Route::prefix('auth')->group(function () {
         Route::post('register', [AuthController::class, 'register'])->middleware('throttle:5,1');
+        Route::post('2fa/verify', [TwoFactorChallengeController::class, 'verify'])->middleware('throttle:10,1');
         Route::post('google', [GoogleAuthController::class, 'login'])->middleware('throttle:10,1');
         Route::post('forgot-password', [PasswordResetController::class, 'forgot'])->middleware('throttle:5,1');
         Route::post('reset-password', [PasswordResetController::class, 'reset'])->middleware('throttle:5,1');
@@ -86,7 +89,13 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
     });
 
     // ---- Admin ----
-    Route::prefix('admin')->middleware('auth:sanctum')->group(function () {
+    Route::prefix('admin')->middleware(['auth:sanctum', 'two_factor'])->group(function () {
+        // Own security settings: open to any staff member, even before 2FA is set up (that is where they set it up).
+        Route::get('security/2fa', [SecurityController::class, 'status']);
+        Route::post('security/2fa/setup', [SecurityController::class, 'setup'])->middleware('throttle:10,1');
+        Route::post('security/2fa/confirm', [SecurityController::class, 'confirm'])->middleware('throttle:10,1');
+        Route::post('security/2fa/recovery-codes', [SecurityController::class, 'recoveryCodes'])->middleware('throttle:10,1');
+        Route::post('security/2fa/disable', [SecurityController::class, 'disable'])->middleware('throttle:10,1');
         Route::get('summary', AdminSummaryController::class)->middleware('permission:dashboard.view');
 
         Route::middleware('permission:payments.confirm')->group(function () {

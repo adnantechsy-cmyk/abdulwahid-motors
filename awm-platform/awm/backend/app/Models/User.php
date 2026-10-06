@@ -19,7 +19,7 @@ class User extends Authenticatable
 
     protected $fillable = ['name', 'email', 'phone', 'password', 'locale', 'preferred_branch'];
 
-    protected $hidden = ['password', 'remember_token', 'crm_notes'];
+    protected $hidden = ['password', 'remember_token', 'crm_notes', 'two_factor_secret', 'two_factor_recovery_codes'];
 
     protected function casts(): array
     {
@@ -27,7 +27,21 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
             'is_active' => 'boolean',
+            'two_factor_secret' => 'encrypted',
+            'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    /** Authenticator app set up and confirmed. */
+    public function hasTwoFactor(): bool
+    {
+        return $this->two_factor_secret !== null && $this->two_factor_confirmed_at !== null;
+    }
+
+    /** Staff who must still enrol (AWM_2FA_REQUIRED on). Customers are never forced. */
+    public function requiresTwoFactorSetup(): bool
+    {
+        return config('awm.two_factor.required') && $this->isStaff() && ! $this->hasTwoFactor();
     }
 
     public function isStaff(): bool
