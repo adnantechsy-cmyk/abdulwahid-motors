@@ -35,6 +35,16 @@ return [
         ],
     ],
 
+    // Where the website's contact form delivers, by the topic the visitor picked.
+    'contact' => [
+        'recipients' => [
+            'info' => env('AWM_MAIL_INFO', 'info@abdulwahidmotors.com'),
+            'sales' => env('AWM_MAIL_SALES', 'sales@abdulwahidmotors.com'),
+            'parts' => env('AWM_MAIL_PARTS', 'parts@abdulwahidmotors.com'),
+            'management' => env('AWM_MAIL_MANAGEMENT', 'management@abdulwahidmotors.com'),
+        ],
+    ],
+
     // Code-defined public pages. The admin SEO module edits these via seo_metas.route_key.
     'static_routes' => [
         'home' => ['path' => '', 'priority' => 1.0, 'changefreq' => 'weekly'],

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\Account\AccountController;
+use App\Http\Controllers\Api\V1\ContactController;
 use App\Http\Controllers\Api\V1\Admin\AdminSummaryController;
 use App\Http\Controllers\Api\V1\Admin\AppointmentAdminController;
 use App\Http\Controllers\Api\V1\Admin\BatteryInspectionAdminController;
@@ -52,6 +53,7 @@ Route::prefix('v1')->middleware([SetApiLocale::class, UseSanctumGuard::class])->
     // ---- Appointments (guests or customers) ----
     Route::get('appointments/slots', [AppointmentController::class, 'slots']);
     Route::post('appointments', [AppointmentController::class, 'store'])->middleware('throttle:5,1');
+    Route::post('contact', [ContactController::class, 'store'])->middleware('throttle:5,1');
 
     // ---- Cart + checkout: guests (X-Cart-Token) or logged-in users (optional Bearer token) ----
     Route::put('cart', [CartController::class, 'sync']);
