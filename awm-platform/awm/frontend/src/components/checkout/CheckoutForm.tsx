@@ -9,6 +9,7 @@ import { ApiError, setCartToken } from '@/lib/api/client';
 import { syncCart } from '@/lib/api/cart';
 import { shopFetch } from '@/lib/api/shop';
 import { saveSession, type PlacedOrder } from '@/lib/checkout-session';
+import { afterCheckoutPath, modeKey } from '@/lib/checkout-mode';
 import { useCartStore } from '@/store/cartStore';
 import { OrderSummary } from './OrderSummary';
 
@@ -116,7 +117,7 @@ export function CheckoutForm() {
       saveSession({ phone, orders });
       clearCart();
       setCartToken(null); // Laravel closed that cart: the next purchase starts a fresh one
-      router.push(`/checkout/pay/${orders[0].number}`);
+      router.push(afterCheckoutPath(orders[0].number));
     } catch (error) {
       setPending(false);
       if (error instanceof ApiError) {
@@ -212,7 +213,7 @@ export function CheckoutForm() {
               name="phone"
               type="tel"
               label={t('customer.phone')}
-              hint={t('customer.phoneHint')}
+              hint={t(modeKey('customer.phoneHint'))}
               defaultValue={profile.phone}
               error={errors.phone}
               autoComplete="tel"
@@ -239,7 +240,7 @@ export function CheckoutForm() {
         {formError && <p role="alert" className="border-s-4 border-awm-red bg-awm-panel p-4 text-sm font-medium">{formError}</p>}
 
         <button type="submit" disabled={pending || sync === 'syncing'} className={buttonClasses('primary', 'lg', 'w-full')}>
-          {pending ? t('submitting') : t('submit')}
+          {pending ? t('submitting') : t(modeKey('submit'))}
         </button>
       </form>
 

@@ -2,6 +2,7 @@ import 'server-only';
 import { NextResponse, type NextRequest } from 'next/server';
 import { API_BASE } from '@/lib/api/server';
 import { AUTH_COOKIE, AUTH_COOKIE_MAX_AGE, type AuthUser } from '@/lib/auth';
+import { rejectCrossOrigin } from '@/lib/same-origin';
 
 const cookieOptions = {
   httpOnly: true, // never readable from JS
@@ -18,6 +19,9 @@ const localeOf = (request: NextRequest) => (request.headers.get('x-locale') === 
  * httpOnly cookie, and gives the browser the user but never the token. Validation errors pass through.
  */
 export async function authenticate(request: NextRequest, path: '/auth/login' | '/auth/register' | '/auth/google', fields: string[]) {
+  const blocked = rejectCrossOrigin(request);
+  if (blocked) return blocked;
+
   const input = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!input) return NextResponse.json({ message: 'Invalid request.' }, { status: 400 });
 
@@ -49,6 +53,9 @@ export async function authenticate(request: NextRequest, path: '/auth/login' | '
  * Nothing about the account is revealed: Laravel answers the same way whether or not it exists.
  */
 export async function relay(request: NextRequest, path: '/auth/forgot-password' | '/auth/reset-password', fields: string[]) {
+  const blocked = rejectCrossOrigin(request);
+  if (blocked) return blocked;
+
   const input = (await request.json().catch(() => null)) as Record<string, unknown> | null;
   if (!input) return NextResponse.json({ message: 'Invalid request.' }, { status: 400 });
 

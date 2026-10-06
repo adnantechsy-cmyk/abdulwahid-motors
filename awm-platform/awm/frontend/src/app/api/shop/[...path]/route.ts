@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { API_BASE } from '@/lib/api/server';
 import { AUTH_COOKIE } from '@/lib/auth';
+import { rejectCrossOrigin } from '@/lib/same-origin';
 
 /**
  * Same-origin proxy for the guest-or-customer shop calls (cart, checkout, payment, service booking).
@@ -25,6 +26,9 @@ const FORWARD_HEADERS = ['content-type', 'accept', 'x-cart-token', 'x-locale', '
 const MAX_BODY = 6 * 1024 * 1024; // receipts are capped at 5 MB by Laravel
 
 async function handle(request: NextRequest, { params }: { params: Promise<{ path: string[] }> }) {
+  const blocked = rejectCrossOrigin(request);
+  if (blocked) return blocked;
+
   const path = (await params).path.join('/');
   if (!ROUTES.some((r) => r.method === request.method && r.pattern.test(path))) {
     return NextResponse.json({ message: 'Not found.' }, { status: 404 });

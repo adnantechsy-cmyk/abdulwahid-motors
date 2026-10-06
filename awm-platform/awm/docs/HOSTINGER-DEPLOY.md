@@ -37,6 +37,9 @@ Hostinger builds Next.js in server mode: it adds `output: 'standalone'` to your 
    NEXT_PUBLIC_API_URL=https://api.abdulwahidmotors.com/api/v1
    NEXT_PUBLIC_SITE_URL=https://abdulwahidmotors.com
    REVALIDATE_SECRET=<same long random string as the Laravel .env>
+   # optional
+   NEXT_PUBLIC_GOOGLE_CLIENT_ID=<Google OAuth Web client ID; leave out to hide the Google button>
+   NEXT_PUBLIC_CHECKOUT_MODE=request          # or: online
    ```
 
 5. **Deploy**, then connect the domain `abdulwahidmotors.com` to the app and enable SSL.
@@ -123,3 +126,8 @@ In a browser: view the source of a car page and confirm `<title>`, `og:*`, `href
 ## Backups
 
 Hostinger's daily backups cover files and databases. Before any migration that changes or drops columns, also take a manual DB export (hPanel → **Databases → phpMyAdmin → Export**).
+
+
+## Before you go live
+
+See [SECURITY-AND-GO-LIVE.md](SECURITY-AND-GO-LIVE.md): the audit results, every environment variable (frontend and Laravel), the extra migrations and seeders, mail and Google sign-in setup, and a pre-launch checklist.

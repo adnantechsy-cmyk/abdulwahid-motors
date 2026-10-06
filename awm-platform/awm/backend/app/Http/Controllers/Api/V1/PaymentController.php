@@ -93,11 +93,24 @@ class PaymentController extends Controller
         return response()->json(['status' => $payment->status->value]);
     }
 
+    /** Digits only, constant-time: "0944 111 222" and "+963944111222" are the same guest, and timing leaks nothing. */
+    private function samePhone(string $stored, string $given): bool
+    {
+        $norm = function (string $p): string {
+            $d = preg_replace('/\D/', '', $p);
+
+            return str_starts_with($d, '963') ? '0' . substr($d, 3) : $d;
+        };
+        $a = $norm($stored);
+
+        return $a !== '' && hash_equals($a, $norm($given));
+    }
+
     private function authorizeOrder(Request $request, Order $order): void
     {
         $ok = $request->user()
             ? $order->user_id === $request->user()->id
-            : ($order->user_id === null && $order->customer['phone'] === $request->input('phone', $request->header('X-Customer-Phone')));
+            : ($order->user_id === null && $this->samePhone((string) ($order->customer['phone'] ?? ''), (string) $request->input('phone', $request->header('X-Customer-Phone', ''))));
 
         abort_unless($ok, 403);
     }

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { CheckoutForm } from '@/components/checkout/CheckoutForm';
+import { modeKey } from '@/lib/checkout-mode';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -18,7 +19,7 @@ export default async function CheckoutPage({ params }: Props) {
   return (
     <main className="container-awm py-10">
       <h1 className="text-3xl font-extrabold sm:text-4xl">{t('title')}</h1>
-      <p className="mb-8 mt-3 max-w-2xl text-awm-muted">{t('description')}</p>
+      <p className="mb-8 mt-3 max-w-2xl text-awm-muted">{t(modeKey('description'))}</p>
       <CheckoutForm />
     </main>
   );
