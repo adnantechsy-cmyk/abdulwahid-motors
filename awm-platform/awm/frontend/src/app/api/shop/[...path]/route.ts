@@ -18,6 +18,7 @@ const ROUTES: { method: string; pattern: RegExp }[] = [
   { method: 'POST', pattern: new RegExp(`^payments/${UUID}/proof$`) },
   { method: 'GET', pattern: /^appointments\/slots$/ },
   { method: 'POST', pattern: /^appointments$/ },
+  { method: 'POST', pattern: /^contact$/ },
 ];
 
 const FORWARD_HEADERS = ['content-type', 'accept', 'x-cart-token', 'x-locale', 'idempotency-key', 'x-customer-phone'];

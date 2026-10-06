@@ -768,64 +768,61 @@
       "sales": "Car sales",
       "parts": "Spare parts",
       "management": "Management and investment"
-    }
+    },
+    "comingSoon": "coming soon"
   },
   "about": {
     "hero": {
-      "eyebrow": "About us",
-      "title": "Abdul Wahid Motors: authorized BYD dealer in Damascus",
-      "text": "16 years of trust in Syria. We sell BYD electric and hybrid cars, service them to the manufacturer's standards and supply genuine parts, at our Sahnaya and Kafr Sousa branches.",
+      "eyebrow": "About Abdul Wahid Motors",
+      "title": "16 Years of Experience and Trust",
+      "text": "Since the founding of Abdul Wahid Motors 16 years ago, the company has chosen to make customer satisfaction, service quality, and credibility the foundation of its operations.",
       "cars": "Browse cars",
       "book": "Book a service"
     },
+    "story": {
+      "eyebrow": "Our journey",
+      "title": "A journey through difficult years",
+      "paragraphs": [
+        "Throughout its years of operation, the company continued its activities under difficult and complex circumstances, maintaining its presence and strong relationships with customers in Damascus and several other provinces.",
+        "Following the liberation, the company entered a new phase of expansion, focusing more heavily on the BYD brand to build an integrated ecosystem that goes beyond car sales to encompass comprehensive after-sales services."
+      ]
+    },
+    "ecosystem": {
+      "eyebrow": "Our ecosystem",
+      "title": "Today, this ecosystem includes:",
+      "items": [
+        "Car Sales",
+        "Warranties",
+        "Specialized and Trained Technical Staff",
+        "Comprehensive Specialized Maintenance",
+        "Electronic Diagnostics",
+        "Spare Parts",
+        "After-Sales Services"
+      ]
+    },
+    "network": {
+      "title": "Two branches in Damascus, expanding step by step",
+      "text": "The company currently operates through two branches in Damascus, with a plan to expand gradually across Syrian provinces to bring its services closer to customers and build a wider network for servicing BYD vehicles."
+    },
     "vision": {
-      "title": "Our vision",
-      "text": "To be the most reliable BYD network in Syria."
+      "title": "Our Vision",
+      "text": "To be one of the most reliable and specialized companies in the field of BYD cars and services in Syria, and to build an integrated network that makes car ownership easier, safer, and more comfortable."
     },
     "mission": {
-      "title": "Our mission",
-      "text": "A complete experience from responsible sales to technical service, with clarity at every step."
-    },
-    "offer": {
-      "eyebrow": "What we offer",
-      "title": "Three services under one roof",
-      "cars": {
-        "title": "BYD cars",
-        "text": "Electric and hybrid cars ready to reserve online with a deposit.",
-        "link": "View cars"
-      },
-      "parts": {
-        "title": "Genuine spare parts",
-        "text": "Original parts for BYD cars that you can order and pay for on the website.",
-        "link": "View spare parts"
-      },
-      "service": {
-        "title": "Service and inspection",
-        "text": "Periodic service, electronic diagnostics and Blade battery checks, with a digital history for your car.",
-        "link": "Service details"
-      }
+      "title": "Our Mission",
+      "text": "To provide an integrated experience that starts with choosing the car and goes far beyond its delivery, through responsible selling, specialized technical service, genuine spare parts, robust warranties, and continuous communication with the customer."
     },
     "values": {
       "eyebrow": "Our values",
-      "title": "How we work",
-      "items": {
-        "trust": {
-          "title": "Trust",
-          "text": "We deliver what we promise: clear prices, documented work and after-sales follow-up."
-        },
-        "transparency": {
-          "title": "Transparency",
-          "text": "Follow your order, your car and your invoices from your account without having to call."
-        },
-        "technical": {
-          "title": "Technical excellence",
-          "text": "Trained technicians, diagnostic equipment and documented inspection procedures."
-        },
-        "support": {
-          "title": "Support",
-          "text": "A team that stays with you after purchase and looks after your car's needs."
-        }
-      }
+      "title": "The values we work by",
+      "items": [
+        "Credibility",
+        "Quality",
+        "Commitment",
+        "Transparency",
+        "Continuous Development",
+        "Customer Service"
+      ]
     },
     "faq": {
       "eyebrow": "FAQ",
@@ -837,19 +834,19 @@
         },
         {
           "q": "How do I reserve a car?",
-          "a": "Pick a car on the cars page and reserve it with a deposit online, then follow the reservation until handover from your account."
+          "a": "Pick a car on the cars page and send a reservation request on the website. Our sales team contacts you to confirm availability, agree the details and arrange payment."
         },
         {
           "q": "Can I book a service appointment on the website?",
-          "a": "Yes. Choose the service, branch, day and time, and our team will contact you to confirm."
+          "a": "Yes. Choose the service, branch, day and exact time, and our team will contact you to confirm."
         },
         {
           "q": "How do I know the condition of my Blade battery?",
           "a": "We inspect Blade batteries and issue a digital certificate that anyone can verify through a link or the QR code printed on the report."
         },
         {
-          "q": "Which payment methods do you accept?",
-          "a": "Bank transfer and mobile wallet payment, with a receipt upload so our team can confirm the payment."
+          "q": "How is payment made?",
+          "a": "After we receive your request, our sales team contacts you and arranges payment with you directly: at the branch, by bank transfer or by mobile wallet."
         }
       ]
     },
@@ -942,7 +939,9 @@
     "branches": {
       "title": "Our branches",
       "directions": "Open in Maps",
-      "bookHere": "Book at this branch"
+      "bookHere": "Book at this branch",
+      "mapTitle": "{branch} map",
+      "opensNewTab": "opens in a new tab"
     },
     "hours": {
       "title": "Opening hours",
@@ -957,6 +956,13 @@
         "fri": "Friday"
       },
       "note": "Online booking hours."
+    },
+    "maps": {
+      "title": "Find our branches on the map"
+    },
+    "form": {
+      "title": "Send us a message",
+      "text": "Write your question or request and we will reply as soon as we can. Your message goes straight to the department you choose."
     }
   },
   "seo": {
@@ -1445,6 +1451,32 @@
           "return": "Return"
         }
       }
+    }
+  },
+  "contactForm": {
+    "name": "Name",
+    "topic": "Topic",
+    "phone": "Phone number",
+    "email": "Email",
+    "either": "At least one",
+    "message": "Your message",
+    "website": "Website",
+    "topics": {
+      "info": "General enquiry",
+      "sales": "Car sales",
+      "parts": "Spare parts",
+      "management": "Management and investment"
+    },
+    "send": "Send message",
+    "sending": "Sending…",
+    "sentTitle": "Message received",
+    "sentText": "Thank you for getting in touch. Our team will reply soon.",
+    "failed": "We couldn't send your message right now. Please try again or call us.",
+    "errors": {
+      "name": "Enter your name.",
+      "contact": "Enter a phone number or an email so we can reply.",
+      "email": "That email address looks wrong.",
+      "message": "Write a message of at least 10 characters."
     }
   }
 }

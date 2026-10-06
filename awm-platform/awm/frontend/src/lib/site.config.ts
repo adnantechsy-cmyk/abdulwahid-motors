@@ -18,19 +18,24 @@ export const siteConfig = {
     { key: 'management', address: 'management@abdulwahidmotors.com' },
   ] as { key: EmailKey; address: string }[],
   /** Shown as a tel: link. International format, e.g. '+963 11 000 0000' */
-  phone: '',
+  phone: '+963 937 309 888',
   /** Digits only with country code, e.g. '963944000000'. Opens a WhatsApp chat. */
-  whatsapp: '',
-  /** Full https:// URLs of the company profiles. */
+  whatsapp: '963937309888',
+  /** Full https:// URLs of the company profiles. '#' is a temporary placeholder: the icon shows, but the link goes nowhere and is kept out of the SEO data. */
   social: {
     facebook: 'https://www.facebook.com/HadeForcarsHousesTrading',
-    instagram: '',
+    instagram: '#',
     x: '',
     youtube: '',
     tiktok: '',
     linkedin: '',
     telegram: '',
   } satisfies Record<SocialKey, string>,
+  /**
+   * Exact map pins. In Google Maps: Share > Embed a map > copy the "src" URL of the iframe (https://www.google.com/maps/embed?pb=...).
+   * While empty, the map searches for the branch by name and address instead.
+   */
+  branchMaps: { sahnaya: '', kafr_sousa: '' } as Record<'sahnaya' | 'kafr_sousa', string>,
   /**
    * Opening hours shown on the Contact page. Mirrors `appointments.hours` in the Laravel config
    * (backend/config/awm.php): keep the two in sync. Days not listed are closed.
@@ -71,3 +76,16 @@ export function contactChannels() {
     social,
   };
 }
+
+/** Profiles shown as icons on the site. Unlike `contactChannels().social` (real https URLs only, used for SEO data), this also keeps '#' placeholders so the icon is visible before the real link exists. */
+export function socialLinks() {
+  const order: SocialKey[] = ['instagram', 'facebook', 'x', 'youtube', 'tiktok', 'linkedin', 'telegram'];
+  return order
+    .filter((key) => siteConfig.social[key].trim() === '#' || httpsUrl(siteConfig.social[key]))
+    .map((key) => {
+      const href = siteConfig.social[key].trim();
+      return { key, label: SOCIAL_LABELS[key], href, placeholder: href === '#' };
+    });
+}
+/** Search text for the fallback map. Kept in one place so the embed and the "open in Maps" link agree. */
+export const branchMapQuery = (company: string, title: string, address: string) => `${company} ${title} ${address}`;
