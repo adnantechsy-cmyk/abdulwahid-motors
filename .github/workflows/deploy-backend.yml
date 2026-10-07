@@ -1,0 +1,42 @@
+name: Deploy backend to Hostinger
+
+# Runs the server-side deploy script over SSH after every push to main that touches the backend.
+# The frontend is deployed by Hostinger's own GitHub integration (hPanel -> Node.js web app).
+on:
+  push:
+    branches: [main]
+    paths: ['awm-platform/awm/backend/**', '.github/workflows/deploy-backend.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: staging
+    steps:
+      - name: Prepare SSH
+        env:
+          SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Run deploy.sh on the server
+        env:
+          HOST: ${{ secrets.HOSTINGER_HOST }}
+          PORT: ${{ secrets.HOSTINGER_PORT }}
+          USER_NAME: ${{ secrets.HOSTINGER_USER }}
+          BACKEND_DIR: ${{ secrets.HOSTINGER_BACKEND_DIR }}
+        run: |
+          ssh -i ~/.ssh/id_deploy -p "$PORT" -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes \
+            "$USER_NAME@$HOST" "cd '$BACKEND_DIR' && bash deploy.sh"
