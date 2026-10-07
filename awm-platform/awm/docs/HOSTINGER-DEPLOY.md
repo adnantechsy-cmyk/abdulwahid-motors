@@ -58,12 +58,15 @@ Hostinger runs Node.js apps on demand: after idle time, the first request starts
 
 ```bash
 cd ~/domains/api.abdulwahidmotors.com      # check the exact folder name with `ls ~/domains`
-git clone <your-backend-repo> laravel
-cd laravel
-composer install --no-dev --optimize-autoloader
-cp .env.production.example .env           # then fill in DB_*, MAIL_*, REVALIDATE_SECRET, ADMIN_*
-php artisan key:generate
+git clone <your-repo> repo
+cd repo/awm-platform/awm/backend
+bash setup-skeleton.sh                    # once: installs the Laravel framework files + packages, creates .env
+# edit .env: DB_*, MAIL_*, REVALIDATE_SECRET, ADMIN_*
 ```
+
+The repo holds only our application code. `setup-skeleton.sh` creates a fresh Laravel app, merges it in without overwriting any of our files, runs `composer require` for Sanctum, spatie/permission, spatie/translatable and Stripe, and publishes their migrations. Run it once per server; the framework files it adds are not committed. In the steps below, "the Laravel folder" is `repo/awm-platform/awm/backend`.
+
+**Automatic deploys (GitHub Actions):** `.github/workflows/deploy-backend.yml` runs `deploy.sh` over SSH after each push to `main` that changes the backend. Add these repository secrets (Settings, Secrets and variables, Actions, in an environment named `staging`): `HOSTINGER_HOST`, `HOSTINGER_PORT`, `HOSTINGER_USER`, `HOSTINGER_BACKEND_DIR` (absolute path of the Laravel folder), `HOSTINGER_SSH_KEY` (a private key made only for deploys, its public half in `~/.ssh/authorized_keys` on the server) and `HOSTINGER_KNOWN_HOSTS` (output of `ssh-keyscan -p <port> <host>`, checked against the fingerprint in hPanel).
 
 **B3. Database + first admin**
 
