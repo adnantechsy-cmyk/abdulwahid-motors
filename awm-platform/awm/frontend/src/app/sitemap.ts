@@ -8,9 +8,12 @@ type Row = SitemapResponse['urls'][number];
 /** Public pages that exist in the frontend but not in Laravel's route list. */
 const EXTRA_PAGES: Row[] = [{ path: 'service-booking', lastmod: null, changefreq: 'monthly', priority: 0.7 }];
 
+// Rendered per request (the fetch below is still cached for 15 minutes), so a build never depends on the API being reachable.
+export const dynamic = 'force-dynamic';
+
 /** /sitemap.xml: rebuilt from Laravel; purged by the admin SEO module via /api/revalidate. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const data = await apiGet<SitemapResponse>('/seo/sitemap', { tags: ['sitemap'], revalidate: 900 });
+  const data = await apiGet<SitemapResponse>('/seo/sitemap', { tags: ['sitemap'], revalidate: 900 }).catch(() => null);
   if (!data) return [];
 
   const locales = data.locales?.length ? data.locales : [...LOCALES];
